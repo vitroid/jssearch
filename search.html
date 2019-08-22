@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ja" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <base href="http://192.168.3.66:8087">
+    <title>Search</title>
+    
+  </head>
+
+
+  <body>
+
+    <div class="wrap">
+
+      <div class="container content">
+
+
+<div class="post">
+  <h1 class="post-title">Search</h1>
+  <div class="ulist">
+<ul>
+<li>
+<p>上下キーでベージ送りします。</p>
+</li>
+</ul>
+</div>
+
+  
+<script src="index2.js"></script>
+<style>
+  div.wrap{
+  max-width: 750px;
+  background-color:#f0f0f0;
+  margin: 0 auto;
+  font-family: sans-serif;
+  font-size: 10pt;
+  }
+  table{
+  display: block;
+  }
+  table tr{
+  align: center;
+  margin: 0px;
+  margin-bottom: 8px;
+  }
+  table tr:nth-child(odd){
+  background-color: #e0e0e0;
+  }
+  td{
+  display: inline-block;
+	margin:0;
+	padding:0 0 1em 0.5em;
+  }
+  td.i{
+  display: inline-block;
+  width: 200px;
+  }
+  td.d{
+  display: inline-block;
+  max-width: 530px;
+  }
+  
+span.l{
+	font-size:150%;
+	font-weight:bold;
+}
+div.m{
+  color: #808080;
+  background-color: #fff;
+}
+span.ti{
+	font-weight:bold;
+}
+td b{
+	color:#666600;
+	background-color:#ffffdd;
+	font-weight:bold;
+	border:1px solid #bbbb00;
+	margin:0 2px 0 2px;
+	padding:0 2px 0 2px;
+}
+#navi{
+	margin:0.5rem 0;
+	line-height:2rem;
+}
+#navi span{
+	border-top:1px solid #d8d8d8;
+	border-bottom:1px solid #d8d8d8;
+	padding: 0.33rem 0.66rem;
+	cursor:pointer;
+	word-wrap:break-word;
+}
+#navi span.selected{
+	background: #D3EDF7;
+}
+#navi span:first-child{
+	border-left:1px solid #d8d8d8;
+	border-top-left-radius: 0.4rem;
+	border-bottom-left-radius: 0.4rem;
+}
+#navi span:last-child{
+	border-right:1px solid #d8d8d8;
+	border-top-right-radius: 0.4rem;
+	border-bottom-right-radius: 0.4rem;
+}
+
+#searchbox input{
+	font-size: 0.8rem;
+	padding: 0.25rem;
+	margin-bottom: 0.2rem;
+}
+@media (max-width: 15em) {
+	#navi{
+		width:300px;
+	}
+}
+</style>
+<div id="searchbox">
+<input type="text" id="q" onkeyup="do_find(this.value)" onkeydown="key(event.keyCode)" autocomplete="off" placeholder="サイト内を検索">　<span id="stat"></span>
+<div id="navi"></div>
+<div id="result"></div>
+</div>
+<script>
+window.onload=function(){
+	gid("q").focus();
+}
+
+{
+	$_ = String.prototype;
+	
+	$_.mReplace = function(pat,flag){
+		var temp = this;
+		if(!flag){flag=""}
+		for(var i in pat){
+			var re = new RegExp(i,flag);
+			temp = temp.replace(re,pat[i])
+		}
+		return temp;
+	};
+}
+
+{
+	$_ = Date.prototype;
+	
+	$_.format = "yyyy-mm-dd HH:MM:SS";
+	$_.formatTime = function(format){
+		var yy;
+		var o = {
+			yyyy : ((yy = this.getYear()) < 2000)? yy+1900 : yy,
+			mm   : this.getMonth() + 1,
+			dd   : this.getDate(),
+			HH   : this.getHours(),
+			MM   : this.getMinutes(),
+			SS   : this.getSeconds()
+		}
+		for(var i in o){
+			if (o[i] < 10) o[i] = "0" + o[i];
+		}
+		return (format) ? format.mReplace(o) : this.format.mReplace(o);
+	}
+}
+</script>
+<script>
+  gid('q').addEventListener('compositionend', (event) => {
+							do_find(gid('q').value);
+  console.log(`generated characters were: ${event.data}`);
+});
+var start = new Date().getTime();
+var bodylist = [];
+var st = gid("stat");
+var re = gid("result");
+var nv = gid("navi");
+var max = 10;
+var KC = {
+	enter: 13,
+	left : 37,
+	right: 39,
+	up   : 38,
+	down : 40
+};
+function gid(id){
+	return document.getElementById(id);
+}
+function ignore_case(){
+	var a = arguments;
+	return "[" + a[0] + a[0].toUpperCase() + "]"
+}
+function do_find(v){
+	if(this.lastquery == v){return}
+	this.lastquery = v;
+	var re = find(v);
+	if(re.length){
+		pagenavi(re);
+		view(re)
+	}
+}
+function key(c){
+	switch(c){
+		case KC.up   : mv(-1);break;
+		case KC.down : mv(1);break;
+	}
+}
+function find(v){
+	var query = v;
+	if(!v){return []}
+	var aimai;
+	if(query){
+
+
+		aimai = query.replace(/[a-z]/g,ignore_case);
+		try{
+			reg = new RegExp(aimai,"g");
+		}catch(e){
+			reg = /(.)/g;
+		}
+	}else{
+		reg = /(.)/g;
+	}
+	var start = new Date().getTime();
+	var result = [];
+	for(var i=0;i<data.length;i++){
+		
+		var s = bodylist[i];
+		var res = reg.exec(s);
+		if(!res){continue}
+		var len = res[0].length;
+		var idx = res.index;
+		if(idx != -1){
+			result.push([i,idx,len]);
+		}
+	}
+	if(result.length){
+		st.innerHTML = result.length +"件見つかりました。";
+	}
+	var end = new Date().getTime();
+
+	console.log("Find:"+ (end-start) + " ms");
+	return result;
+}
+function time2date(time){
+	if(!this.cache){this.cache = {}};
+	if(this.cache[time]) return this.cache[time];
+	var d = new Date(time*1000);
+	this.cache[time] = d.formatTime("yyyy年mm月dd日");
+	return this.cache[time];
+}
+function snippet(body,idx,len){
+	var start = idx - 20;
+	return [
+		body.substring(start,idx),
+		,"<b>"
+		,body.substr(idx,len)
+		,"</b>"
+		,body.substr(idx+len,50),
+	].join("");
+}
+function pagenavi(result){
+	var len = result.length;
+	var ct = Math.ceil(len/max);
+	var buf = [];
+	for(var i=0;i<ct;i++){
+		buf.push(
+			"<span onclick='view(\"\","
+			,i+1
+			,");sw(",i,")'>"
+			,i+1
+			,"</span>"
+		);
+	}
+	nv.innerHTML = buf.join("");
+	sw(0);
+}
+function sw(t){
+	var span = nv.getElementsByTagName("span");
+	for(var i=0;i<span.length;i++){
+		span[i].className = (i==t)?"selected":"";
+	}
+}
+function mv(to){
+	var span = nv.getElementsByTagName("span");
+	var current;
+	if(!span.length){return}
+	for(var i=0;i<span.length;i++){
+		if(span[i].className == "selected"){
+			current = i;break;
+		}
+	}
+	var moveto = current+to;
+	if(moveto < 0){moveto += span.length}
+	if(moveto > span.length-1){moveto=0}
+	sw(moveto);
+	view("",moveto+1)
+}
+function view(result,offset){
+	if(!offset){offset = 1}
+	if(!result){
+		result = this.last.reverse();
+	}else{
+		this.last = result;
+	}
+	var r = result.reverse();
+	var buf = ["<table>"];
+	var count = 0;
+	for(var i=(offset-1)*max;i<r.length;i++){
+		count++;
+		if(count > max){break}
+		var num = r[i][0];
+		var idx = r[i][1];
+		       var len = r[i][2];
+		with(data[num]){
+			buf.push(
+		       "<tr><td class='i'><a ",pdflink," target='_blank'><img src='",preview,"' /></a></td>",
+		       "<td class='d'><span class='l'>", label,"</span><br /><span class='ti'>", title, "</span><br />", speakers, "<br /><div class='m'>..."
+				
+
+
+
+		       ,snippet(bodylist[num],idx,len)
+		       ,"</m></td></tr>"
+			);
+		}
+	}
+	buf.push("</table>");
+	re.innerHTML = buf.join("");
+}
+for(var i=0;i<data.length;i++){
+	bodylist.push(data[i].title+ " " +data[i].content);
+}
+var bodyidx = bodylist.join("<>");
+var end = new Date().getTime();
+
+console.log("Index:"+ (end-start) + " ms");
+</script>
+
+	<noscript><p class="notice">注意: この検索機能は JavaScript を使用しています。</p></noscript>
+</div>
+
+      </div>
+    </div>
+
+
+
+
+
+  </body>
+</html>
+
