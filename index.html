@@ -8,7 +8,6 @@
     <meta name="MobileOptimized" content="320">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <base href="http://192.168.3.66:8087">
     <title>Search</title>
     
   </head>
@@ -24,48 +23,57 @@
 <div class="post">
   <h1 class="post-title">Search</h1>
   <div class="ulist">
-<ul>
-<li>
-<p>上下キーでベージ送りします。</p>
-</li>
-</ul>
+<h2>錯体化学会第69討論会(2019年・名古屋大学)　要旨集検索システム</h2>
+<p>発表番号、題目、キーワード、研究場所、発表者名にて検索が可能です</p>
+<p>上下キーでベージ送りします</p>
+<p>画像クリックでPDFが開きます</p>
 </div>
 
   
-<script src="index2.js"></script>
+<script src="index.js"></script>
+<!-- https://allabout.co.jp/gm/gc/459917/3/ -->
 <style>
+  * {
+  padding: 0px
+;
+  margin:  0px;
+  }
+  body{
+  font-family: Helvetica, Ariel, sans-serif;
+  font-size: 10pt;
+}  
   div.wrap{
   max-width: 750px;
   background-color:#f0f0f0;
-  margin: 0 auto;
-  font-family: sans-serif;
-  font-size: 10pt;
+  margin: 0 auto; //centering
   }
-  table{
-  display: block;
-  }
-  table tr{
-  align: center;
-  margin: 0px;
-  margin-bottom: 8px;
+  td{
+  margin:0;
+  padding:0 0 1em 0.5em;
   }
   table tr:nth-child(odd){
   background-color: #e0e0e0;
   }
-  td{
-  display: inline-block;
-	margin:0;
-	padding:0 0 1em 0.5em;
+
+  @media screen and (min-width: 550px) {
+    table tr.r{
+      display: flex;           /* flexコンテナ化 */
+  flex-direction: row;
+  justify-content: flex-start;
   }
-  td.i{
-  display: inline-block;
-  width: 200px;
-  }
-  td.d{
-  display: inline-block;
-  max-width: 530px;
   }
   
+  @media screen and (max-width: 550px) {
+   tr.r {
+      display: flex;
+      flex-direction: column-reverse;
+  align-items: center;
+  }
+  td.i { justify-content: center; }
+  }
+  table tr.r{
+  margin: 0px;
+  }
 span.l{
 	font-size:150%;
 	font-weight:bold;
@@ -127,10 +135,6 @@ td b{
 <div id="result"></div>
 </div>
 <script>
-window.onload=function(){
-	gid("q").focus();
-}
-
 {
 	$_ = String.prototype;
 	
@@ -167,6 +171,7 @@ window.onload=function(){
 }
 </script>
 <script>
+gid("q").focus();
   gid('q').addEventListener('compositionend', (event) => {
 							do_find(gid('q').value);
   console.log(`generated characters were: ${event.data}`);
@@ -195,10 +200,10 @@ function do_find(v){
 	if(this.lastquery == v){return}
 	this.lastquery = v;
 	var re = find(v);
-	if(re.length){
+	//if(re.length){
 		pagenavi(re);
 		view(re)
-	}
+	//}
 }
 function key(c){
 	switch(c){
@@ -235,9 +240,9 @@ function find(v){
 			result.push([i,idx,len]);
 		}
 	}
-	if(result.length){
+	//if(result.length){
 		st.innerHTML = result.length +"件見つかりました。";
-	}
+	//}
 	var end = new Date().getTime();
 
 	console.log("Find:"+ (end-start) + " ms");
@@ -315,8 +320,8 @@ function view(result,offset){
 		       var len = r[i][2];
 		with(data[num]){
 			buf.push(
-		       "<tr><td class='i'><a ",pdflink," target='_blank'><img src='",preview,"' /></a></td>",
-		       "<td class='d'><span class='l'>", label,"</span><br /><span class='ti'>", title, "</span><br />", speakers, "<br /><div class='m'>..."
+		       "<tr class='r'><td class='i'><a ",pdf," target='_blank'><img src='tn/",pre,"' /></a></td>",
+		       "<td class='d'><span class='l'>", lab,"</span><br /><span class='ti'>", tit, "</span><br />", spe, "<br />", loc, "<br /><div class='m'>..."
 				
 
 
@@ -330,7 +335,7 @@ function view(result,offset){
 	re.innerHTML = buf.join("");
 }
 for(var i=0;i<data.length;i++){
-	bodylist.push(data[i].title+ " " +data[i].content);
+	bodylist.push(data[i].con);
 }
 var bodyidx = bodylist.join("<>");
 var end = new Date().getTime();
@@ -345,7 +350,8 @@ console.log("Index:"+ (end-start) + " ms");
     </div>
 
 
-
+<!-- Original code is available athttp://rs.luminousspice.com/search/       &copy; 2017 luminousspice.com.
+     Modified and improved by 2019 Masakazu Matsumoto. -->
 
 
   </body>
