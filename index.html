@@ -42,38 +42,38 @@
   font-family: Helvetica, Ariel, sans-serif;
   font-size: 10pt;
 }
-  div.wrap{
+div.wrap{
   max-width: 750px;
   background-color:#f0f0f0;
   margin: 0 auto; //centering
-  }
-  td{
+}
+td{
   margin:0;
   padding:0 0 1em 0.5em;
-  }
-  table tr:nth-child(odd){
+}
+table tr.r:nth-child(odd){
   background-color: #e0e0e0;
-  }
+}
 
-  @media screen and (min-width: 550px) {
-    table tr.r{
-      display: flex;           /* flexコンテナ化 */
-  flex-direction: row;
-  justify-content: flex-start;
-  }
-  }
-
-  @media screen and (max-width: 550px) {
-   tr.r {
-      display: flex;
-      flex-direction: column-reverse;
-  align-items: center;
-  }
-  td.i { justify-content: center; }
-  }
+@media screen and (min-width: 550px) {
   table tr.r{
-  margin: 0px;
+    display: flex;           /* flexコンテナ化 */
+    flex-direction: row;
+    justify-content: flex-start;
   }
+}
+
+@media screen and (max-width: 550px) {
+  tr.r {
+    display: flex;
+    flex-direction: column-reverse;
+  align-items: center;
+}
+td.i { justify-content: center; }
+}
+table tr.r{
+  margin: 0px;
+}
 span.l{
 	font-size:150%;
 	font-weight:bold;
@@ -93,20 +93,41 @@ td b{
 	margin:0 2px 0 2px;
 	padding:0 2px 0 2px;
 }
-table.ttt{
-  margin: auto;
+
+div.ttpanel {
+  display: flex;
+  flex-wrap: wrap;
 }
-td.ttt{
-  vertical-align: top;
-}
-th.tt {
-  background-color: #fff;
+th.row {
   width: 64px;
-}
-td.tt, th.tth {
   background-color: #fff;
-  width: 16px;
 }
+th.right {
+  font-size: 80%;
+  vertical-align: top;
+  background-color: #fff;
+}
+th.corner {
+  width: 64px;
+  font-size: 150%;
+  padding: 10px 10px 0;
+}
+td.row, th.col {
+  padding: 2px 2px 0;
+  width: 22px;
+}
+tr.header{
+  background-color: #fff;
+}
+tr.row{
+  background-color: #888;
+  height: 25px;
+}
+[type="checkbox"]{
+  width: 1.75em;
+  height: 1.75em;
+}
+
 
 #navi{
 	margin:0.5rem 0;
@@ -143,6 +164,64 @@ td.tt, th.tth {
 		width:300px;
 	}
 }
+
+/* tabs using CSS https://bagelee.com/design/css/create_tabs_using_only_css/ */
+
+/*タブ切り替え全体のスタイル*/
+.tabs {
+  margin-top: 50px;
+  padding-bottom: 40px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  max-width: 700px;
+  margin: 0 auto;}
+
+/*タブのスタイル*/
+.tab_item {
+  width: calc(100%/3);
+  height: 50px;
+  border-bottom: 3px solid #5ab4bd;
+  background-color: #d9d9d9;
+  line-height: 50px;
+  font-size: 16px;
+  text-align: center;
+  color: #565656;
+  display: block;
+  float: left;
+  text-align: center;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+.tab_item:hover {
+  opacity: 0.75;
+}
+
+/*ラジオボタンを全て消す*/
+input[name="tab_item"] {
+  display: none;
+}
+
+/*タブ切り替えの中身のスタイル*/
+.tab_content {
+  display: none;
+  padding: 10px 10px 0;
+  clear: both;
+  overflow: hidden;
+}
+
+
+/*選択されているタブのコンテンツのみを表示*/
+#day1_tab:checked ~ #day1_content,
+#day2_tab:checked ~ #day2_content,
+#day3_tab:checked ~ #day3_content {
+  display: block;
+}
+
+/*選択されているタブのスタイルを変える*/
+.tabs input:checked + .tab_item {
+  background-color: #5ab4bd;
+  color: #fff;
+}
 </style>
 <!--<div id="fav"></div>-->
 <div id="searchbox">
@@ -150,7 +229,20 @@ td.tt, th.tth {
 <div id="navi"></div>
 <div id="result"></div>
 </div>
-<div id="timetable"></div>
+<p>興味のある講演にチェックを入れると、下の表に青い印が付きます。聴講スケジュールを決めるのにご活用下さい。</p>
+<!-- tabs using CSS https://bagelee.com/design/css/create_tabs_using_only_css/ -->
+<div class="tabs">
+  <input id="day1_tab" type="radio" name="tab_item" checked>
+  <label class="tab_item" for="day1_tab">Sep. 28</label>
+  <input id="day2_tab" type="radio" name="tab_item">
+  <label class="tab_item" for="day2_tab">Sep. 29</label>
+  <input id="day3_tab" type="radio" name="tab_item">
+  <label class="tab_item" for="day3_tab">Sep. 30</label>
+  <div class="tab_content" id="day1_content"><div class="ttpanel" id=day1_panel></div></div>
+  <div class="tab_content" id="day2_content"><div class="ttpanel" id=day2_panel></div></div>
+  <div class="tab_content" id="day3_content"><div class="ttpanel" id=day3_panel></div></div>
+</div>
+
 <script>
 {
 	$_ = String.prototype;
@@ -200,6 +292,8 @@ var re = gid("result");
 var nv = gid("navi");
 //var fv = gid("fav");
 var tt = gid("timetable");
+var bins = ["", "9:30", "9:50", "10:10", "10:45", "11:05", "11:25", "11:45",
+            "13:10", "13:30", "13:50", "14:10", "14:45", "15:05", "15:25", "15:45"];
 
 var max = 10;
 var KC = {
@@ -328,12 +422,12 @@ function cbclick(checkbox){
     //If it is checked.
     if(checkbox.checked){
       checked.add(checkbox.id);
-      gid("v"+checkbox.id).style.backgroundColor = "#00f";
+      gid("v"+checkbox.id).style.backgroundColor = "#0075ff";
     }
     //If it has been unchecked.
     else{
       checked.delete(checkbox.id);
-      gid("v"+checkbox.id).style.backgroundColor = "#fff";
+      gid("v"+checkbox.id).style.backgroundColor = "#f0f0f0";
     }
     var s = Array.from(checked).join(" ");
     //fv.innerHTML = s;
@@ -371,7 +465,7 @@ function view(result,offset){
       }
 			buf.push(
 		       "<tr class='r'><td class='i'><a href='pdf/",pdf,"' target='_blank'><img src='tn/",pre,"' /></a></td>",
-		       "<td class='d'><span style='float:right'><input type='checkbox' id='",lab,"' onclick='cbclick(this)' ",checkmark,"></span><span class='l'>", lab,"</span><br /><span class='ti'>", tit, "</span><br />", spe, "<br />", loc, "<br /><div class='m'>..."
+		       "<td class='d'><span style='float:left'><input type='checkbox' id='",lab,"' onclick='cbclick(this)' ",checkmark,"></span><span class='l'>", lab,"</span><br /><span class='ti'>", tit, "</span><br />", spe, "<br />", loc, "<br /><div class='m'>..."
 
 
 
@@ -388,9 +482,9 @@ function view(result,offset){
 /*2020 new*/
 function sessionstable(sessions, ends){
   var buf= ["<table><tbody>"];
-  buf.push("<tr class='tt'><th class='tth'></th>");
+  buf.push("<tr class='header'><th class='corner'>Oral</th>");
   for(let j in sessions){
-    buf.push("<th class='tth'>",sessions[j],"</th>");
+    buf.push("<th class='col'>",sessions[j],"</th>");
   }
   buf.push("</tr>");
   for(var i=1; i<=ends; i++){
@@ -398,11 +492,12 @@ function sessionstable(sessions, ends){
     if (i<10){
       si = "0"+si;
     }
-    buf.push("<tr class='tt'><th class='tt'>",si,"</th>");
+    buf.push("<tr class='row'><th class='row'>",si,"</th>");
     for(let j in sessions){
       var id = sessions[j]+"-"+si;
-      buf.push("<td class='tt' id='v",id,"' onclick='onesearch(this)'></td>");
+      buf.push("<td class='row' id='v",id,"' onclick='onesearch(this)'></td>");
     }
+    buf.push("<th class='right'>",bins[i],"</th>");
     buf.push("</tr>");
   }
   buf.push("</tbody></table>");
@@ -411,9 +506,9 @@ function sessionstable(sessions, ends){
 
 function postertable(sessions){
   var buf= ["<table><tbody>"];
-  buf.push("<tr class='tt'><th class='tth'></th>");
+  buf.push("<tr class='header'><th class='corner'>Poster</th>");
   for(var i=0; i<10; i++){
-    buf.push("<th class='tth'>",i,"</th>");
+    buf.push("<th class='col'>",i,"</th>");
   }
   buf.push("</tr>");
 
@@ -421,10 +516,10 @@ function postertable(sessions){
     var value = sessions[key];
     for(var i=0; i<value; i+=10){
       var si = key + Math.trunc(i/10);
-      buf.push("<tr class='tt'><th class='tt'>",si,"</th>");
+      buf.push("<tr class='row'><th class='row'>",si,"</th>");
       for(var j=0;j<10;j++){
         var id = si + j;
-        buf.push("<td class='tt' id='v",id,"' onclick='onesearch(this)'></td>");
+        buf.push("<td class='row' id='v",id,"' onclick='onesearch(this)'></td>");
       }
       buf.push("</tr>");
     }
@@ -441,15 +536,13 @@ function make_timetable(){
   var sessions3=["3A","3B","3E","3Fa"];
   var posters2 = {"2PA-":55, "2PB-":11, "2PC-":11, "2PD-":9, "2PE-":11, "2PF-":29};
   var posters3 = {"3PA-":55, "3PB-":11, "3PC-":11, "3PD-":9, "3PE-":11, "3PF-":29};
-  var s = ["<p>興味のある講演にチェックを入れると、下の表に青い印が付きます。スケジュールを決めるのにご活用下さい。</p><table class='ttt'><tbody><tr><th class='ttt'></th><th class='ttt'>Sep. 28</th><th class='ttt'>Sep. 29</th><th class='ttt'>Sep. 30</th></tr><tr><th class='ttt'>Oral</th>"];
-  s.push("<td class='ttt'>", sessionstable(sessions1, 15).join(""), "</td>");
-  s.push("<td class='ttt'>", sessionstable(sessions2, 7).join(""),  "</td>");
-  s.push("<td class='ttt'>", sessionstable(sessions3, 12).join(""), "</td>");
-  s.push("</tr><tr><th class='ttt'>Poster</th><td class='ttt'></td>");
-  s.push("<td class='ttt'>", postertable(posters2).join(""), "</td>");
-  s.push("<td class='ttt'>", postertable(posters3).join(""), "</td>");
-  s.push("</tr></tbody></table>");
-  tt.innerHTML = s.join("");
+  gid("day1_panel").innerHTML = sessionstable(sessions1, 15).join("");
+  gid("day2_panel").innerHTML = sessionstable(sessions2, 7).join("") + postertable(posters2).join("");
+  gid("day3_panel").innerHTML = sessionstable(sessions3, 12).join("") + postertable(posters3).join("");
+  /* set bg color dynamically*/
+  for(let i in data){
+    gid("v"+data[i]["lab"]).style.backgroundColor = "#f0f0f0";
+  }
 }
 make_timetable();
 
