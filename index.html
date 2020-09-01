@@ -7,9 +7,9 @@
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <title>Search</title>
-    
+
   </head>
 
 
@@ -23,14 +23,14 @@
 <div class="post">
   <h1 class="post-title">Search</h1>
   <div class="ulist">
-<h2>錯体化学会第69討論会(2019年・名古屋大学)　要旨集検索システム</h2>
-<p>発表番号、題目、キーワード、研究場所、発表者名にて検索が可能です</p>
-<p>上下キーでベージ送りします</p>
-<p>画像クリックでPDFが開きます</p>
-</div>
+    <h2>錯体化学会第70回討論会(2020年・オンライン)　要旨集検索システム</h2>
+    <p>発表番号、題目、キーワード、研究場所、発表者名にて検索が可能です</p>
+    <p>上下キーでベージ送りします</p>
+    <p>画像クリックでPDFが開きます</p>
+  </div>
 
-  
-<script src="index.js"></script>
+
+<script src="2020.js"></script>
 <!-- https://allabout.co.jp/gm/gc/459917/3/ -->
 <style>
   * {
@@ -41,7 +41,7 @@
   body{
   font-family: Helvetica, Ariel, sans-serif;
   font-size: 10pt;
-}  
+}
   div.wrap{
   max-width: 750px;
   background-color:#f0f0f0;
@@ -62,7 +62,7 @@
   justify-content: flex-start;
   }
   }
-  
+
   @media screen and (max-width: 550px) {
    tr.r {
       display: flex;
@@ -93,6 +93,21 @@ td b{
 	margin:0 2px 0 2px;
 	padding:0 2px 0 2px;
 }
+table.ttt{
+  margin: auto;
+}
+td.ttt{
+  vertical-align: top;
+}
+th.tt {
+  background-color: #fff;
+  width: 64px;
+}
+td.tt, th.tth {
+  background-color: #fff;
+  width: 16px;
+}
+
 #navi{
 	margin:0.5rem 0;
 	line-height:2rem;
@@ -129,15 +144,17 @@ td b{
 	}
 }
 </style>
+<!--<div id="fav"></div>-->
 <div id="searchbox">
 <input type="text" id="q" onkeyup="do_find(this.value)" onkeydown="key(event.keyCode)" autocomplete="off" placeholder="サイト内を検索">　<span id="stat"></span>
 <div id="navi"></div>
 <div id="result"></div>
 </div>
+<div id="timetable"></div>
 <script>
 {
 	$_ = String.prototype;
-	
+
 	$_.mReplace = function(pat,flag){
 		var temp = this;
 		if(!flag){flag=""}
@@ -151,7 +168,7 @@ td b{
 
 {
 	$_ = Date.prototype;
-	
+
 	$_.format = "yyyy-mm-dd HH:MM:SS";
 	$_.formatTime = function(format){
 		var yy;
@@ -181,6 +198,9 @@ var bodylist = [];
 var st = gid("stat");
 var re = gid("result");
 var nv = gid("navi");
+//var fv = gid("fav");
+var tt = gid("timetable");
+
 var max = 10;
 var KC = {
 	enter: 13,
@@ -189,6 +209,7 @@ var KC = {
 	up   : 38,
 	down : 40
 };
+
 function gid(id){
 	return document.getElementById(id);
 }
@@ -230,7 +251,7 @@ function find(v){
 	var start = new Date().getTime();
 	var result = [];
 	for(var i=0;i<data.length;i++){
-		
+
 		var s = bodylist[i];
 		var res = reg.exec(s);
 		if(!res){continue}
@@ -302,6 +323,28 @@ function mv(to){
 	sw(moveto);
 	view("",moveto+1)
 }
+/*2020 new*/
+function cbclick(checkbox){
+    //If it is checked.
+    if(checkbox.checked){
+      checked.add(checkbox.id);
+      gid("v"+checkbox.id).style.backgroundColor = "#00f";
+    }
+    //If it has been unchecked.
+    else{
+      checked.delete(checkbox.id);
+      gid("v"+checkbox.id).style.backgroundColor = "#fff";
+    }
+    var s = Array.from(checked).join(" ");
+    //fv.innerHTML = s;
+    window.localStorage.checked = s;
+}
+/*2020 new*/
+function onesearch(bin){
+  document.getElementById("q").value = bin.id.substring(1); //elim first v
+  do_find(bin.id.substring(1));
+}
+
 function view(result,offset){
 	if(!offset){offset = 1}
 	if(!result){
@@ -312,6 +355,7 @@ function view(result,offset){
 	var r = result.reverse();
 	var buf = ["<table>"];
 	var count = 0;
+  var checkmark;
 	for(var i=(offset-1)*max;i<r.length;i++){
 		count++;
 		if(count > max){break}
@@ -319,10 +363,16 @@ function view(result,offset){
 		var idx = r[i][1];
 		       var len = r[i][2];
 		with(data[num]){
+      if (checked.has(lab)){
+        checkmark=" checked";
+      }
+      else{
+        checkmark="";
+      }
 			buf.push(
-		       "<tr class='r'><td class='i'><a ",pdf," target='_blank'><img src='tn/",pre,"' /></a></td>",
-		       "<td class='d'><span class='l'>", lab,"</span><br /><span class='ti'>", tit, "</span><br />", spe, "<br />", loc, "<br /><div class='m'>..."
-				
+		       "<tr class='r'><td class='i'><a href='pdf/",pdf,"' target='_blank'><img src='tn/",pre,"' /></a></td>",
+		       "<td class='d'><span style='float:right'><input type='checkbox' id='",lab,"' onclick='cbclick(this)' ",checkmark,"></span><span class='l'>", lab,"</span><br /><span class='ti'>", tit, "</span><br />", spe, "<br />", loc, "<br /><div class='m'>..."
+
 
 
 
@@ -334,6 +384,95 @@ function view(result,offset){
 	buf.push("</table>");
 	re.innerHTML = buf.join("");
 }
+
+/*2020 new*/
+function sessionstable(sessions, ends){
+  var buf= ["<table><tbody>"];
+  buf.push("<tr class='tt'><th class='tth'></th>");
+  for(let j in sessions){
+    buf.push("<th class='tth'>",sessions[j],"</th>");
+  }
+  buf.push("</tr>");
+  for(var i=1; i<=ends; i++){
+    var si=i+"";
+    if (i<10){
+      si = "0"+si;
+    }
+    buf.push("<tr class='tt'><th class='tt'>",si,"</th>");
+    for(let j in sessions){
+      var id = sessions[j]+"-"+si;
+      buf.push("<td class='tt' id='v",id,"' onclick='onesearch(this)'></td>");
+    }
+    buf.push("</tr>");
+  }
+  buf.push("</tbody></table>");
+  return buf;
+}
+
+function postertable(sessions){
+  var buf= ["<table><tbody>"];
+  buf.push("<tr class='tt'><th class='tth'></th>");
+  for(var i=0; i<10; i++){
+    buf.push("<th class='tth'>",i,"</th>");
+  }
+  buf.push("</tr>");
+
+  for(var key in sessions){
+    var value = sessions[key];
+    for(var i=0; i<value; i+=10){
+      var si = key + Math.trunc(i/10);
+      buf.push("<tr class='tt'><th class='tt'>",si,"</th>");
+      for(var j=0;j<10;j++){
+        var id = si + j;
+        buf.push("<td class='tt' id='v",id,"' onclick='onesearch(this)'></td>");
+      }
+      buf.push("</tr>");
+    }
+  }
+  buf.push("</tbody></table>");
+  return buf;
+}
+
+
+
+function make_timetable(){
+  var sessions1=["1A","1C","1D","1Fa","1Fb"];
+  var sessions2=["2A","2B","2C","2D","2Fa"];
+  var sessions3=["3A","3B","3E","3Fa"];
+  var posters2 = {"2PA-":55, "2PB-":11, "2PC-":11, "2PD-":9, "2PE-":11, "2PF-":29};
+  var posters3 = {"3PA-":55, "3PB-":11, "3PC-":11, "3PD-":9, "3PE-":11, "3PF-":29};
+  var s = ["<p>興味のある講演にチェックを入れると、下の表に青い印が付きます。スケジュールを決めるのにご活用下さい。</p><table class='ttt'><tbody><tr><th class='ttt'></th><th class='ttt'>Sep. 28</th><th class='ttt'>Sep. 29</th><th class='ttt'>Sep. 30</th></tr><tr><th class='ttt'>Oral</th>"];
+  s.push("<td class='ttt'>", sessionstable(sessions1, 15).join(""), "</td>");
+  s.push("<td class='ttt'>", sessionstable(sessions2, 7).join(""),  "</td>");
+  s.push("<td class='ttt'>", sessionstable(sessions3, 12).join(""), "</td>");
+  s.push("</tr><tr><th class='ttt'>Poster</th><td class='ttt'></td>");
+  s.push("<td class='ttt'>", postertable(posters2).join(""), "</td>");
+  s.push("<td class='ttt'>", postertable(posters3).join(""), "</td>");
+  s.push("</tr></tbody></table>");
+  tt.innerHTML = s.join("");
+}
+make_timetable();
+
+// get from local storage
+var checked;
+if (window.localStorage.hasOwnProperty("checked")){
+  checked = new Set(window.localStorage.checked.split(" "));
+}
+else{
+  checked = new Set();
+}
+// set initial timetable
+var labels=Array.from(checked);
+for(let label in labels){
+  var field = gid("v"+labels[label]);
+  if (field){
+    field.style.backgroundColor = "#00f";
+  }
+}
+//for debug
+//fv.innerHTML = window.localStorage.checked;
+
+
 for(var i=0;i<data.length;i++){
 	bodylist.push(data[i].con);
 }
@@ -342,8 +481,8 @@ var end = new Date().getTime();
 
 console.log("Index:"+ (end-start) + " ms");
 </script>
+<noscript><p class="notice">注意: この検索機能は JavaScript を使用しています。</p></noscript>
 
-	<noscript><p class="notice">注意: この検索機能は JavaScript を使用しています。</p></noscript>
 </div>
 
       </div>
@@ -356,4 +495,3 @@ console.log("Index:"+ (end-start) + " ms");
 
   </body>
 </html>
-
