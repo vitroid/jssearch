@@ -27,10 +27,11 @@
     <p>発表番号、題目、キーワード、研究場所、発表者名にて検索が可能です</p>
     <p>上下キーでベージ送りします</p>
     <p>画像クリックでPDFが開きます</p>
+    <p>表示は申込データに基づいており、表示のタイトルおよび著者の一部が要旨とは異なる場合があります。</p>
   </div>
 
 
-<script src="2020.js"></script>
+<script src="index.js"></script>
 <!-- https://allabout.co.jp/gm/gc/459917/3/ -->
 <style>
   * {
@@ -50,6 +51,9 @@ div.wrap{
 td{
   margin:0;
   padding:0 0 1em 0.5em;
+}
+table {
+  margin: 2px;
 }
 table tr.r:nth-child(odd){
   background-color: #e0e0e0;
@@ -106,15 +110,31 @@ th.right {
   font-size: 80%;
   vertical-align: top;
   background-color: #fff;
+  text-align: left;
+  min-width: 45px;
+}
+th.time {
+  font-size: 80%;
+  background-color: #fff;
 }
 th.corner {
   width: 64px;
   font-size: 150%;
   padding: 10px 10px 0;
 }
+th.cornerw {
+  min-width: 128px;
+  font-size: 150%;
+  padding: 10px 10px 0;
+}
 td.row, th.col {
   padding: 2px 2px 0;
   width: 22px;
+}
+th.roww {
+  padding: 2px 2px 0;
+  min-width: 22px;
+  text-align: right;
 }
 tr.header{
   background-color: #fff;
@@ -294,6 +314,7 @@ var nv = gid("navi");
 var tt = gid("timetable");
 var bins = ["", "9:30", "9:50", "10:10", "10:45", "11:05", "11:25", "11:45",
             "13:10", "13:30", "13:50", "14:10", "14:45", "15:05", "15:25", "15:45"];
+var urlbase = "http://www.riis.okayama-u.ac.jp/p/";
 
 var max = 10;
 var KC = {
@@ -423,11 +444,13 @@ function cbclick(checkbox){
     if(checkbox.checked){
       checked.add(checkbox.id);
       gid("v"+checkbox.id).style.backgroundColor = "#0075ff";
+      gid("v"+checkbox.id).style.color = "#fff";
     }
     //If it has been unchecked.
     else{
       checked.delete(checkbox.id);
       gid("v"+checkbox.id).style.backgroundColor = "#f0f0f0";
+      gid("v"+checkbox.id).style.color = "#000";
     }
     var s = Array.from(checked).join(" ");
     //fv.innerHTML = s;
@@ -464,7 +487,7 @@ function view(result,offset){
         checkmark="";
       }
 			buf.push(
-		       "<tr class='r'><td class='i'><a href='pdf/",pdf,"' target='_blank'><img src='tn/",pre,"' /></a></td>",
+		       "<tr class='r'><td class='i'><a href='",urlbase+md5,".pdf' target='_blank'><img src='tn/",pre,"' /></a></td>",
 		       "<td class='d'><span style='float:left'><input type='checkbox' id='",lab,"' onclick='cbclick(this)' ",checkmark,"></span><span class='l'>", lab,"</span><br /><span class='ti'>", tit, "</span><br />", spe, "<br />", loc, "<br /><div class='m'>..."
 
 
@@ -504,6 +527,60 @@ function sessionstable(sessions, ends){
   return buf;
 }
 
+function sympotable(sessions, ends, bin){
+  var buf= ["<table><tbody>"];
+  buf.push("<tr class='header'><th class='corner'>Symposia</th>");
+  for(let j in sessions){
+    buf.push("<th class='col'>",sessions[j],"</th>");
+  }
+  buf.push("</tr>");
+  for(var i=1; i<=ends; i++){
+    var si=i+"";
+    if (i<10){
+      si = "0"+si;
+    }
+    buf.push("<tr class='row'><th class='row'>",si,"</th>");
+    for(let j in sessions){
+      var id = sessions[j]+"-"+si;
+      var tim = "";
+      if (id in bin){
+        tim = bin[id].substr(0,5);
+      }
+      buf.push("<td class='row' id='v",id,"' onclick='onesearch(this)'>"+tim+"</td>");
+    }
+    // buf.push("<th class='right'>",bins[i],"</th>");
+    buf.push("</tr>");
+  }
+  buf.push("</tbody></table>");
+  return buf;
+}
+
+function awardtable(ends, bin){
+  var buf= ["<table><tbody>"];
+  buf.push("<tr class='header'><th colspan='2' class='cornerw'>Award lectures</th>");
+  buf.push("</tr>");
+  for(var i=1; i<=ends; i++){
+    var si=i+"";
+    if (i<10){
+      si = "0"+si;
+    }
+    buf.push("<tr class='row'>");
+    var id = "Aw-" + si;
+    var tim = "";
+    if (id in bin){
+      tim = bin[id];
+    }
+    buf.push("<th class='roww' id='v",id,"' onclick='onesearch(this)'>"+id+"</td>");
+    buf.push("<th class='time'>"+tim+"</th>");
+
+    // buf.push("<th class='right'>",bins[i],"</th>");
+    buf.push("</tr>");
+  }
+  buf.push("</tbody></table>");
+  return buf;
+}
+
+
 function postertable(sessions){
   var buf= ["<table><tbody>"];
   buf.push("<tr class='header'><th class='corner'>Poster</th>");
@@ -534,10 +611,17 @@ function make_timetable(){
   var sessions1=["1A","1C","1D","1Fa","1Fb"];
   var sessions2=["2A","2B","2C","2D","2Fa"];
   var sessions3=["3A","3B","3E","3Fa"];
+  var sympos = ["S1", "S2", "S3", "S4", "S5"];
   var posters2 = {"2PA-":55, "2PB-":11, "2PC-":11, "2PD-":9, "2PE-":11, "2PF-":29};
   var posters3 = {"3PA-":55, "3PB-":11, "3PC-":11, "3PD-":9, "3PE-":11, "3PF-":29};
-  gid("day1_panel").innerHTML = sessionstable(sessions1, 15).join("");
-  gid("day2_panel").innerHTML = sessionstable(sessions2, 7).join("") + postertable(posters2).join("");
+  var timebin={};
+  for(let i in data){
+    if ("tim" in data[i]){
+      timebin[data[i]["lab"]] = data[i]["tim"];
+    }
+  }
+  gid("day1_panel").innerHTML = sessionstable(sessions1, 15).join("") + sympotable(sympos, 12, timebin).join("");
+  gid("day2_panel").innerHTML = sessionstable(sessions2, 7).join("") + awardtable(6, timebin).join("") + postertable(posters2).join("");
   gid("day3_panel").innerHTML = sessionstable(sessions3, 12).join("") + postertable(posters3).join("");
   /* set bg color dynamically*/
   for(let i in data){
@@ -559,7 +643,7 @@ var labels=Array.from(checked);
 for(let label in labels){
   var field = gid("v"+labels[label]);
   if (field){
-    field.style.backgroundColor = "#00f";
+    field.style.backgroundColor = "#0075ff";
   }
 }
 //for debug
