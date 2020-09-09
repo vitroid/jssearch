@@ -4,3 +4,7 @@
 *~
 *.js
 setting.yaml
+Sympo/*/*
+*.tsv
+
+parsed/

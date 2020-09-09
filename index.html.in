@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Search</title>
+    <link rel="stylesheet" type="text/css" href="cjscc70.css" />
 
   </head>
 
@@ -21,181 +22,19 @@
 
 
 <div class="post">
-  <h1 class="post-title">Search</h1>
-  <div class="ulist">
-    <h2>錯体化学会第70回討論会(2020年・オンライン)　要旨集検索システム</h2>
-    <p>発表番号、題目、キーワード、研究場所、発表者名にて検索が可能です</p>
-    <p>上下キーでベージ送りします</p>
-    <p>画像クリックでPDFが開きます</p>
-    <p>表示は申込データに基づいており、表示のタイトルおよび著者の一部が要旨とは異なる場合があります。</p>
-  </div>
+  <h1 class="post-title">錯体化学会第70回討論会(2020年・オンライン) 特設サイト</h1>
+      <p class="intro">大会概要(PDF)</p>
+      <p class="intro">プログラム</p>
+      <p class="intro"><a href="content.html">予稿集</a></p>
+      <h2 class="sec">要旨集検索システム</h2>
+      <p class="sea">発表番号、題目、キーワード、研究場所、発表者名にて検索が可能です</p>
+      <p class="sea">上下キーでベージ送りします</p>
+      <p class="sea">画像クリックでPDFが開きます</p>
+      <p class="sea">表示は申込データに基づいており、表示のタイトルおよび著者の一部が要旨とは異なる場合があります。</p>
 
-
-<script src="index.js"></script>
+<script src="%%URLBASE%%/index.js"></script>
 <!-- https://allabout.co.jp/gm/gc/459917/3/ -->
 <style>
-  * {
-  padding: 0px
-;
-  margin:  0px;
-  }
-  body{
-  font-family: Helvetica, Ariel, sans-serif;
-  font-size: 10pt;
-}
-div.wrap{
-  max-width: 750px;
-  background-color:#f0f0f0;
-  margin: 0 auto; //centering
-}
-td{
-  margin:0;
-  padding:0 0 1em 0.5em;
-}
-table {
-  margin: 2px;
-}
-table tr.r:nth-child(odd){
-  background-color: #e0e0e0;
-}
-
-@media screen and (min-width: 550px) {
-  table tr.r{
-    display: flex;           /* flexコンテナ化 */
-    flex-direction: row;
-    justify-content: flex-start;
-  }
-}
-
-@media screen and (max-width: 550px) {
-  tr.r {
-    display: flex;
-    flex-direction: column-reverse;
-  align-items: center;
-}
-td.i { justify-content: center; }
-}
-table tr.r{
-  margin: 0px;
-}
-span.l{
-	font-size:150%;
-	font-weight:bold;
-}
-div.m{
-  color: #808080;
-  background-color: #fff;
-}
-span.ti{
-	font-weight:bold;
-}
-td b{
-	color:#666600;
-	background-color:#ffffdd;
-	font-weight:bold;
-	border:1px solid #bbbb00;
-	margin:0 2px 0 2px;
-	padding:0 2px 0 2px;
-}
-
-div.ttpanel {
-  display: flex;
-  flex-wrap: wrap;
-}
-th.row {
-  width: 64px;
-  background-color: #fff;
-}
-th.right {
-  font-size: 80%;
-  vertical-align: top;
-  background-color: #fff;
-  text-align: left;
-  min-width: 45px;
-}
-th.time {
-  font-size: 80%;
-  background-color: #fff;
-}
-th.corner {
-  width: 64px;
-  font-size: 150%;
-  padding: 10px 10px 0;
-}
-th.cornerw {
-  min-width: 128px;
-  font-size: 150%;
-  padding: 10px 10px 0;
-}
-td.row, th.col {
-  padding: 2px 2px 0;
-  width: 22px;
-}
-th.roww {
-  padding: 2px 2px 0;
-  min-width: 22px;
-  text-align: right;
-}
-tr.header{
-  background-color: #fff;
-}
-tr.row{
-  background-color: #888;
-  height: 25px;
-}
-[type="checkbox"]{
-  width: 1.75em;
-  height: 1.75em;
-}
-
-
-#navi{
-	margin:0.5rem 0;
-	line-height:2rem;
-}
-#navi span{
-	border-top:1px solid #d8d8d8;
-	border-bottom:1px solid #d8d8d8;
-	padding: 0.33rem 0.66rem;
-	cursor:pointer;
-	word-wrap:break-word;
-}
-#navi span.selected{
-	background: #D3EDF7;
-}
-#navi span:first-child{
-	border-left:1px solid #d8d8d8;
-	border-top-left-radius: 0.4rem;
-	border-bottom-left-radius: 0.4rem;
-}
-#navi span:last-child{
-	border-right:1px solid #d8d8d8;
-	border-top-right-radius: 0.4rem;
-	border-bottom-right-radius: 0.4rem;
-}
-
-#searchbox input{
-	font-size: 0.8rem;
-	padding: 0.25rem;
-	margin-bottom: 0.2rem;
-}
-@media (max-width: 15em) {
-	#navi{
-		width:300px;
-	}
-}
-
-/* tabs using CSS https://bagelee.com/design/css/create_tabs_using_only_css/ */
-
-/*タブ切り替え全体のスタイル*/
-.tabs {
-  margin-top: 50px;
-  padding-bottom: 40px;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  max-width: 700px;
-  margin: 0 auto;}
-
 /*タブのスタイル*/
 .tab_item {
   width: calc(100%/3);
@@ -212,23 +51,6 @@ tr.row{
   font-weight: bold;
   transition: all 0.2s ease;
 }
-.tab_item:hover {
-  opacity: 0.75;
-}
-
-/*ラジオボタンを全て消す*/
-input[name="tab_item"] {
-  display: none;
-}
-
-/*タブ切り替えの中身のスタイル*/
-.tab_content {
-  display: none;
-  padding: 10px 10px 0;
-  clear: both;
-  overflow: hidden;
-}
-
 
 /*選択されているタブのコンテンツのみを表示*/
 #day1_tab:checked ~ #day1_content,
@@ -237,15 +59,10 @@ input[name="tab_item"] {
   display: block;
 }
 
-/*選択されているタブのスタイルを変える*/
-.tabs input:checked + .tab_item {
-  background-color: #5ab4bd;
-  color: #fff;
-}
 </style>
 <!--<div id="fav"></div>-->
 <div id="searchbox">
-<input type="text" id="q" onkeyup="do_find(this.value)" onkeydown="key(event.keyCode)" autocomplete="off" placeholder="サイト内を検索">　<span id="stat"></span>
+<input type="text" id="q" onkeyup="do_find(this.value)" onkeydown="key(event.keyCode)" autocomplete="off" placeholder="Search">　<span id="stat"></span>
 <div id="navi"></div>
 <div id="result"></div>
 </div>
@@ -314,8 +131,8 @@ var nv = gid("navi");
 var tt = gid("timetable");
 var bins = ["", "9:30", "9:50", "10:10", "10:45", "11:05", "11:25", "11:45",
             "13:10", "13:30", "13:50", "14:10", "14:45", "15:05", "15:25", "15:45"];
-var urlbase = "http://www.riis.okayama-u.ac.jp/p/";
-
+var pdfbase = "http://www.riis.okayama-u.ac.jp/p/";
+var urlbase = "%%URLBASE%%"
 var max = 10;
 var KC = {
 	enter: 13,
@@ -487,7 +304,7 @@ function view(result,offset){
         checkmark="";
       }
 			buf.push(
-		       "<tr class='r'><td class='i'><a href='",urlbase+md5,".pdf' target='_blank'><img src='tn/",pre,"' /></a></td>",
+		       "<tr class='r'><td class='i'><a href='",pdfbase+md5,".pdf' target='_blank'><img src='",urlbase,"/tn/",pre,"' /></a></td>",
 		       "<td class='d'><span style='float:left'><input type='checkbox' id='",lab,"' onclick='cbclick(this)' ",checkmark,"></span><span class='l'>", lab,"</span><br /><span class='ti'>", tit, "</span><br />", spe, "<br />", loc, "<br /><div class='m'>..."
 
 

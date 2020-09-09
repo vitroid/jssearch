@@ -13,6 +13,7 @@ logger = getLogger()
 setting = yaml.load(open("setting.yaml"), Loader=yaml.SafeLoader)
 salt = setting["salt"]
 logger.error(salt)
+
 D = dict()
 # 辞書に変換する。あとから読んだデータで上書きする。
 for file in sys.argv[1:]:
