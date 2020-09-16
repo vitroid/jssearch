@@ -3,7 +3,12 @@
   margin:  0px;
 }
 div.post {
+  margin: 2px;
+}
+div.foot {
   margin: 0px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 h1.post-title {
   padding: 10px;
@@ -20,6 +25,14 @@ p.intro {
   text-align: center;
   font-size: 120%;
   font-weight: bold;
+}
+div.credit {
+  font-size: 80%;
+  color: #888;
+  text-align: center;
+}
+div.intro {
+  text-align: center;
 }
 p.sea {
   padding: 0px 5;
@@ -43,6 +56,15 @@ table {
 table tr.r:nth-child(odd){
   background-color: #e0e0e0;
 }
+table td.c{
+  vertical-align: middle;
+  padding:0.5em;
+}
+table.c{
+  margin-left: auto;
+  margin-right: auto;
+}
+}
 
 @media screen and (min-width: 550px) {
   table tr.r{
@@ -63,13 +85,12 @@ table tr.r:nth-child(odd){
 table tr.r{
   margin: 0px;
 }
-span.l{
+a.l, span.l{
   font-size:150%;
   font-weight:bold;
+  text-decoration: none;
 }
 td.l{
-	font-size:120%;
-	font-weight:bold;
   min-width: 80px;
   vertical-align: top;
   text-align: left;
@@ -128,6 +149,10 @@ th.roww {
   padding: 2px 2px 0;
   min-width: 22px;
   text-align: right;
+}
+td.fr{
+  text-align: right;
+  padding-left: auto;
 }
 tr.header{
   background-color: #fff;
@@ -214,4 +239,48 @@ input[name="tab_item"] {
 .tabs input:checked + .tab_item {
   background-color: #5ab4bd;
   color: #fff;
+}
+
+
+/*囲み=リンク*/
+.zm{
+  border-radius: 5px 5px 5px;
+  border: 1px solid blue;
+  color: blue;
+  font-size: 90%;
+  background-color: #cacaff;
+  padding: 2px;
+  text-decoration: none;
+}
+
+.rm{
+  border-radius: 5px 5px 5px;
+  border: 1px solid red;
+  color: red;
+  font-size: 90%;
+  background-color: #ffcaca;
+  padding: 2px;
+  text-decoration: none;
+}
+
+.lk{
+  border-radius: 5px 5px 5px;
+  border: 1px solid #808080;
+  font-size: 90%;
+  padding: 2px;
+  text-decoration: none;
+  color: black;
+}
+
+.lk2{
+  border-radius: 5px 5px 5px;
+  border: 1px solid #808080;
+  font-size: 120%;
+  font-weight: bold;
+  padding: 4px;
+  color: black;
+  background-color: white;
+  text-decoration: none;
+  margin-right: 3px;
+  line-height: 200%;
 }

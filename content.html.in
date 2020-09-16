@@ -24,9 +24,10 @@
 <div class="post">
   <h1 class="post-title">Abstract book</h1>
     <h2 class="sec">錯体化学会第70回討論会(2020年・オンライン) 予稿集</h2>
-    <p class="sea">表示は申込データに基づいており、表示のタイトルおよび著者の一部が要旨とは異なる場合があります。</p>
+    <p class="sea">講演番号を押すと予稿PDFが表示されます. <span class="zm">ZOOM</span><span class="rm">REMO</span>ボタンでZoom(口頭発表)・Remo(ポスター)会場に入れます.</p>
+    <p class="sea">表示は申込データに基づいており、表示のタイトルおよび著者の一部が要旨とは異なる場合があります.</p>
 
-<script src="%%URLBASE%%/index.js"></script>
+<script src="index.js"></script>
 <!-- https://allabout.co.jp/gm/gc/459917/3/ -->
 <style>
 
@@ -68,7 +69,7 @@
 
 /*タブのスタイル*/
 .tab_item {
-  /*width: calc(100%/4);*/
+  width: calc(100%/19);
   padding-left:2px;
   padding-right:2px;
   height: 50px;
@@ -138,8 +139,32 @@ var nv = gid("navi");
 var tt = gid("timetable");
 var bins = ["", "9:30", "9:50", "10:10", "10:45", "11:05", "11:25", "11:45",
             "13:10", "13:30", "13:50", "14:10", "14:45", "15:05", "15:25", "15:45"];
-var pdfbase = "http://www.riis.okayama-u.ac.jp/p/";
-var urlbase = "%%URLBASE%%";
+var zoom={1:[
+  "https://us02web.zoom.us/j/84678137758?pwd=Q2VobE1aWFZ5RGJNUHZzVGtSVHI4QT09",
+  "846 7813 7758",
+  "326805"],
+2:[
+  "https://us02web.zoom.us/j/83614639362?pwd=SlVzR09ua1lQb0swWUhldEQvSnMrdz09",
+  "836 1463 9362",
+  "093258"],
+3:[
+  "https://us02web.zoom.us/j/81952187826?pwd=QysycUFrd3BoOUM0dGgxelpIOU5vdz09",
+  "819 5218 7826",
+  "917495"],
+4:[
+  "https://us02web.zoom.us/j/88190724947?pwd=QWkwUUNFdmd0WWNJT3hHRFJkYnpiZz09",
+  "881 9072 4947",
+  "742639"],
+5:[
+  "https://us02web.zoom.us/j/84490351547?pwd=WTVuVjhnODUrekl6VVJoZkdOcXlEdz09",
+  "844 9035 1547",
+  "057730"]
+};
+var remo={21: "https://live.remo.co/e/a-563",
+          22: "https://live.remo.co/e/2p-2",
+          31: "https://live.remo.co/e/3p-1",
+          32: "https://live.remo.co/e/3p-2"};
+var pdfbase = "%%PDFBASE%%";
 
 
 
@@ -253,11 +278,18 @@ for(let room in rooms){
 for(let i in data){
   var room = data[i].ses;
   with(data[i]){
-    rooms[room] += '<tr class="r"><td class="l"><a href="'
+    var link;
+    if(typ == "zoom"){
+      link = "<a class='zm' href='"+zoom[roo][0]+"'>ZOOM"+roo+"</a>";
+    }
+    else{//remo
+      link = "<a class='rm' href='"+remo[roo]+"'>REMO"+roo+"</a>";
+    }
+    rooms[room] += '<tr class="r"><td class="l"><a class="l" href="'
                  +pdfbase+md5
                  +'.pdf">'
                  +lab
-                 +'</a></td><td><span class="ti">'
+                 +'</a><br/>'+link+'</td><td><span class="ti">'
                  +tit
                  +"</span><br />"
                  +spe

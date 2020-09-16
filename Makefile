@@ -1,7 +1,7 @@
 all:
 
 # revised PDFをunlabelled/に練りこむ。
-prepare:
+prepare0:
 	python3 prep_pdf.py Revised_pdf_Oral
 	python3 prep_pdf.py Revised_pdf_Poster
 
@@ -17,16 +17,23 @@ thumbs:
 index.js: merge.py 2020.js Sympo/sympo.js Award/award.js
 	python merge.py 2020.js Sympo/sympo.js Award/award.js > $@
 
+CONTENT=index.js tn .htpasswd cjscc70.css
 
-deploy: index.js tn parsed/content.html parsed/index.html .htpasswd .htaccess cjscc70.css
-	-chmod -R +r tn index.js parsed/* .htpasswd .htaccess
-	rsync -av tn index.js cjscc70.css chemist@www.chem.okayama-u.ac.jp:Sites/cjscc70/
-	rsync -av parsed/ chemist@www.chem.okayama-u.ac.jp:Sites/cjscc70/
-#push pdf to riis
-	-chmod -R +r p
-	rsync -av p riis-kanri@www.riis.okayama-u.ac.jp:/var/www/html/
-# auth
-	rsync -av .htaccess .htpasswd chemist@www.chem.okayama-u.ac.jp:Sites/cjscc70/
+prepare: riis/index.html riis/.htaccess chem/index.html chem/.htaccess $(CONTENT)
+
+deploy: deploy-riis deploy-chem
+
+deploy-riis: riis/index.html riis/.htaccess $(CONTENT)
+	chmod -R +r $^
+	rsync -av $^ riis-kanri@www.riis.okayama-u.ac.jp:/var/www/html/cjscc70
+	chmod -R +r p
+	rsync -av p/ riis-kanri@www.riis.okayama-u.ac.jp:/var/www/html/p/
+
+deploy-chem: chem/index.html chem/.htaccess $(CONTENT)
+	chmod -R +r $^
+	rsync -av $^ reg@www.chem.okayama-u.ac.jp:Sites/cjscc70/
+	chmod -R +r p
+	rsync -av p/ reg@www.chem.okayama-u.ac.jp:Sites/cjscc70/p/
 
 sync:
 	rsync -av tn pdf unlabelled 2020.js index.html content.html ~/GoogleDrive/CJSCC70/
@@ -40,8 +47,13 @@ tn/%.jpg: pdf/%.pdf
 pdf/%.pdf: unlabelled/%.pdf
 	python addlabel.py $< $* $@
 
-parsed/%: %.in
-	python3 maketest.py < $< > $@
+p/AD%.pdf: pdf/AD%.pdf
+	cp $< $@
 
-.htpasswd: make_htpasswd.py 
+riis/%: %.in makeriis.py
+	python3 makeriis.py $< $@
+chem/%: %.in makechem.py
+	python3 makechem.py $< $@
+
+.htpasswd: make_htpasswd.py
 	python3 make_htpasswd.py

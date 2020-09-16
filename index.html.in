@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+[<!DOCTYPE html>
 <html class="no-js" lang="ja" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
 
   <head>
@@ -15,29 +15,154 @@
 
 
   <body>
-
     <div class="wrap">
-
       <div class="container content">
 
 
-<div class="post">
-  <h1 class="post-title">錯体化学会第70回討論会(2020年・オンライン) 特設サイト</h1>
-      <p class="intro">大会概要(PDF)</p>
-      <p class="intro">プログラム</p>
-      <p class="intro"><a href="content.html">予稿集</a></p>
-      <h2 class="sec">要旨集検索システム</h2>
-      <p class="sea">発表番号、題目、キーワード、研究場所、発表者名にて検索が可能です</p>
-      <p class="sea">上下キーでベージ送りします</p>
-      <p class="sea">画像クリックでPDFが開きます</p>
-      <p class="sea">表示は申込データに基づいており、表示のタイトルおよび著者の一部が要旨とは異なる場合があります。</p>
+        <div class="post">
+          <h1 class="post-title">錯体化学会第70回討論会(2020年・オンライン) 特設サイト</h1>
+          <div class="intro"><span class="zm">ZOOM</span><span class="rm">REMO</span>ボタンでZoom(口頭発表)・Remo(ポスター)会場に入れます.</p></div>
+          <p class="intro"><a href="http://www.sakutai.jp/conference" target="_blank">大会概要・プログラム</a>(錯体化学会のサイトに飛びます)</p>
+          <!--<p class="intro"><a href="content.html">予稿集</a></p>
+          <p class="intro">会場へのリンク</p>-->
 
-<script src="%%URLBASE%%/index.js"></script>
+          <table class="c">
+            <tbody>
+              <tr>
+                <th colspan="3">
+                  口頭発表
+                </th>
+              </tr>
+              <tr class="r">
+                <td class="c">
+                  <a class="zm" href="https://us02web.zoom.us/j/84678137758?pwd=Q2VobE1aWFZ5RGJNUHZzVGtSVHI4QT09">ZOOM1
+                  </a>
+                </td>
+                <td class="c">
+                  9/28-30 <span class='lk' onclick='query("^[1-3]A-")'>主題A</span><br />
+                  9/28 <span class='lk' onclick='query("^S1-")'>シンポジウム S1</span>
+                </td>
+                <td class="c">
+                  ZoomミーティングID: 846 7813 7758<br />パスコード: 326805
+                </td>
+              </tr>
+              <tr class="r">
+                <td class="c">
+                  <a class="zm" href="https://us02web.zoom.us/j/83614639362?pwd=SlVzR09ua1lQb0swWUhldEQvSnMrdz09">ZOOM2
+                  </a>
+                </td>
+                <td class="c">
+                  9/28 <span class='lk' onclick='query("^[1-3]Fb-")'>主題 Fb</span><br />
+                  9/28 <span class='lk' onclick='query("^S2-")'>シンポジウム S2</span><br />
+                  9/29-30 <span class='lk' onclick='query("^[1-3]B-")'>主題B</span>
+                </td>
+                <td class="c">
+                  ZoomミーティングID: 836 1463 9362<br />パスコード: 093258
+                </td>
+              </tr>
+              <tr class="r">
+                <td class="c">
+                  <a class="zm" href="https://us02web.zoom.us/j/81952187826?pwd=QysycUFrd3BoOUM0dGgxelpIOU5vdz09">ZOOM3
+                  </a>
+                </td>
+                <td class="c">
+                  9/28-29 <span class='lk' onclick='query("^[1-3]C-")'>主題 C</span><br />
+                  9/28 <span class='lk' onclick='query("^S3-")'>シンポジウム S3</span><br />
+                  9/30 <span class='lk' onclick='query("^[1-3]E-")'>主題 E</span>
+                </td>
+                <td class="c">
+                  ZoomミーティングID: 819 5218 7826<br />パスコード: 917495
+                </td>
+              </tr>
+              <tr class="r">
+                <td class="c">
+                  <a class="zm" href="https://us02web.zoom.us/j/88190724947?pwd=QWkwUUNFdmd0WWNJT3hHRFJkYnpiZz09">ZOOM4
+                  </a>
+                </td>
+                <td class="c">
+                  9/28-29 <span class='lk' onclick='query("^[1-3]D-")'>主題 D</span><br />
+                  9/28 <span class='lk' onclick='query("^S4-")'>シンポジウム S4</span>
+                </td>
+                <td class="c">
+                  ZoomミーティングID: 881 9072 4947<br />パスコード: 742639
+                </td>
+              </tr>
+              <tr class="r">
+                <td class="c">
+                  <a class="zm" href="https://us02web.zoom.us/j/84490351547?pwd=WTVuVjhnODUrekl6VVJoZkdOcXlEdz09">ZOOM5
+                  </a>
+                </td>
+                <td class="c">
+                  9/28-30 <span class='lk' onclick='query("^[1-3]Fa-")'>主題 Fa</span><br />
+                  9/28 <span class='lk' onclick='query("^S5-")'>シンポジウム S5</span><br />
+                  9/29 <span class='lk' onclick='query("^Aw-")'>受賞講演</span>
+                </td>
+                <td class="c">
+                  ZoomミーティングID: 844 9035 1547<br />パスコード: 057730
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="c">
+            <tbody>
+              <tr>
+                <th colspan="2">
+                  ポスター
+                </th>
+              </tr>
+              <tr class="r">
+                <td class="c">
+                  <a class="rm" href="https://live.remo.co/e/a-563">REMO1</a>
+                </td>
+                <td class="c">
+                  9月29日<span class='lk' onclick='query("^2PA-")'>2PA</span>・<span class='lk' onclick='query("^2PD-")'>2PD</span>
+                </td>
+              </tr>
+              <tr class="r">
+                <td class="c">
+                  <a class="rm" href="https://live.remo.co/e/2p-2">REMO2</a>
+                </td>
+                <td class="c">
+                  9月29日<span class='lk' onclick='query("^2PB-")'>2PB</span>・<span class='lk' onclick='query("^2PC-")'>2PC</span>・<span class='lk' onclick='query("^2PE-")'>2PE</span>・<span class='lk' onclick='query("^2PF-")'>2PF</span>
+                </td>
+              </tr>
+              <tr class="r">
+                <td class="c">
+                  <a class="rm" href="https://live.remo.co/e/3p-1">REMO3</a>
+                </td>
+                <td class="c">
+                  9月30日<span class='lk' onclick='query("^3PA-")'>3PA</span>・<span class='lk' onclick='query("^3PD-")'>3PD</span>
+                </td>
+              </tr>
+              <tr class="r">
+                <td class="c">
+                  <a class="rm" href="https://live.remo.co/e/3p-2">REMO4</a>
+                </td>
+                <td class="c">
+                  9月30日<span class='lk' onclick='query("^3PB-")'>3PB</span>・<span class='lk' onclick='query("^3PC-")'>3PC</span>・<span class='lk' onclick='query("^3PE-")'>3PE</span>・<span class='lk' onclick='query("^3PF-")'>3PF</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p class="intro">懇親会・交流会</p>
+          <div class="intro"><a class="rm" href="https://live.remo.co/e/70-2">REMO</a>オンライン懇親会 ⽇時：9⽉30⽇（⽔）19-21時 </div>
+          <div class="intro"><a class="rm" href="https://live.remo.co/e/70-3">REMO</a>オンライン学生交流会 ⽇時：9⽉30⽇（⽔）19-21時</div>
+        </div>
+
+      <h2 class="sec">要旨集検索</h2>
+      <p id="sc"></p>
+      <p class="sea">発表番号、題目、キーワード、研究場所、発表者名にて検索が可能です.</p>
+      <p class="sea">正規表現が使えます.</p>
+      <p class="sea">画像クリックでPDFが開きます.
+      <p class="sea">表示は申込データに基づいており、表示のタイトルおよび著者の一部が要旨とは異なる場合があります.</p>
+
+<script src="index.js"></script>
 <!-- https://allabout.co.jp/gm/gc/459917/3/ -->
 <style>
 /*タブのスタイル*/
 .tab_item {
-  width: calc(100%/3);
+  width: calc(100%/4);
   height: 50px;
   border-bottom: 3px solid #5ab4bd;
   background-color: #d9d9d9;
@@ -55,7 +180,8 @@
 /*選択されているタブのコンテンツのみを表示*/
 #day1_tab:checked ~ #day1_content,
 #day2_tab:checked ~ #day2_content,
-#day3_tab:checked ~ #day3_content {
+#day3_tab:checked ~ #day3_content,
+#ad_tab:checked ~ #ad_content {
   display: block;
 }
 
@@ -66,7 +192,7 @@
 <div id="navi"></div>
 <div id="result"></div>
 </div>
-<p>興味のある講演にチェックを入れると、下の表に青い印が付きます。聴講スケジュールを決めるのにご活用下さい。</p>
+<p>興味のある講演にチェックを入れると、下の表に青い印が付きます. 聴講スケジュールを決めるのにご活用下さい.</p>
 <!-- tabs using CSS https://bagelee.com/design/css/create_tabs_using_only_css/ -->
 <div class="tabs">
   <input id="day1_tab" type="radio" name="tab_item" checked>
@@ -75,10 +201,15 @@
   <label class="tab_item" for="day2_tab">Sep. 29</label>
   <input id="day3_tab" type="radio" name="tab_item">
   <label class="tab_item" for="day3_tab">Sep. 30</label>
+  <input id="ad_tab" type="radio" name="tab_item">
+  <label class="tab_item" for="ad_tab">協賛企業</label>
   <div class="tab_content" id="day1_content"><div class="ttpanel" id=day1_panel></div></div>
   <div class="tab_content" id="day2_content"><div class="ttpanel" id=day2_panel></div></div>
   <div class="tab_content" id="day3_content"><div class="ttpanel" id=day3_panel></div></div>
+  <div class="tab_content" id="ad_content"><div class="ttpanel" id=ad_panel></div>
+  <div class="credit">%%CREDIT%%</div></div>
 </div>
+
 
 <script>
 {
@@ -131,8 +262,82 @@ var nv = gid("navi");
 var tt = gid("timetable");
 var bins = ["", "9:30", "9:50", "10:10", "10:45", "11:05", "11:25", "11:45",
             "13:10", "13:30", "13:50", "14:10", "14:45", "15:05", "15:25", "15:45"];
-var pdfbase = "http://www.riis.okayama-u.ac.jp/p/";
-var urlbase = "%%URLBASE%%"
+var zoom={1:[
+    "https://us02web.zoom.us/j/84678137758?pwd=Q2VobE1aWFZ5RGJNUHZzVGtSVHI4QT09",
+    "846 7813 7758",
+    "326805"],
+  2:[
+    "https://us02web.zoom.us/j/83614639362?pwd=SlVzR09ua1lQb0swWUhldEQvSnMrdz09",
+    "836 1463 9362",
+    "093258"],
+  3:[
+    "https://us02web.zoom.us/j/81952187826?pwd=QysycUFrd3BoOUM0dGgxelpIOU5vdz09",
+    "819 5218 7826",
+    "917495"],
+  4:[
+    "https://us02web.zoom.us/j/88190724947?pwd=QWkwUUNFdmd0WWNJT3hHRFJkYnpiZz09",
+    "881 9072 4947",
+    "742639"],
+  5:[
+    "https://us02web.zoom.us/j/84490351547?pwd=WTVuVjhnODUrekl6VVJoZkdOcXlEdz09",
+    "844 9035 1547",
+    "057730"]
+  };
+var remo={21: ["https://live.remo.co/e/a-563", "REMO1"],
+          22: ["https://live.remo.co/e/2p-2", "REMO2"],
+          31: ["https://live.remo.co/e/3p-1", "REMO3"],
+          32: ["https://live.remo.co/e/3p-2", "REMO4"]};
+var ads=[
+  ["株式会社　リガク", "https://www.rigaku.co.jp/NEXT/", "AD10"],
+  ["マイクロトラック・ベル株式会社", "https://www.microtrac.com/jp/", "AD2"],
+  ["ブルカージャパン株式会社", "http://www.bruker.com/jp", "AD3"],
+  ["Royal Society of Chemistry Japan KK", "https://www.rsc.org/journals-books-databases/about-journals/", "AD8"],
+  ["株式会社ユニソク", "http://www.unisoku.co.jp/", "AD15"],
+  ["株式会社ブライト", "http://www.bright-jp.com/", "AD4"],
+  ["仙台和光純薬 株式会社", "http://www.sendaiwako.com/", "AD6"],
+  ["浜松ホトニクス株式会社", "https://www.hamamatsu.com/jp/ja/product/photometry-systems/luminescence-efficiency-measurement-system/quantaurus-qy-plus/index.html", "AD7"],
+  ["三共出版株式会社", "https://www.sankyoshuppan.co.jp/", "AD14"],
+  ["オザワ科学 株式会社", "https://www.ozawasc.co.jp/", "AD9"],
+  ["和研薬　株式会社", "https://www.wakenyaku.co.jp/", "AD11"],
+  ["矢澤科学器械株式会社", "", "AD13"]
+];
+
+var sc=[
+  ["1A", "^1A-"],
+  ["1C", "^1C-"],
+  ["1D", "^1D-"],
+  ["1Fa", "^1Fa-"],
+  ["1Fb", "^1Fb-"],
+  ["2A", "^2A-"],
+  ["2B", "^2B-"],
+  ["2C", "^2C-"],
+  ["2D", "^2D-"],
+  ["2Fa", "^2Fa-"],
+  ["2PA", "^2PA-"],
+  ["2PB", "^2PB-"],
+  ["2PC", "^2PC-"],
+  ["2PD", "^2PD-"],
+  ["2PE", "^2PE-"],
+  ["2PF", "^2PF-"],
+  ["3A", "^3A-"],
+  ["3B", "^3B-"],
+  ["3E", "^3E-"],
+  ["3Fa", "^3Fa-"],
+  ["3PA", "^3PA-"],
+  ["3PB", "^3PB-"],
+  ["3PC", "^3PC-"],
+  ["3PD", "^3PD-"],
+  ["3PE", "^3PE-"],
+  ["3PF", "^3PF-"],
+  ["受賞講演", "^Aw-"],
+  ["S1", "^S1-"],
+  ["S2", "^S2-"],
+  ["S3", "^S3-"],
+  ["S4", "^S4-"],
+  ["S5", "^S5-"],
+];
+
+var pdfbase = "%%PDFBASE%%";
 var max = 10;
 var KC = {
 	enter: 13,
@@ -153,10 +358,8 @@ function do_find(v){
 	if(this.lastquery == v){return}
 	this.lastquery = v;
 	var re = find(v);
-	//if(re.length){
-		pagenavi(re);
-		view(re)
-	//}
+	pagenavi(re);
+	view(re)
 }
 function key(c){
 	switch(c){
@@ -169,8 +372,6 @@ function find(v){
 	if(!v){return []}
 	var aimai;
 	if(query){
-
-
 		aimai = query.replace(/[a-z]/g,ignore_case);
 		try{
 			reg = new RegExp(aimai,"g");
@@ -183,8 +384,8 @@ function find(v){
 	var start = new Date().getTime();
 	var result = [];
 	for(var i=0;i<data.length;i++){
-
 		var s = bodylist[i];
+    reg.lastIndex = 0; // because reg remembers the last place
 		var res = reg.exec(s);
 		if(!res){continue}
 		var len = res[0].length;
@@ -274,19 +475,23 @@ function cbclick(checkbox){
     window.localStorage.checked = s;
 }
 /*2020 new*/
+function query(v){
+  document.getElementById("q").value = v;
+  do_find(v);
+}
 function onesearch(bin){
-  document.getElementById("q").value = bin.id.substring(1); //elim first v
-  do_find(bin.id.substring(1));
+  query(bin.id.substring(1)); //elim first v
 }
 
 function view(result,offset){
 	if(!offset){offset = 1}
 	if(!result){
-		result = this.last.reverse();
+		result = this.last;
 	}else{
 		this.last = result;
 	}
-	var r = result.reverse();
+	//var r = result.reverse();
+  var r = result;
 	var buf = ["<table>"];
 	var count = 0;
   var checkmark;
@@ -295,8 +500,16 @@ function view(result,offset){
 		if(count > max){break}
 		var num = r[i][0];
 		var idx = r[i][1];
-		       var len = r[i][2];
+		var len = r[i][2];
 		with(data[num]){
+      console.log(num);
+      var link;
+      if(typ == "zoom"){
+        link = "<a class='zm' href='"+zoom[roo][0]+"'>ZOOM"+roo+"</a>";
+      }
+      else{//remo
+        link = "<a class='rm' href='"+remo[roo][0]+"'>"+remo[roo][1]+"</a>";
+      }
       if (checked.has(lab)){
         checkmark=" checked";
       }
@@ -304,12 +517,8 @@ function view(result,offset){
         checkmark="";
       }
 			buf.push(
-		       "<tr class='r'><td class='i'><a href='",pdfbase+md5,".pdf' target='_blank'><img src='",urlbase,"/tn/",pre,"' /></a></td>",
-		       "<td class='d'><span style='float:left'><input type='checkbox' id='",lab,"' onclick='cbclick(this)' ",checkmark,"></span><span class='l'>", lab,"</span><br /><span class='ti'>", tit, "</span><br />", spe, "<br />", loc, "<br /><div class='m'>..."
-
-
-
-
+		       "<tr class='r'><td class='i'><a href='",pdfbase+md5,".pdf' target='_blank'><img src='tn/",pre,"' /></a></td>",
+		       "<td class='d'><span style='float:left'><input type='checkbox' id='",lab,"' onclick='cbclick(this)' ",checkmark,"></span><span class='l'>", lab,"</span>",link,"<br /><span class='ti'>", tit, "</span><br />", spe, "<br />", loc, "<br /><div class='m'>..."
 		       ,snippet(bodylist[num],idx,len)
 		       ,"</m></td></tr>"
 			);
@@ -341,7 +550,7 @@ function sessionstable(sessions, ends){
     buf.push("</tr>");
   }
   buf.push("</tbody></table>");
-  return buf;
+  return buf.join("");
 }
 
 function sympotable(sessions, ends, bin){
@@ -369,7 +578,7 @@ function sympotable(sessions, ends, bin){
     buf.push("</tr>");
   }
   buf.push("</tbody></table>");
-  return buf;
+  return buf.join("");
 }
 
 function awardtable(ends, bin){
@@ -394,7 +603,7 @@ function awardtable(ends, bin){
     buf.push("</tr>");
   }
   buf.push("</tbody></table>");
-  return buf;
+  return buf.join("");
 }
 
 
@@ -419,9 +628,21 @@ function postertable(sessions){
     }
   }
   buf.push("</tbody></table>");
-  return buf;
+  return buf.join("");
 }
 
+function add_ad(){
+  var s = [];
+  s.push("<div class='intro'>画像をクリックすると広告が表示され、企業名をクリックすると HP が開きます。</div><table class='c'><tbody>");
+  for(var i=0;i<ads.length; i++){
+    var a = ads[i];
+    var tn="tn/"+a[2]+".jpg";
+    var pdf=pdfbase+a[2]+".pdf";
+    s.push('<tr><td class="fr"><a href="'+pdf+'" target="_blank"><img src="'+tn+'" /></a></td><td><a class="lk2" href="'+a[1]+'" target="_blank">'+a[0]+'</a></td></tr>');
+  }
+  s.push("</tbody></table>")
+  return s.join("");
+}
 
 
 function make_timetable(){
@@ -437,15 +658,27 @@ function make_timetable(){
       timebin[data[i]["lab"]] = data[i]["tim"];
     }
   }
-  gid("day1_panel").innerHTML = sessionstable(sessions1, 15).join("") + sympotable(sympos, 12, timebin).join("");
-  gid("day2_panel").innerHTML = sessionstable(sessions2, 7).join("") + awardtable(6, timebin).join("") + postertable(posters2).join("");
-  gid("day3_panel").innerHTML = sessionstable(sessions3, 12).join("") + postertable(posters3).join("");
+  gid("day1_panel").innerHTML = sessionstable(sessions1, 15) + sympotable(sympos, 12, timebin);
+  gid("day2_panel").innerHTML = sessionstable(sessions2, 7) + awardtable(6, timebin) + postertable(posters2);
+  gid("day3_panel").innerHTML = sessionstable(sessions3, 12) + postertable(posters3);
+  gid("ad_panel").innerHTML = add_ad();
   /* set bg color dynamically*/
   for(let i in data){
     gid("v"+data[i]["lab"]).style.backgroundColor = "#f0f0f0";
   }
 }
+
+
+function shortcuts(){
+  s = [];
+  for(let i in sc){
+    s.push('<span class="lk2" onclick="query(\''+sc[i][1]+'\')">'+sc[i][0]+'</span> ');
+  }
+  gid('sc').innerHTML = s.join("");
+}
+
 make_timetable();
+shortcuts();
 
 // get from local storage
 var checked;
@@ -470,7 +703,7 @@ for(let label in labels){
 for(var i=0;i<data.length;i++){
 	bodylist.push(data[i].con);
 }
-var bodyidx = bodylist.join("<>");
+//var bodyidx = bodylist.join("<>");
 var end = new Date().getTime();
 
 console.log("Index:"+ (end-start) + " ms");
@@ -483,7 +716,7 @@ console.log("Index:"+ (end-start) + " ms");
     </div>
 
 
-<!-- Original code is available athttp://rs.luminousspice.com/search/       &copy; 2017 luminousspice.com.
+<!-- Original code is available at http://rs.luminousspice.com/search/       &copy; 2017 luminousspice.com.
      Modified and improved by 2019 Masakazu Matsumoto. -->
 
 

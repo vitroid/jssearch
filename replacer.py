@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 from logging import getLogger
+import json
+import shutil
 
 def line_replacer(line, d):
     logger = getLogger()
@@ -17,3 +19,25 @@ def line_replacer(line, d):
                     s += indent + newline + "\n"
             return s
     return line
+
+
+def build_number():
+    settingfile = "setting.json"
+    settings = json.load(open(settingfile))
+    settings["build"] += 1
+    with open(settingfile, "w") as f:
+        json.dump(settings, f, indent=2, ensure_ascii=False)
+    return settings["build"]
+
+
+def repl(d, fin, fout):
+    build = build_number()
+    d["%%CREDIT%%"] = "Build {0} Copyright (c) 2020 by Masakazu Matsumoto".format(build)
+
+    # make backups
+    shutil.copyfile(fin, "history/"+fin+".{0}".format(build))
+    with open(fin) as fh:
+        with open(fout, "w") as fg:
+            for line in fh:
+                line = line_replacer(line, d)
+                fg.write(line)
