@@ -1,4 +1,4 @@
-[<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="no-js" lang="ja" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
 
   <head>
@@ -20,11 +20,12 @@
 
 
         <div class="post">
-          <h1 class="post-title">錯体化学会第70回討論会(2020年・オンライン) 特設サイト</h1>
-          <div class="intro"><span class="zm">ZOOM</span><span class="rm">REMO</span>ボタンでZoom(口頭発表)・Remo(ポスター)会場に入れます.</p></div>
-          <p class="intro"><a href="http://www.sakutai.jp/conference" target="_blank">大会概要・プログラム</a>(錯体化学会のサイトに飛びます)</p>
+          <h1 class="post-title">錯体化学会第70回討論会(オンライン) 要旨検索サイト</h1>
+          <p class="intro"><a class="lk" href="http://www.sakutai.jp/jsccc70" target="_blank">オンデマンド配信、発表および視聴方法に関する案内など</a></p><div class="intro">（錯体化学会の特設サイトに飛びます）</div>
           <!--<p class="intro"><a href="content.html">予稿集</a></p>
           <p class="intro">会場へのリンク</p>-->
+          <div class="intro"><span class="zm">ZOOM</span><span class="rm">REMO</span>ボタンでZoom(口頭発表)・Remo(ポスター)会場に入れます.</p></div>
+          <div class="intro">Remo Reference Manual <a class="lk" href="http://www.sakutai.jp/cms/wp-content/uploads/2020/07/RemoManual_JP_20200804_v1_1.pdf" target="_blank">日本語</a> <a class="lk" href="http://www.sakutai.jp/cms/wp-content/uploads/2020/07/RemoManual_EN_20200804_v1_1.pdf" target="_blank">English</a></div>
 
           <table class="c">
             <tbody>
@@ -360,6 +361,7 @@ function do_find(v){
 	var re = find(v);
 	pagenavi(re);
 	view(re)
+  pagenavi(re);
 }
 function key(c){
 	switch(c){
@@ -502,7 +504,6 @@ function view(result,offset){
 		var idx = r[i][1];
 		var len = r[i][2];
 		with(data[num]){
-      console.log(num);
       var link;
       if(typ == "zoom"){
         link = "<a class='zm' href='"+zoom[roo][0]+"'>ZOOM"+roo+"</a>";
@@ -638,7 +639,7 @@ function add_ad(){
     var a = ads[i];
     var tn="tn/"+a[2]+".jpg";
     var pdf=pdfbase+a[2]+".pdf";
-    s.push('<tr><td class="fr"><a href="'+pdf+'" target="_blank"><img src="'+tn+'" /></a></td><td><a class="lk2" href="'+a[1]+'" target="_blank">'+a[0]+'</a></td></tr>');
+    s.push('<tr><td class="fr"><a href="'+pdf+'" target="_blank"><img src="'+tn+'" /></a></td><td><div class="lk"><a class="b" href="'+a[1]+'" target="_blank">'+a[0]+'</a></div></td></tr>');
   }
   s.push("</tbody></table>")
   return s.join("");

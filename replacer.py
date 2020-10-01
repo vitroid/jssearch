@@ -32,7 +32,7 @@ def build_number():
 
 def repl(d, fin, fout):
     build = build_number()
-    d["%%CREDIT%%"] = "Build {0} Copyright (c) 2020 by Masakazu Matsumoto".format(build)
+    d["%%CREDIT%%"] = "jssearch build {0} Copyright (c) 2020 by Masakazu Matsumoto".format(build)
 
     # make backups
     shutil.copyfile(fin, "history/"+fin+".{0}".format(build))

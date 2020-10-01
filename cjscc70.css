@@ -263,18 +263,21 @@ input[name="tab_item"] {
   text-decoration: none;
 }
 
-.lk{
+/*通常サイズのリンクボタン*/
+a.lk, span.lk{
   border-radius: 5px 5px 5px;
-  border: 1px solid #808080;
+  border: 1px solid #ccc;
   font-size: 90%;
   padding: 2px;
   text-decoration: none;
   color: black;
+  background-color: white;
 }
 
-.lk2{
+/*大きな文字のリンクボタン*/
+span.lk2{
   border-radius: 5px 5px 5px;
-  border: 1px solid #808080;
+  border: 1px solid #ccc;
   font-size: 120%;
   font-weight: bold;
   padding: 4px;
@@ -282,5 +285,32 @@ input[name="tab_item"] {
   background-color: white;
   text-decoration: none;
   margin-right: 3px;
+  line-height: 200%;
+}
+
+/*リンクボタン枠のみ*/
+div.lk{
+  border-radius: 5px 5px 5px;
+  border: 1px solid #ccc;
+  padding: 4px;
+  color: black;
+  background-color: white;
+  margin-right: 3px;
+  line-height: 200%;
+}
+/*大きな文字 枠なし*/
+a.b{
+  font-size: 120%;
+  font-weight: bold;
+  color: black;
+  text-decoration: none;
+  line-height: 200%;
+}
+/*小さな文字 枠なし*/
+a.s{
+  font-size: 120%;
+  font-weight: bold;
+  color: black;
+  text-decoration: none;
   line-height: 200%;
 }

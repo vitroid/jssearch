@@ -1,4 +1,4 @@
-all:
+all: chem/index.html pdfs thumbs index.js
 
 # revised PDFをunlabelled/に練りこむ。
 prepare0:
@@ -55,5 +55,5 @@ riis/%: %.in makeriis.py
 chem/%: %.in makechem.py
 	python3 makechem.py $< $@
 
-.htpasswd: make_htpasswd.py
-	python3 make_htpasswd.py
+#.htpasswd: make_htpasswd.py
+#	python3 make_htpasswd.py
