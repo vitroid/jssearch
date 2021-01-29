@@ -4,6 +4,7 @@
 }
 div.post {
   margin: 2px;
+  background-color: #fff;
 }
 div.foot {
   margin: 0px;
@@ -53,9 +54,9 @@ td{
 table {
   margin: 2px;
 }
-table tr.r:nth-child(odd){
+/* table tr.r:nth-child(odd){
   background-color: #e0e0e0;
-}
+} */
 table td.c{
   vertical-align: middle;
   padding:0.5em;
@@ -97,10 +98,16 @@ td.l{
   justify-content: left;
 }
 div.m{
-  color: #808080;
-  background-color: #fff;
+  /* color: #808080; */
+  background-color: #eee;
+  font-style: italic;
+  padding: 10px 0px 10px 2px;
+  margin: 10px 0px 10px 2px;
 }
 span.ti{
+  font-weight:bold;
+}
+td em { /* for Tanaka2021*/
   font-weight:bold;
 }
 td b{
@@ -164,6 +171,9 @@ tr.row{
 [type="checkbox"]{
   width: 1.75em;
   height: 1.75em;
+}
+td.d, td.i{
+  background-color: white;
 }
 
 
@@ -310,6 +320,12 @@ a.b{
 a.s{
   font-size: 120%;
   font-weight: bold;
+  color: black;
+  text-decoration: none;
+  line-height: 200%;
+}
+/*小さな文字 枠なし*/
+a.ss{
   color: black;
   text-decoration: none;
   line-height: 200%;
