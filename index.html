@@ -92,49 +92,45 @@ var nv = gid("navi");
 //var fv = gid("fav");
 
 var sc=[
+  ["Nature", "Nature"],//4
+  ["PNAS", "pnas"],//2
+  ["JACS", "J[a-z.]* Am[a-z.]* Chem[a-z.]* Soc"],//2
+  ["PhysRev", "Phys[a-z.]* Rev"],//11
   ["JCP", "J[a-z. ]* Chem[a-z.]* Phys"],//44
   ["JPC", "J[a-z.]* Phys[a-z.]* Chem"],//16
-  ["FPE", "Fluid Phase Equilib"],//13
-  ["MolSim", "Mol[a-z.]* Simul"],//12
-  ["CPL", "Chem[a-z.]* Phys[a-z.]* Lett"],//11
-  ["PhysRev", "Phys[a-z.]* Rev"],//11
   ["PCCP", "Phys[a-z.]* Chem[a-z.]* Chem[a-z.]* Phys"],//5
-  ["PhysA", "Phys[a-z.]* A:"],//5
-  ["Nature", "Nature"],//4
-  ["Macromol", "Macromol"],//4
-  ["JACS", "J[a-z.]* Am[a-z.]* Chem[a-z.]* Soc"],//2
 
-  ["Molecul", "[Mm]olecul"],//108
-  ["Dynamic", "[Dd]ynamic"],//105
-  ["water", "[Ww]ater"],//94
-  ["structur", "[Ss]tructur"],//67
-  ["Phase", "[Pp]hase"],//63
-  ["ice", " [Ii]ce"],//58
-  ["thermodynamic", "[Tt]hermodynamic"],//44
-  ["hydrate", "[Hh]ydrate"],//43
-  ["clathrate", "[Cc]lathrate"],//37
-  ["stabilit", "[Ss]tabilit"],//33
-  ["aqueous", "[Aa]queous"],//26
-  ["mechanic", "[Mm]echanic"],//12
-  ["statistic", "[Ss]tatistic"],//10
-  ["Polymer", "[Pp]olymer"],//9
-  ["Fluctuat", "[Ff]luctuat"],//7
-  ["filled", "[Ff]illed"],//3
-  ["Plastic", "[Pp]lastic"],//6
+  ["molecul", "molecul"],//108
+  ["dynamic", "dynamic"],//105
+  ["water", "water"],//94
+  ["structur", "structur"],//67
+  ["Phase", "phase"],//63
+  ["ice", " ice"],//58
+  ["thermodynamic", "thermodynamic"],//44
+  ["hydrate", "hydrate"],//43
+  ["clathrate", "clathrate"],//37
+  ["stabilit", "stabilit"],//33
+  ["aqueous", "aqueous"],//26
+  ["mechanic", "mechanic"],//12
+  ["statistic", "statistic"],//10
+  ["polymer", "polymer"],//9
+  ["Fluctuat", "fluctuat"],//7
+  ["filled", "filled"],//3
+  ["plastic", "plastic"],//6
 
+  ["Matsumoto", "Matsumoto"],//42
   ["Koga", "Koga"],//37
-  ["Matsumoto", "Matsumoto"],//37
-  ["Nakanishi", "Nakanishi"],//37
-  ["Yagasaki", "Yagasaki"],//26
+  ["Nakanishi", "Nakanishi"],//33
+  ["Yagasaki", "Yagasaki"],//29
   ["Zeng", "Zeng"],//21
   ["Tamai", "Tamai"],//12
+  ["Hakim", "Hakim"],//6
   ["Ohmine", "Ohmine"],//5
   ["Touhara", "Touhara"],//5
   ["Himoto", "Himoto"],//4
   ["Gubbins", "Gubbins"],//4
   ["Gao", "Gao"],//4
   ["Slovak", "Slov.k"],//4
-  ["Hakim", "Hakim"],//3
   ["Hayashi", "Hayashi"],//3
   ["Koyama", "Koyama"],//3
   ["Okazaki", "Okazaki"],//3
@@ -181,9 +177,8 @@ function find(v){
 	if(!v){return []}
 	var aimai;
 	if(query){
-		//aimai = query.replace(/[a-z]/g,ignore_case);
 		try{
-			reg = new RegExp(query,"g");
+			reg = new RegExp(query,"gi");
 		}catch(e){
 			reg = /(.)/g;
 		}

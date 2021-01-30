@@ -68,7 +68,7 @@ frame = frame.rename(columns={"Authors": "au",
 data = frame.sort_values(by="Year", ascending=False).loc[:, ["au", "ti", "pu", "DOI", "con", "tn", "PDF"]]
 with open("papers.js", "w") as f:
     f. write("data=")
-    data.to_json(f, orient="records")
+    data.to_json(f, orient="records", indent=True)
 # 複雑な検索条件は実装しない。あくまでgrepベースで検索する。その代わり、チェックを入れたものをカートにほりこめるようにする。
 
 

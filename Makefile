@@ -22,7 +22,7 @@ prepare: index.html noimage-ls.png papers.css papers.js readme.txt
 
 #.htpasswd: make_htpasswd.py
 #	python3 make_htpasswd.py
-papers.js: paperpile_csv2js.py
+papers.js: paperpile_csv2js.py papers.csv
 	-rm -rf pdf tn
 	mkdir pdf tn
 	python paperpile_csv2js.py
