@@ -20,13 +20,13 @@
 
 
         <div class="post">
-          <h1 class="post-title">Research papers of Prof. Hideki Tanaka</h1>
+          <h1 class="post-title">Research papers of prof. Hideki Tanaka</h1>
+          <!-- of Prof. Hideki Tanaka</h1> -->
           <!--<p class="intro"><a href="content.html">予稿集</a></p>
           <p class="intro">会場へのリンク</p>-->
         </div>
 
         <div class="post">
-          <p id="sc"></p>
           <p class="sea">Click on the image to open the PDF file.</p>
           <p class="sea">Accepts regular expressions.</p>
           <p class="sea">If you have a PDF that is missing, or if you find a problem, please let us know by e-mail:<a class="lk" href="maito:vitroid@gmail.com">vitroid@gmail.com</a>.
@@ -35,12 +35,45 @@
 <script src="papers.js"></script>
 <!-- https://allabout.co.jp/gm/gc/459917/3/ -->
 
+<div class="popup-wrapper is-hidden"> <!--ラッパー.初期状態では隠れている-->
+  <div class="popup-background" onclick="hidePopup()"></div> <!--背景. クリックでラッパー(とその子要素)を隠す-->
+  <div class="popup-body">
+    <p id="sc"></p>
+  </div> <!--ポップアップ本体-->
+  <div class="popup-close" onclick="hidePopup()">
+    ×
+  </div> <!--ダミー-->
+</div>
+
 <!--<div id="fav"></div>-->
 <div id="searchbox">
-<input type="text" id="q" onkeyup="do_find(this.value)" onkeydown="key(event.keyCode)" autocomplete="off" placeholder="Search">　<span id="stat"></span>
-<div id="navi"></div>
-<div id="result"></div>
+  <!-- 検索窓 -->
+  <div class="wrap">
+    <!-- ポップアップでキーワード選び -->
+    <button onclick="showPopup()">▼</button>  <!--ボタン. クリックでラッパー（とその子要素）見せる. divを使ってもいい-->
+    <input type="text" id="q" onkeyup="do_find(this.value)" onkeydown="key(event.keyCode)" autocomplete="off" placeholder="Search">　<span id="stat"></span>
+
+  </div>
+  <!-- 検索数 -->
+  <div id="navi"></div>
+  <!-- 検索結果 -->
+  <div id="result"></div>
 </div>
+
+<!-- https://qiita.com/863/items/4fc6678db96042190d7d -->
+<script>
+    /*ポップアップを見せる関数*/
+    function showPopup(){
+      var x = document.getElementsByClassName("popup-wrapper"); /*クラス名"popup-wrapper"のオブジェクトの配列を取得*/
+      x[0].classList.remove("is-hidden"); /* 最初のオブジェクトが持つCSSクラス("popup-wrapper is-hidden")から"is-hidden"取り除く*/
+      }
+
+    /*ポップアップを隠す関数*/
+    function hidePopup(){
+      var x = document.getElementsByClassName("popup-wrapper");
+      x[0].classList.add("is-hidden"); /* CSSクラス"is-hidden"を付け足す*/
+      }
+</script>
 
 <script>
 {
@@ -303,7 +336,7 @@ function view(result,offset){
 function shortcuts(){
   s = [];
   for(let i in sc){
-    s.push('<span class="lk2" onclick="scquery(\''+sc[i][1]+'\')">'+sc[i][0]+'</span> ');
+    s.push('<span class="lk2" onclick="hidePopup();scquery(\''+sc[i][1]+'\')">'+sc[i][0]+'</span> ');
   }
   gid('sc').innerHTML = s.join("");
 }

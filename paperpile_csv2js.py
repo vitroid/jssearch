@@ -84,3 +84,13 @@ with open("papers.js", "w") as f:
 #         cnt[au] += 1
 # for au,  num in cnt.items():
 #     print(au, num)
+
+# 題名頻度
+# from collections import defaultdict
+# cnt = defaultdict(int)
+# for tis in frame.loc[:, "ti"]:
+#     if type(tis) is not float:
+#         for ti in tis.split(" "):
+#             cnt[ti.lower()] += 1
+# for ti in sorted(cnt, key=lambda x:cnt[x]):
+#     print(ti, cnt[ti])

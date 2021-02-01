@@ -45,7 +45,8 @@ body{
 div.wrap{
   max-width: 750px;
   background-color:#f0f0f0;
-  margin: 0 auto; //centering
+  margin: 0 auto;
+  /* text-align: center; */
 }
 td{
   margin:0;
@@ -329,4 +330,39 @@ a.ss{
   color: black;
   text-decoration: none;
   line-height: 200%;
+}
+/* https://qiita.com/863/items/4fc6678db96042190d7d */
+.popup-wrapper {
+  width: 100vw; /*画面に大きさを合わせる*/
+  height: 100vh;
+  position: fixed; /*ラッパーの左上隅を画面左上に固定*/
+  top: 0px;
+  left: 0px;
+}
+.popup-background{
+  width: 100%; /*ラッパー全体を覆うようにする*/
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /*半透明の黒*/
+}
+.popup-body{
+  width: 90%; /*ラッパーの半分の大きさにする*/
+  /* height: 50%; */
+  position: absolute; /*ラッパーを基準に、画面中央にくるように調整*/
+  top:15%;
+  left:5%;
+  background-color: white;
+}
+.popup-close{
+  width: 90%; /*ラッパーの半分の大きさにする*/
+  /* height: 50%; */
+  position: absolute; /*ラッパーを基準に、画面中央にくるように調整*/
+  top:2%;
+  left:5%;
+  text-align: right;
+  font-size: 200%;
+  color: white;
+  /* background-color: white; */
+}
+.is-hidden{
+  visibility: hidden;
 }
