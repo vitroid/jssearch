@@ -125,7 +125,7 @@ var nv = gid("navi");
 //var fv = gid("fav");
 
 var sc=[
-  ["Nature", "Nature"],//4
+  ["Nature", ">Nature"],//4
   ["PNAS", "pnas"],//2
   ["JACS", "J[a-z.]* Am[a-z.]* Chem[a-z.]* Soc"],//2
   ["PhysRev", "Phys[a-z.]* Rev"],//11
@@ -320,9 +320,10 @@ function view(result,offset){
 		var idx = r[i][1];
 		var len = r[i][2];
 		with(data[num]){
+      var URL = 'https://doi.org/' + DOI;
 			buf.push(
 		       "<tr class='r'><td class='i'><a href='",PDF,"' target='_blank'><img src='",tn,"' /></a></td>",
-		       "<td class='d'><span class='ti'>", ti, "</span><br />", au, "<br />", pu, "<br />DOI: <a class='lk' href='https://doi.org/"+DOI+"'>"+DOI+"</a><br /><div class='m'>..."
+		       "<td class='d'><a class='ti' href='"+URL+"'>", ti, "</a><br />", au, "<br /><p>", pu, "</p>DOI: <a class='lk' href='"+URL+"'>"+DOI+"</a><br /><div class='m'>..."
 		       ,snippet(bodylist[num],idx,len)
 		       ,"</m></td></tr>"
 			);

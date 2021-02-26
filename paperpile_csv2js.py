@@ -45,7 +45,7 @@ frame = frame.rename(columns={'Publication year': 'Year'})
 # 新しい列を作る。
 # print(frame.columns)
 # print(frame.loc[:, ["Authors", "Title", "Journal", "Volume", "Pages", "Year"]])
-frame["Publication"] = [f"<i>{row.Journal}</i> <em>{row.Volume}</em>, {row.Pages} ({row.Year})." for row in frame.itertuples()]
+frame["Publication"] = [f"<span class='jo'>{row.Journal}</span> <span class='vo'>{row.Volume}</span>, {row.Pages} ({row.Year})." for row in frame.itertuples()]
 frame["context"] = [f"{row.Authors} {row.Title} {row.Publication} {row.DOI} {row.Abstract}" for row in frame.itertuples()]
 frame["PDF"] = ["noimage-ls.png" for row in frame.itertuples()]
 frame["tn"] = ["noimage-ls.png" for row in frame.itertuples()]
@@ -60,6 +60,8 @@ for i, row in enumerate(frame.itertuples()):
         print(f"pdf/{basename}")
         frame.loc[i, "PDF"] = f"pdf/{basename}.pdf"
         frame.loc[i, "tn"]  = f"tn/{basename}.jpg"
+    else:
+        frame.loc[i, "context"] += " (no PDF)"
 
 frame = frame.rename(columns={"Authors": "au",
                               "Title": "ti",
