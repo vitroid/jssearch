@@ -1,0 +1,92 @@
+@media print {
+    html, body {
+	width: 297mm;
+	height: 200mm;
+    }
+    @page {
+	margin: 10mm;
+	margin-bottom: 0;
+	padding: 0in;
+	size: 297mm 210mm;
+    }
+    /* ... the rest of the rules ... */
+}
+body{
+    /*border: 2px dashed #8ff;*/
+}
+p, ul, ol, dl { margin: 0;}
+ol {
+    margin:0px 0;
+    padding:0;
+}
+
+ol li 
+{
+    margin: 0px;
+    padding: 0px;
+    text-indent: 0em;
+    margin-left: 1.4em;
+}
+p {  margin-bottom: 4pt; }
+/*title*/
+h1.title {
+    font-size: 16pt;
+    line-height: 133%;
+    font-weight: bold;
+    font-family: Arial, Helvetica, 'IPAexGothic', sans-serif;
+    margin: 0;
+    margin-bottom: 4pt;
+}
+/*authors and affils*/
+h2.preview {
+    font-size: 12pt;
+    line-height: 133%;
+    font-weight: normal;
+    font-family: Arial, Helvetica, 'IPAexGothic', sans-serif;
+    margin: 0;
+    margin-bottom: 4pt;
+}
+/*minor title*/
+h2.title {
+    font-size: 13pt; /*slightly larger*/
+    line-height: 133%;
+    font-weight: bold;
+    font-family: Arial, Helvetica, 'IPAexGothic', sans-serif;
+    margin: 0;
+    margin-bottom: 4pt;
+}
+/* 1-column Abstract */
+div.preview1 {
+    font-size: 12pt;
+    line-height: 133%;
+    font-family: 'Times New Roman', 'IPAexMincho', 'Noto Serif JP', Times, serif;
+    text-align: justify;
+    margin: 0;
+    margin-top: 8pt;
+}
+/* 2-column body */
+div.preview2 {
+    columns: 2;
+    font-size: 12pt;
+    line-height: 133%;
+    column-fill: auto;
+    font-family: 'Times New Roman', 'IPAexMincho', 'Noto Serif JP', Times, serif;
+    text-align: justify;
+    margin: 0;
+    margin-top: 12pt;
+}
+.preview2 div {
+    -webkit-column-break-inside: avoid;
+    column-break-inside: avoid;
+}
+img.preview {
+    object-fit: cover;
+    width: 500px;
+    height: 250px;
+}
+sup {
+    line-height: 0;
+}
+sub {
+    line-height: 0;
+}

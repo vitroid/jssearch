@@ -314,3 +314,29 @@ a.s{
   text-decoration: none;
   line-height: 200%;
 }
+
+/* https://allabout.co.jp/gm/gc/459917/3/ */
+/*タブのスタイル*/
+.tab_item {
+  width: calc(100%/4);
+  height: 50px;
+  border-bottom: 3px solid #5ab4bd;
+  background-color: #d9d9d9;
+  line-height: 50px;
+  font-size: 16px;
+  text-align: center;
+  color: #565656;
+  display: block;
+  float: left;
+  text-align: center;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+
+/*選択されているタブのコンテンツのみを表示*/
+#day1_tab:checked ~ #day1_content,
+#day2_tab:checked ~ #day2_content,
+#day3_tab:checked ~ #day3_content,
+#ad_tab:checked ~ #ad_content {
+  display: block;
+}

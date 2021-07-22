@@ -14,3 +14,16 @@ history/
 chem/
 
 riis/
+
+attach/
+
+html/
+
+tn/
+
+img/
+*.pyc
+
+*.json
+data.js
+index.js

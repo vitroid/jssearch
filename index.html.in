@@ -9,16 +9,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Search</title>
-    <link rel="stylesheet" type="text/css" href="cjscc70.css" />
+    <link rel="stylesheet" type="text/css" href="search.css" />
 
   </head>
-
 
   <body>
     <div class="wrap">
       <div class="container content">
-
-
         <div class="post">
           <h1 class="post-title">錯体化学会第70回討論会(オンライン) 要旨検索サイト</h1>
           <p class="intro"><a class="lk" href="http://www.sakutai.jp/jsccc70" target="_blank">オンデマンド配信、発表および視聴方法に関する案内など</a></p><div class="intro">（錯体化学会の特設サイトに飛びます）</div>
@@ -151,574 +148,49 @@
           <div class="intro"><a class="rm" href="https://live.remo.co/e/70-3">REMO</a>オンライン学生交流会 ⽇時：9⽉30⽇（⽔）19-21時</div>
         </div>
 
-      <h2 class="sec">要旨集検索</h2>
-      <p id="sc"></p>
-      <p class="sea">発表番号、題目、キーワード、研究場所、発表者名にて検索が可能です.</p>
-      <p class="sea">正規表現が使えます.</p>
-      <p class="sea">画像クリックでPDFが開きます.
-      <p class="sea">表示は申込データに基づいており、表示のタイトルおよび著者の一部が要旨とは異なる場合があります.</p>
-
-<script src="index.js"></script>
-<!-- https://allabout.co.jp/gm/gc/459917/3/ -->
-<style>
-/*タブのスタイル*/
-.tab_item {
-  width: calc(100%/4);
-  height: 50px;
-  border-bottom: 3px solid #5ab4bd;
-  background-color: #d9d9d9;
-  line-height: 50px;
-  font-size: 16px;
-  text-align: center;
-  color: #565656;
-  display: block;
-  float: left;
-  text-align: center;
-  font-weight: bold;
-  transition: all 0.2s ease;
-}
-
-/*選択されているタブのコンテンツのみを表示*/
-#day1_tab:checked ~ #day1_content,
-#day2_tab:checked ~ #day2_content,
-#day3_tab:checked ~ #day3_content,
-#ad_tab:checked ~ #ad_content {
-  display: block;
-}
-
-</style>
-<!--<div id="fav"></div>-->
-<div id="searchbox">
-<input type="text" id="q" onkeyup="do_find(this.value)" onkeydown="key(event.keyCode)" autocomplete="off" placeholder="Search">　<span id="stat"></span>
-<div id="navi"></div>
-<div id="result"></div>
-</div>
-<p>興味のある講演にチェックを入れると、下の表に青い印が付きます. 聴講スケジュールを決めるのにご活用下さい.</p>
-<!-- tabs using CSS https://bagelee.com/design/css/create_tabs_using_only_css/ -->
-<div class="tabs">
-  <input id="day1_tab" type="radio" name="tab_item" checked>
-  <label class="tab_item" for="day1_tab">Sep. 28</label>
-  <input id="day2_tab" type="radio" name="tab_item">
-  <label class="tab_item" for="day2_tab">Sep. 29</label>
-  <input id="day3_tab" type="radio" name="tab_item">
-  <label class="tab_item" for="day3_tab">Sep. 30</label>
-  <input id="ad_tab" type="radio" name="tab_item">
-  <label class="tab_item" for="ad_tab">協賛企業</label>
-  <div class="tab_content" id="day1_content"><div class="ttpanel" id=day1_panel></div></div>
-  <div class="tab_content" id="day2_content"><div class="ttpanel" id=day2_panel></div></div>
-  <div class="tab_content" id="day3_content"><div class="ttpanel" id=day3_panel></div></div>
-  <div class="tab_content" id="ad_content"><div class="ttpanel" id=ad_panel></div>
-  <div class="credit">%%CREDIT%%</div></div>
-</div>
+        <h2 class="sec">要旨集検索</h2>
+        <p id="sc"></p>
+        <p class="sea">発表番号、題目、キーワード、研究場所、発表者名にて検索が可能です.</p>
+        <p class="sea">正規表現が使えます.</p>
+        <p class="sea">画像クリックでPDFが開きます.
+          <p class="sea">表示は申込データに基づいており、表示のタイトルおよび著者の一部が要旨とは異なる場合があります.</p>
 
 
-<script>
-{
-	$_ = String.prototype;
+          <div id="searchbox">
+            <input type="text" id="q" onkeyup="do_find(this.value)" onkeydown="key(event.keyCode)" autocomplete="off" placeholder="Search">　<span id="stat"></span>
+            <div id="navi"></div>
+            <div id="result"></div>
+          </div>
+          <p>興味のある講演にチェックを入れると、下の表に青い印が付きます. 聴講スケジュールを決めるのにご活用下さい.</p>
+          <!-- tabs using CSS https://bagelee.com/design/css/create_tabs_using_only_css/ -->
+          <div class="tabs">
+            <input id="day1_tab" type="radio" name="tab_item" checked>
+            <label class="tab_item" for="day1_tab">Sep. 28</label>
+            <input id="day2_tab" type="radio" name="tab_item">
+            <label class="tab_item" for="day2_tab">Sep. 29</label>
+            <input id="day3_tab" type="radio" name="tab_item">
+            <label class="tab_item" for="day3_tab">Sep. 30</label>
+            <input id="ad_tab" type="radio" name="tab_item">
+            <label class="tab_item" for="ad_tab">協賛企業</label>
+            <div class="tab_content" id="day1_content"><div class="ttpanel" id=day1_panel></div></div>
+            <div class="tab_content" id="day2_content"><div class="ttpanel" id=day2_panel></div></div>
+            <div class="tab_content" id="day3_content"><div class="ttpanel" id=day3_panel></div></div>
+            <div class="tab_content" id="ad_content"><div class="ttpanel" id=ad_panel></div>
+            <div class="credit">%%CREDIT%%</div></div>
+          </div>
 
-	$_.mReplace = function(pat,flag){
-		var temp = this;
-		if(!flag){flag=""}
-		for(var i in pat){
-			var re = new RegExp(i,flag);
-			temp = temp.replace(re,pat[i])
-		}
-		return temp;
-	};
-}
+          <script src="index.js"></script>
+          <script src="search.js"></script>
+          <noscript><p class="notice">注意: この検索機能は JavaScript を使用しています。</p></noscript>
 
-{
-	$_ = Date.prototype;
-
-	$_.format = "yyyy-mm-dd HH:MM:SS";
-	$_.formatTime = function(format){
-		var yy;
-		var o = {
-			yyyy : ((yy = this.getYear()) < 2000)? yy+1900 : yy,
-			mm   : this.getMonth() + 1,
-			dd   : this.getDate(),
-			HH   : this.getHours(),
-			MM   : this.getMinutes(),
-			SS   : this.getSeconds()
-		}
-		for(var i in o){
-			if (o[i] < 10) o[i] = "0" + o[i];
-		}
-		return (format) ? format.mReplace(o) : this.format.mReplace(o);
-	}
-}
-</script>
-<script>
-gid("q").focus();
-  gid('q').addEventListener('compositionend', (event) => {
-							do_find(gid('q').value);
-  console.log(`generated characters were: ${event.data}`);
-});
-var start = new Date().getTime();
-var bodylist = [];
-var st = gid("stat");
-var re = gid("result");
-var nv = gid("navi");
-//var fv = gid("fav");
-var tt = gid("timetable");
-var bins = ["", "9:30", "9:50", "10:10", "10:45", "11:05", "11:25", "11:45",
-            "13:10", "13:30", "13:50", "14:10", "14:45", "15:05", "15:25", "15:45"];
-var zoom={1:[
-    "https://us02web.zoom.us/j/84678137758?pwd=Q2VobE1aWFZ5RGJNUHZzVGtSVHI4QT09",
-    "846 7813 7758",
-    "326805"],
-  2:[
-    "https://us02web.zoom.us/j/83614639362?pwd=SlVzR09ua1lQb0swWUhldEQvSnMrdz09",
-    "836 1463 9362",
-    "093258"],
-  3:[
-    "https://us02web.zoom.us/j/81952187826?pwd=QysycUFrd3BoOUM0dGgxelpIOU5vdz09",
-    "819 5218 7826",
-    "917495"],
-  4:[
-    "https://us02web.zoom.us/j/88190724947?pwd=QWkwUUNFdmd0WWNJT3hHRFJkYnpiZz09",
-    "881 9072 4947",
-    "742639"],
-  5:[
-    "https://us02web.zoom.us/j/84490351547?pwd=WTVuVjhnODUrekl6VVJoZkdOcXlEdz09",
-    "844 9035 1547",
-    "057730"]
-  };
-var remo={21: ["https://live.remo.co/e/a-563", "REMO1"],
-          22: ["https://live.remo.co/e/2p-2", "REMO2"],
-          31: ["https://live.remo.co/e/3p-1", "REMO3"],
-          32: ["https://live.remo.co/e/3p-2", "REMO4"]};
-var ads=[
-  ["株式会社　リガク", "https://www.rigaku.co.jp/NEXT/", "AD10"],
-  ["マイクロトラック・ベル株式会社", "https://www.microtrac.com/jp/", "AD2"],
-  ["ブルカージャパン株式会社", "http://www.bruker.com/jp", "AD3"],
-  ["Royal Society of Chemistry Japan KK", "https://www.rsc.org/journals-books-databases/about-journals/", "AD8"],
-  ["株式会社ユニソク", "http://www.unisoku.co.jp/", "AD15"],
-  ["株式会社ブライト", "http://www.bright-jp.com/", "AD4"],
-  ["仙台和光純薬 株式会社", "http://www.sendaiwako.com/", "AD6"],
-  ["浜松ホトニクス株式会社", "https://www.hamamatsu.com/jp/ja/product/photometry-systems/luminescence-efficiency-measurement-system/quantaurus-qy-plus/index.html", "AD7"],
-  ["三共出版株式会社", "https://www.sankyoshuppan.co.jp/", "AD14"],
-  ["オザワ科学 株式会社", "https://www.ozawasc.co.jp/", "AD9"],
-  ["和研薬　株式会社", "https://www.wakenyaku.co.jp/", "AD11"],
-  ["矢澤科学器械株式会社", "", "AD13"]
-];
-
-var sc=[
-  ["1A", "^1A-"],
-  ["1C", "^1C-"],
-  ["1D", "^1D-"],
-  ["1Fa", "^1Fa-"],
-  ["1Fb", "^1Fb-"],
-  ["2A", "^2A-"],
-  ["2B", "^2B-"],
-  ["2C", "^2C-"],
-  ["2D", "^2D-"],
-  ["2Fa", "^2Fa-"],
-  ["2PA", "^2PA-"],
-  ["2PB", "^2PB-"],
-  ["2PC", "^2PC-"],
-  ["2PD", "^2PD-"],
-  ["2PE", "^2PE-"],
-  ["2PF", "^2PF-"],
-  ["3A", "^3A-"],
-  ["3B", "^3B-"],
-  ["3E", "^3E-"],
-  ["3Fa", "^3Fa-"],
-  ["3PA", "^3PA-"],
-  ["3PB", "^3PB-"],
-  ["3PC", "^3PC-"],
-  ["3PD", "^3PD-"],
-  ["3PE", "^3PE-"],
-  ["3PF", "^3PF-"],
-  ["受賞講演", "^Aw-"],
-  ["S1", "^S1-"],
-  ["S2", "^S2-"],
-  ["S3", "^S3-"],
-  ["S4", "^S4-"],
-  ["S5", "^S5-"],
-];
-
-var pdfbase = "%%PDFBASE%%";
-var max = 10;
-var KC = {
-	enter: 13,
-	left : 37,
-	right: 39,
-	up   : 38,
-	down : 40
-};
-
-function gid(id){
-	return document.getElementById(id);
-}
-function ignore_case(){
-	var a = arguments;
-	return "[" + a[0] + a[0].toUpperCase() + "]"
-}
-function do_find(v){
-	if(this.lastquery == v){return}
-	this.lastquery = v;
-	var re = find(v);
-	pagenavi(re);
-	view(re)
-  pagenavi(re);
-}
-function key(c){
-	switch(c){
-		case KC.up   : mv(-1);break;
-		case KC.down : mv(1);break;
-	}
-}
-function find(v){
-	var query = v;
-	if(!v){return []}
-	var aimai;
-	if(query){
-		aimai = query.replace(/[a-z]/g,ignore_case);
-		try{
-			reg = new RegExp(aimai,"g");
-		}catch(e){
-			reg = /(.)/g;
-		}
-	}else{
-		reg = /(.)/g;
-	}
-	var start = new Date().getTime();
-	var result = [];
-	for(var i=0;i<data.length;i++){
-		var s = bodylist[i];
-    reg.lastIndex = 0; // because reg remembers the last place
-		var res = reg.exec(s);
-		if(!res){continue}
-		var len = res[0].length;
-		var idx = res.index;
-		if(idx != -1){
-			result.push([i,idx,len]);
-		}
-	}
-	//if(result.length){
-		st.innerHTML = result.length +"件見つかりました。";
-	//}
-	var end = new Date().getTime();
-
-	console.log("Find:"+ (end-start) + " ms");
-	return result;
-}
-function time2date(time){
-	if(!this.cache){this.cache = {}};
-	if(this.cache[time]) return this.cache[time];
-	var d = new Date(time*1000);
-	this.cache[time] = d.formatTime("yyyy年mm月dd日");
-	return this.cache[time];
-}
-function snippet(body,idx,len){
-	var start = idx - 20;
-	return [
-		body.substring(start,idx),
-		,"<b>"
-		,body.substr(idx,len)
-		,"</b>"
-		,body.substr(idx+len,50),
-	].join("");
-}
-function pagenavi(result){
-	var len = result.length;
-	var ct = Math.ceil(len/max);
-	var buf = [];
-	for(var i=0;i<ct;i++){
-		buf.push(
-			"<span onclick='view(\"\","
-			,i+1
-			,");sw(",i,")'>"
-			,i+1
-			,"</span>"
-		);
-	}
-	nv.innerHTML = buf.join("");
-	sw(0);
-}
-function sw(t){
-	var span = nv.getElementsByTagName("span");
-	for(var i=0;i<span.length;i++){
-		span[i].className = (i==t)?"selected":"";
-	}
-}
-function mv(to){
-	var span = nv.getElementsByTagName("span");
-	var current;
-	if(!span.length){return}
-	for(var i=0;i<span.length;i++){
-		if(span[i].className == "selected"){
-			current = i;break;
-		}
-	}
-	var moveto = current+to;
-	if(moveto < 0){moveto += span.length}
-	if(moveto > span.length-1){moveto=0}
-	sw(moveto);
-	view("",moveto+1)
-}
-/*2020 new*/
-function cbclick(checkbox){
-    //If it is checked.
-    if(checkbox.checked){
-      checked.add(checkbox.id);
-      gid("v"+checkbox.id).style.backgroundColor = "#0075ff";
-      gid("v"+checkbox.id).style.color = "#fff";
-    }
-    //If it has been unchecked.
-    else{
-      checked.delete(checkbox.id);
-      gid("v"+checkbox.id).style.backgroundColor = "#f0f0f0";
-      gid("v"+checkbox.id).style.color = "#000";
-    }
-    var s = Array.from(checked).join(" ");
-    //fv.innerHTML = s;
-    window.localStorage.checked = s;
-}
-/*2020 new*/
-function query(v){
-  document.getElementById("q").value = v;
-  do_find(v);
-}
-function onesearch(bin){
-  query(bin.id.substring(1)); //elim first v
-}
-
-function view(result,offset){
-	if(!offset){offset = 1}
-	if(!result){
-		result = this.last;
-	}else{
-		this.last = result;
-	}
-	//var r = result.reverse();
-  var r = result;
-	var buf = ["<table>"];
-	var count = 0;
-  var checkmark;
-	for(var i=(offset-1)*max;i<r.length;i++){
-		count++;
-		if(count > max){break}
-		var num = r[i][0];
-		var idx = r[i][1];
-		var len = r[i][2];
-		with(data[num]){
-      var link;
-      if(typ == "zoom"){
-        link = "<a class='zm' href='"+zoom[roo][0]+"'>ZOOM"+roo+"</a>";
-      }
-      else{//remo
-        link = "<a class='rm' href='"+remo[roo][0]+"'>"+remo[roo][1]+"</a>";
-      }
-      if (checked.has(lab)){
-        checkmark=" checked";
-      }
-      else{
-        checkmark="";
-      }
-			buf.push(
-		       "<tr class='r'><td class='i'><a href='",pdfbase+md5,".pdf' target='_blank'><img src='tn/",pre,"' /></a></td>",
-		       "<td class='d'><span style='float:left'><input type='checkbox' id='",lab,"' onclick='cbclick(this)' ",checkmark,"></span><span class='l'>", lab,"</span>",link,"<br /><span class='ti'>", tit, "</span><br />", spe, "<br />", loc, "<br /><div class='m'>..."
-		       ,snippet(bodylist[num],idx,len)
-		       ,"</m></td></tr>"
-			);
-		}
-	}
-	buf.push("</table>");
-	re.innerHTML = buf.join("");
-}
-
-/*2020 new*/
-function sessionstable(sessions, ends){
-  var buf= ["<table><tbody>"];
-  buf.push("<tr class='header'><th class='corner'>Oral</th>");
-  for(let j in sessions){
-    buf.push("<th class='col'>",sessions[j],"</th>");
-  }
-  buf.push("</tr>");
-  for(var i=1; i<=ends; i++){
-    var si=i+"";
-    if (i<10){
-      si = "0"+si;
-    }
-    buf.push("<tr class='row'><th class='row'>",si,"</th>");
-    for(let j in sessions){
-      var id = sessions[j]+"-"+si;
-      buf.push("<td class='row' id='v",id,"' onclick='onesearch(this)'></td>");
-    }
-    buf.push("<th class='right'>",bins[i],"</th>");
-    buf.push("</tr>");
-  }
-  buf.push("</tbody></table>");
-  return buf.join("");
-}
-
-function sympotable(sessions, ends, bin){
-  var buf= ["<table><tbody>"];
-  buf.push("<tr class='header'><th class='corner'>Symposia</th>");
-  for(let j in sessions){
-    buf.push("<th class='col'>",sessions[j],"</th>");
-  }
-  buf.push("</tr>");
-  for(var i=1; i<=ends; i++){
-    var si=i+"";
-    if (i<10){
-      si = "0"+si;
-    }
-    buf.push("<tr class='row'><th class='row'>",si,"</th>");
-    for(let j in sessions){
-      var id = sessions[j]+"-"+si;
-      var tim = "";
-      if (id in bin){
-        tim = bin[id].substr(0,5);
-      }
-      buf.push("<td class='row' id='v",id,"' onclick='onesearch(this)'>"+tim+"</td>");
-    }
-    // buf.push("<th class='right'>",bins[i],"</th>");
-    buf.push("</tr>");
-  }
-  buf.push("</tbody></table>");
-  return buf.join("");
-}
-
-function awardtable(ends, bin){
-  var buf= ["<table><tbody>"];
-  buf.push("<tr class='header'><th colspan='2' class='cornerw'>Award lectures</th>");
-  buf.push("</tr>");
-  for(var i=1; i<=ends; i++){
-    var si=i+"";
-    if (i<10){
-      si = "0"+si;
-    }
-    buf.push("<tr class='row'>");
-    var id = "Aw-" + si;
-    var tim = "";
-    if (id in bin){
-      tim = bin[id];
-    }
-    buf.push("<th class='roww' id='v",id,"' onclick='onesearch(this)'>"+id+"</td>");
-    buf.push("<th class='time'>"+tim+"</th>");
-
-    // buf.push("<th class='right'>",bins[i],"</th>");
-    buf.push("</tr>");
-  }
-  buf.push("</tbody></table>");
-  return buf.join("");
-}
-
-
-function postertable(sessions){
-  var buf= ["<table><tbody>"];
-  buf.push("<tr class='header'><th class='corner'>Poster</th>");
-  for(var i=0; i<10; i++){
-    buf.push("<th class='col'>",i,"</th>");
-  }
-  buf.push("</tr>");
-
-  for(var key in sessions){
-    var value = sessions[key];
-    for(var i=0; i<value; i+=10){
-      var si = key + Math.trunc(i/10);
-      buf.push("<tr class='row'><th class='row'>",si,"</th>");
-      for(var j=0;j<10;j++){
-        var id = si + j;
-        buf.push("<td class='row' id='v",id,"' onclick='onesearch(this)'></td>");
-      }
-      buf.push("</tr>");
-    }
-  }
-  buf.push("</tbody></table>");
-  return buf.join("");
-}
-
-function add_ad(){
-  var s = [];
-  s.push("<div class='intro'>画像をクリックすると広告が表示され、企業名をクリックすると HP が開きます。</div><table class='c'><tbody>");
-  for(var i=0;i<ads.length; i++){
-    var a = ads[i];
-    var tn="tn/"+a[2]+".jpg";
-    var pdf=pdfbase+a[2]+".pdf";
-    s.push('<tr><td class="fr"><a href="'+pdf+'" target="_blank"><img src="'+tn+'" /></a></td><td><div class="lk"><a class="b" href="'+a[1]+'" target="_blank">'+a[0]+'</a></div></td></tr>');
-  }
-  s.push("</tbody></table>")
-  return s.join("");
-}
-
-
-function make_timetable(){
-  var sessions1=["1A","1C","1D","1Fa","1Fb"];
-  var sessions2=["2A","2B","2C","2D","2Fa"];
-  var sessions3=["3A","3B","3E","3Fa"];
-  var sympos = ["S1", "S2", "S3", "S4", "S5"];
-  var posters2 = {"2PA-":55, "2PB-":11, "2PC-":11, "2PD-":9, "2PE-":11, "2PF-":29};
-  var posters3 = {"3PA-":55, "3PB-":11, "3PC-":11, "3PD-":9, "3PE-":11, "3PF-":29};
-  var timebin={};
-  for(let i in data){
-    if ("tim" in data[i]){
-      timebin[data[i]["lab"]] = data[i]["tim"];
-    }
-  }
-  gid("day1_panel").innerHTML = sessionstable(sessions1, 15) + sympotable(sympos, 12, timebin);
-  gid("day2_panel").innerHTML = sessionstable(sessions2, 7) + awardtable(6, timebin) + postertable(posters2);
-  gid("day3_panel").innerHTML = sessionstable(sessions3, 12) + postertable(posters3);
-  gid("ad_panel").innerHTML = add_ad();
-  /* set bg color dynamically*/
-  for(let i in data){
-    gid("v"+data[i]["lab"]).style.backgroundColor = "#f0f0f0";
-  }
-}
-
-
-function shortcuts(){
-  s = [];
-  for(let i in sc){
-    s.push('<span class="lk2" onclick="query(\''+sc[i][1]+'\')">'+sc[i][0]+'</span> ');
-  }
-  gid('sc').innerHTML = s.join("");
-}
-
-make_timetable();
-shortcuts();
-
-// get from local storage
-var checked;
-if (window.localStorage.hasOwnProperty("checked")){
-  checked = new Set(window.localStorage.checked.split(" "));
-}
-else{
-  checked = new Set();
-}
-// set initial timetable
-var labels=Array.from(checked);
-for(let label in labels){
-  var field = gid("v"+labels[label]);
-  if (field){
-    field.style.backgroundColor = "#0075ff";
-  }
-}
-//for debug
-//fv.innerHTML = window.localStorage.checked;
-
-
-for(var i=0;i<data.length;i++){
-	bodylist.push(data[i].con);
-}
-//var bodyidx = bodylist.join("<>");
-var end = new Date().getTime();
-
-console.log("Index:"+ (end-start) + " ms");
-</script>
-<noscript><p class="notice">注意: この検索機能は JavaScript を使用しています。</p></noscript>
-
-</div>
+        </div>
 
       </div>
     </div>
 
-
-<!-- Original code is available at http://rs.luminousspice.com/search/       &copy; 2017 luminousspice.com.
-     Modified and improved by 2019 Masakazu Matsumoto. -->
+    
+    <!-- Original code is available at http://rs.luminousspice.com/search/       &copy; 2017 luminousspice.com.
+    Modified and improved by 2019 Masakazu Matsumoto. -->
 
 
   </body>
