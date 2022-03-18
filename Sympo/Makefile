@@ -1,3 +1,3 @@
 # Make search index for javascript and copy pdfs to ../unlabelled folder
-Sympo.js: SympoDB.tsv sympo.py
+Sympo.json: Symposium修正.xlsx sympo.py
 	python sympo.py > $@

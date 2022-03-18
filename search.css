@@ -142,6 +142,7 @@ th.cornerw {
   padding: 10px 10px 0;
 }
 td.row, th.col {
+  text-align: center;
   padding: 2px 2px 0;
   width: 22px;
 }
@@ -318,7 +319,7 @@ a.s{
 /* https://allabout.co.jp/gm/gc/459917/3/ */
 /*タブのスタイル*/
 .tab_item {
-  width: calc(100%/4);
+  width: calc(100%/5); /* 5 tabs 2021 */
   height: 50px;
   border-bottom: 3px solid #5ab4bd;
   background-color: #d9d9d9;
@@ -337,6 +338,7 @@ a.s{
 #day1_tab:checked ~ #day1_content,
 #day2_tab:checked ~ #day2_content,
 #day3_tab:checked ~ #day3_content,
+#day4_tab:checked ~ #day4_content,
 #ad_tab:checked ~ #ad_content {
   display: block;
 }

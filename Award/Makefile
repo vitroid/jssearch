@@ -1,3 +1,3 @@
 # Make search index for javascript and copy pdfs to ../unlabelled folder
-Award.js: AwardDB.tsv award.py
+award.json: Award.xlsx award.py Aw*.pdf
 	python award.py > $@

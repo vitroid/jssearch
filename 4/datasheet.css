@@ -1,18 +1,18 @@
 @media print {
     html, body {
-	width: 297mm;
-	height: 209mm;
+	width: 190mm;
+	height: 277mm;
     }
     @page {
 	margin: 10mm;
 	margin-bottom: 0;
 	padding: 0in;
-	size: 317mm 220mm;
+	size: 210mm 297mm;
     }
     /* ... the rest of the rules ... */
 }
-body{
-    /*border: 2px dashed #8ff;*/
+div.pvframe{
+    border: 0.25px dashed;
 }
 p, ul, ol, dl { margin: 0;}
 ol {
@@ -20,7 +20,7 @@ ol {
     padding:0;
 }
 
-ol li
+ol li 
 {
     margin: 0px;
     padding: 0px;
@@ -30,7 +30,7 @@ ol li
 p {  margin-bottom: 4pt; }
 /*title*/
 h1.title {
-    font-size: 16pt;
+    font-size: 11.3pt;
     line-height: 133%;
     font-weight: bold;
     font-family: Arial, Helvetica, 'IPAexGothic', sans-serif;
@@ -39,7 +39,7 @@ h1.title {
 }
 /*authors and affils*/
 h2.preview {
-    font-size: 12pt;
+    font-size: 8.48pt;
     line-height: 133%;
     font-weight: normal;
     font-family: Arial, Helvetica, 'IPAexGothic', sans-serif;
@@ -48,7 +48,7 @@ h2.preview {
 }
 /*minor title*/
 h2.title {
-    font-size: 13pt; /*slightly larger*/
+    font-size: 9.19pt; /*slightly larger*/
     line-height: 133%;
     font-weight: bold;
     font-family: Arial, Helvetica, 'IPAexGothic', sans-serif;
@@ -57,32 +57,39 @@ h2.title {
 }
 /* 1-column Abstract */
 div.preview1 {
-    font-size: 12pt;
+    font-size: 8.48pt;
     line-height: 133%;
     font-family: 'Times New Roman', 'IPAexMincho', 'Noto Serif JP', Times, serif;
     text-align: justify;
     margin: 0;
-    margin-top: 8pt;
+    margin-top: 5.66pt;
 }
 /* 2-column body */
 div.preview2 {
-    columns: 2;
-    font-size: 12pt;
+    columns: 1;
+    height: 100%;
+    font-size: 8.48pt;
     line-height: 133%;
-    column-fill: auto;
+    column-fill: balance-all;
+    -webkit-column-fill: balance-all;
     font-family: 'Times New Roman', 'IPAexMincho', 'Noto Serif JP', Times, serif;
     text-align: justify;
     margin: 0;
-    margin-top: 12pt;
+    margin-top: 8.48pt;
 }
-.preview2 div {
+#abst_main div {
     -webkit-column-break-inside: avoid;
     column-break-inside: avoid;
+    width: 353px;
+    float: right;
+    margin: 5px;
+    padding: 5px;
+    border: 0.25px solid #888;
 }
 img.preview {
     object-fit: cover;
-    width: 500px;
-    height: 250px;
+    width: 353px;
+    height: 177px;
 }
 sup {
     line-height: 0;
@@ -92,11 +99,27 @@ sub {
 }
 div.label {
     position: fixed;
-    top: 12px;
+    bottom: 0px;
     right: 0px;
     font-size: 64pt;
     color: #ccc;
     font-weight: bold;
     font-family: Arial, Helvetica, 'IPAexGothic', sans-serif;
     z-index: -1;
+}    
+div.appendix{
 }
+th, td {
+    border: 0.25px solid #888;
+    padding: 4px;
+    margin: 0;
+}
+th {
+    width: 40mm;
+}
+table{
+    font-size: 10pt;
+    width: 190mm;
+    border-collapse: collapse;
+}
+  

@@ -8,10 +8,19 @@ SHELL=/bin/bash
 
 all: data.js
 
-data.json: 1626878951.json 1/preparehtml.py
+
+pre.json: 1627394850.json 1/preprocess.py
+	python 1/preprocess.py $< > $@
+# and hand-edit the pre.json to make the master.json
+
+data.json: master.json 1/preparehtml.py 1/template.html
+	-mkdir sheet
 	-mkdir html
 	-mkdir img
 	-mkdir tn
-	python 1/preparehtml.py 1626878951.json > data.json
+	python 1/preparehtml.py $< > $@
+
+
+
 
 include 0.makefile

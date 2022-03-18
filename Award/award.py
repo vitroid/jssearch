@@ -1,35 +1,58 @@
 
 
-# symposiumのデータをjs用に変換する。
+# awardのデータをjs用に変換する。
 
-import glob
-import os
-import shutil
 import json
+import pandas as pd
+from subprocess import STDOUT, check_output, TimeoutExpired
+import sys
+import shutil
 
-pdfs={'Fasan': 'Fasan_Awarding_lecture.pdf',
-'Okuda': 'Jun_Okuda_sakuto_temp_Eng_for_Awarding_lecture.pdf',
-'Iwasaki': 'iwasaki_UT_sakuto_temp_jp_for_Awarding_lecture.pdf',
-'Kato': 'sakuto_mkato_jp_for_Awarding_lecture.pdf',
-'Sakata': 'Abstract_YokoSakata_final.pdf',
-'Chen': 'Chen_XM_Abstract_for_Awarding_lecture.pdf',
-}
+df = pd.read_excel("Award修正.xlsx")
 
-js = []
-with open("AwardDB.tsv") as f:
-    for line in f:
-        code, pdf, time, title, speaker = line.strip().split('\t')
-        if code != "":
-            rec = dict()
-            rec["lab"] = code
-            rec["ses"] = code[:code.find('-')]
-            rec["tim"] = time
-            rec["loc"] = ""
-            rec["spe"] = speaker
-            rec["tit"] = title
-            rec["pdf"] = pdfs[pdf]
-            rec["pre"] = pdfs[pdf].replace(".pdf", ".jpg")
-            rec["con"] = " ".join([code, title, speaker])
-            js.append(rec)
+
+cond = df["講演番号"].str.contains("^Aw-") & df["講演番号"].notnull()
+df = df[cond]
+df["lab"] = df["講演番号"]
+df["ses"] = df["講演番号"].str.rstrip("0123456789").str.rstrip("-")
+df["loc"] = df["講演者所属"]
+df["spe"] = df["講演者"]
+df["pdf"] = "pdf/"+df['講演番号']+".pdf"
+df["tit"] = df["題名"]
+df["con"] = df["講演番号"] +" "+ df["題名"] +" "+ df["講演者"] +" "+ df["講演者所属"]
+df = df.drop(columns=["講演番号", "講演者", "講演者所属", "題名", "PDFファイル名"])
+
+dic = df.to_dict('index')
+js = [dic[rec] for rec in sorted(dic, key=lambda x:dic[x]["lab"])]
+for rec in js:
+    tit = rec["tit"].split("\n")
+    loc = rec["loc"].split("\n")
+    spe = rec["spe"].split("\n")
+    if len(tit) == 2:
+        rec["inf"] = [
+                      tit[1],
+                      f"({loc[1]}) {spe[1]}",
+                      tit[0],
+                      f"({loc[0]}) {spe[0]}",
+                                    ]
+    else:
+        rec["inf"] = [tit[0],
+                      f"({loc[0]}) {spe[0]}",
+                     ]
+    rec["sea"] = ""
+    rec["pre"] = f"tn/{rec['lab']}.jpg"
+    srcpdf = "Award/"+rec['lab']+".pdf"
+    dstpdf = "pdf/"+rec['lab']+".pdf"
+    shutil.copyfile("../"+srcpdf,"../"+dstpdf)
+    # prepare thumbs
+    cmd = ["sips",
+           "-s", "format", "jpeg",
+           "-z", "200", "200",
+           f"../{rec['pdf']}",
+           "--out", f"../{rec['pre']}"]
+    print(cmd, file=sys.stderr)
+    output = check_output(cmd)
+
+
 
 print(json.dumps(js, indent=2, ensure_ascii=False))

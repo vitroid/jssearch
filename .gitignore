@@ -2,7 +2,6 @@
 *.pdf
 .ht*
 *~
-*.js
 setting.yaml
 Sympo/*/*
 *.tsv
@@ -22,8 +21,26 @@ html/
 tn/
 
 img/
+/sheet/
+/verify/
 *.pyc
 
-*.json
 data.js
 index.js
+6.json
+data.json
+index.json
+master+pid.js
+master+pid.json
+mtitles.js
+mtitles.json
+*.txt
+test.png
+*xlsx
+zoom.js
+zoom.json
+pre.json
+remo.js
+remo.json
+
+@*
