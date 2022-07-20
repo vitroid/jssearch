@@ -24,7 +24,7 @@ def pdfname(authors, year, title):
 
         initial = au[0]
 
-        name = f"/Users/matto/GoogleDrive/Paperpile/All Papers/{initial}/{au} {year} - {ti}*".replace(" ", "[ ]")
+        name = f"/Users/matto/Google Drive/My Drive/Paperpile/All Papers/{initial}/{au} {year} - {ti}*".replace(" ", "[ ]")
 
         files = glob.glob(name)
         if len(files) < 2:
