@@ -30,9 +30,10 @@ def pdfname(authors, year, title):
         if len(files) < 2:
             break
 
-    print(name, files)
+    # print(name, files)
     if len(files) == 1:
         return files[0]
+    print(f"Missing {name}")
     return None
 
 
@@ -57,7 +58,7 @@ for i, row in enumerate(frame.itertuples()):
             os.symlink(path, f"pdf/{basename}.pdf")
         except FileExistsError:
             pass
-        print(f"pdf/{basename}")
+        # print(f"pdf/{basename}")
         frame.loc[i, "PDF"] = f"pdf/{basename}.pdf"
         frame.loc[i, "tn"]  = f"tn/{basename}.jpg"
     else:
