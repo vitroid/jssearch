@@ -2,6 +2,10 @@
 
 [http://rs.luminousspice.com/hugo-site-search/](http://rs.luminousspice.com/hugo-site-search/)さんの、魔法のように高速な検索を使い、論文検索サイトを作成する。
 
+## Preparation
+
+* papers.csvはPaperpileのフォルダーのコンテクストメニューからダウンロードできる。
+
 ## Final products
 
 * `index.html` 検索画面。スマホで日本語変換した場合でもちゃんと検索できるようにすこしだけ改良した。

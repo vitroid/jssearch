@@ -1,3 +1,5 @@
+all: papers.js thumbs prepare deploy
+
 # revised PDFをunlabelled/に練りこむ。
 thumbs:
 	ls pdf/*.pdf | sed -e 's/\.pdf/.jpg/' -e 's/pdf/tn/' | xargs make -k
@@ -28,4 +30,5 @@ papers.js: paperpile_csv2js.py papers.csv
 	mkdir pdf tn
 	python paperpile_csv2js.py
 
-all: papers.js thumbs prepare deploy
+clean:
+	-rm -rf pdf tn papers.js
