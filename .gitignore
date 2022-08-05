@@ -44,3 +44,6 @@ remo.js
 remo.json
 
 @*
+.vscode/configurationCache.log
+.vscode/dryrun.log
+.vscode/targets.log

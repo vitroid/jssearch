@@ -7,28 +7,34 @@
 
 </script>
 
-<table>
-    <tbody>
-        <tr class='header'>
-            <th colspan='11' class='corner'>
-                {title}
-            </th>
-        </tr>
-        <tr class='header'>
-            <th></th>
-            {#each [0,1,2,3,4,5,6,7,8,9] as i}
-            <th class='col'>{i}</th>
+<div>
+    <table>
+        <tbody>
+            <tr class='header'>
+                <th colspan='11' class='corner'>
+                    {title}
+                </th>
+            </tr>
+            <tr class='header'>
+                <th></th>
+                {#each [0,1,2,3,4,5,6,7,8,9] as i}
+                <th class='col'>{i}</th>
+                {/each}
+            </tr>
+            {#each sessions as session}
+            <PosterTableRows label={session.label} items={session.items} on:search />
             {/each}
-        </tr>
-        {#each sessions as session}
-        <PosterTableRows label={session.label} items={session.items} on:search />
-        {/each}
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>
 
 <style>
+    div {
+        background-color: #fff;
+        padding: 10px;
+    }
     table {
-        margin: 2px;
+        margin: 10px;
     }
     th.col {
         text-align: center;
