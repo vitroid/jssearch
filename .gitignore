@@ -1,3 +1,5 @@
+.vscode/
+
 *.jpg
 *.pdf
 .ht*
@@ -19,6 +21,9 @@ attach/
 html/
 
 tn/
+master/
+search/
+pdf/
 
 img/
 /sheet/
@@ -42,5 +47,6 @@ zoom.json
 pre.json
 remo.js
 remo.json
-
+ads.js
+ads.json
 @*

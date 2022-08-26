@@ -6,21 +6,27 @@
 SHELL=/bin/bash
 
 
-all: data.js
+all: master
 
 
-pre.json: 1627394850.json 1/preprocess.py
+pre.json: 1661415966.json 1/preprocess.py
 	python 1/preprocess.py $< > $@
 # and hand-edit the pre.json to make the master.json
 
-data.json: master.json 1/preparehtml.py 1/template.html
+master: master.json 1/preparemaster.py 1/template.html
 	-mkdir sheet
 	-mkdir html
 	-mkdir img
 	-mkdir tn
-	python 1/preparehtml.py $< > $@
+	-mkdir master
+	python 1/preparemaster.py $<
 
+# master/を生成したあとの、手作業の自動化。
 
+# 1. 和英題名の入れ替え 2022
+ejtitle:
+	for n in 72131 72166 72412 72594 72320 72622 72321 72028 72027 72211 72559 72220 72431 72572 72088 72315 72600 72207; do python3 1/exchange_ej_titles.py $$n; done
 
-
-include 0.makefile
+# 2. 英文題名のtitlecase化
+titlecase:
+	for n in `(cd master; ls *.json) | sed -e s/.json// `; do python3 1/add_titlecase.py $$n; done

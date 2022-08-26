@@ -8,12 +8,12 @@ all: data.js
 
 
 # re-make pdfs with label
-data.json: master+pid.json 1/preparehtml.py 1/template.html
+data.json: master+pid.json 8/preparehtml.py 1/template.html
 	-mkdir sheet
 	-mkdir html
 	-mkdir img
 	-mkdir tn
-	python 1/preparehtml.py $< > $@
+	python 8/preparehtml.py $< > $@
 
 
 

@@ -1,9 +1,9 @@
 import json
-import os
+# import os
 import sys
 from difflib import SequenceMatcher
 from subprocess import STDOUT, check_output, TimeoutExpired
-import yaml
+# import yaml
 
 def similar(a, b):
     return SequenceMatcher(None, a, b).ratio()
@@ -39,7 +39,7 @@ for id1 in sorted(data, reverse=True):
         #    print(data[id2]["titlee"])
         if sim  > 0.9:
             if data[id1]["email"] !=  data[id2]["email"]:
-                print(f'{id1} {data[id1]["email"]}\n{id2} {data[id2]["email"]}',file=sys.stderr)
+                print(f'Similar content:\n{id1} {data[id1]["email"]}\n{id2} {data[id2]["email"]}',file=sys.stderr)
             found = True
             break
     if found:
@@ -59,9 +59,9 @@ for id in nodup:
 
 
 # other automatic processes specific to JSCC71@2021
-for nid in (71082, 71067, 71337, 71586, 71019, 71719, 71055, 71061, 71522, 71605, 71016):
-    id = f"{nid}"
-    nodup[id]["title"], nodup[id]["titlee"] = nodup[id]["titlee"], nodup[id]["title"]
+# for nid in (71082, 71067, 71337, 71586, 71019, 71719, 71055, 71061, 71522, 71605, 71016):
+#     id = f"{nid}"
+#     nodup[id]["title"], nodup[id]["titlee"] = nodup[id]["titlee"], nodup[id]["title"]
 
 
     

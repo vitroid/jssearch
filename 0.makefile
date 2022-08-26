@@ -4,13 +4,13 @@
 SHELL=/bin/bash
 
 sync:
-	rsync -av reg@www.chem.okayama-u.ac.jp:reg2/var/projects/apply2/attach .
+	rsync -av reg@www.chem.okayama-u.ac.jp:reg2/var/projects/apply/attach .
 
 %.js: %.json
-	if [ x"$*" = x"index" ]; then \
-	    echo -n "var data = " > $@ ; \
+	-if [ x"$*" = x"index" ]; then \
+	    echo -n "export const data = " > $@ ; \
 	else \
-	    echo -n "var " $* " = " > $@ ; \
+	    echo -n "export const $* = " > $@ ; \
 	fi
 	cat $< >> $@
 	echo ";" >> $@

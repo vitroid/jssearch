@@ -37,7 +37,6 @@
     $: {
         // when the results are changed, i.e. new query
         npage = Math.ceil(results.length / max);
-        console.log("rv", npage)
         moveto(0);
     }
 
@@ -66,5 +65,5 @@
 </table>
 
 <style>
-    
+
 </style>

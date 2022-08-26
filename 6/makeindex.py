@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # coding: utf-8
-from logging import getLogger
-import sys
 import json
+import sys
 from hashlib import md5
+from logging import getLogger
 
 # jssearchのためのインデックスを生成する。
 
@@ -55,7 +55,7 @@ def authorlists(record):
     affilsj = []
     affilse = []
 
-    for i in range(1,11):
+    for i in range(1,10):
         affilj = record[f"affil{i}"]
         affile = record[f"affil{i}e"]
         if not affile:

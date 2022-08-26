@@ -1,7 +1,6 @@
 <script>
-    import { data } from "./index.svelte";
+    import { data } from "./index.js";
     // import { marks } from "./mark.js";
-    import { directory } from "./directory.js";
     import Checkbox from "./checkbox.svelte";
 
     export let record;
@@ -65,7 +64,7 @@
     //         $marks.delete(id)
     //         directory[id].style.backgroundColor = "#f0f0f0";
     //         directory[id].style.color = "#000";
-    //     }   
+    //     }
     // }
 
 </script>
@@ -83,7 +82,7 @@
         {link}
         <br />
         {#each au as tiau}
-        <span class="ti">{tiau[0]}</span><br />{tiau[1]}<br />
+        <span class="ti">{@html tiau[0]}</span><br />{@html tiau[1]}<br />
         {/each}
         {s}
         <div class='m'>...

@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "@babichjacob/svelte-localstorage-workspace-root": "github:babichjacob/svelte-localstorage"
+  }
+}

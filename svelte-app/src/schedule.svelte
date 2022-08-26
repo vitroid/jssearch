@@ -1,5 +1,8 @@
 <script>
+    import { Tab,TabList,TabPanel,Tabs } from './Components/Tabs/tabs.js';
+    import { project } from './jscc72.js';
     import PosterTable from "./postertable.svelte";
+    import SessionTable from "./sessiontable.svelte";
 
     function range(a,b){
         let c = new Set();
@@ -9,118 +12,192 @@
         return c;
     }
 
-    const poster1 = [ { label:"PA1-", items:range(1,74) },
-                      { label:"PB1-", items:range(1,15) },
-                      { label:"PC1-", items:range(1,16) },
-                      { label:"PD1-", items:range(1,14) },
-                      { label:"PE1-", items:range(1,10) },
-                      { label:"PF1-", items:range(1,42) } ];
+    // const poster1 = [ { label:"PA1-", items:range(1,74) },
+    //                   { label:"PB1-", items:range(1,15) },
+    //                   { label:"PC1-", items:range(1,16) },
+    //                   { label:"PD1-", items:range(1,14) },
+    //                   { label:"PE1-", items:range(1,10) },
+    //                   { label:"PF1-", items:range(1,42) } ];
 
 </script>
-<div class="tabs">
-    <input id="day1_tab" type="radio" name="tab_item" checked />
-    <label class="tab_item" for="day1_tab">Sep. 16</label>
-    <input id="day2_tab" type="radio" name="tab_item">
-    <label class="tab_item" for="day2_tab">Sep. 17</label>
-    <input id="day3_tab" type="radio" name="tab_item">
-    <label class="tab_item" for="day3_tab">Sep. 18</label>
-    <input id="day4_tab" type="radio" name="tab_item">
-    <label class="tab_item" for="day4_tab">Sep. 19</label>
-    <input id="ad_tab" type="radio" name="tab_item">
-    <label class="tab_item" for="ad_tab">協賛企業</label>
-    <div class="tab_content" id="day1_content">
-        <div class="ttpanel" id=day1_panel>
-            <PosterTable title={"test poster 1"} sessions={poster1} on:search />
-        </div>
-    </div>
-    <div class="tab_content" id="day2_content"><div class="ttpanel" id=day2_panel></div></div>
-    <div class="tab_content" id="day3_content"><div class="ttpanel" id=day3_panel></div></div>
-    <div class="tab_content" id="day4_content"><div class="ttpanel" id=day4_panel></div></div>
-    <div class="tab_content" id="ad_content"><div class="ttpanel" id=ad_panel></div>
-    <div class="credit">jssearch build 33 Copyright (c) 2020 by Masakazu Matsumoto</div></div>
-</div>
 
+<Tabs>
+    <TabList>
+        <Tab>Sep. 26</Tab>
+        <Tab>Sep. 27</Tab>
+        <Tab>Sep. 28</Tab>
+        <Tab>協賛企業</Tab>
+    </TabList>
+
+    <TabPanel>
+        <div class="container">
+            <div class="panel">
+                <SessionTable title={"Oral session"}
+                    sessions={project.sessions1}
+                    timebins={project.bins_am}
+                    slots={project.slots_am}
+                    on:search />
+            </div>
+            <div class="panel">
+                <PosterTable title={"2215"}
+                    sessions={[{label:"1PA-", items:range(1,16)}]}
+                    on:search />
+                <PosterTable title={"2216"}
+                    sessions={[{label:"1PA-", items:range(17,32)}]}
+                    on:search />
+                <PosterTable title={"2201"}
+                    sessions={[{label:"1PA-", items:range(33,48)}]}
+                    on:search />
+                <PosterTable title={"2202"}
+                    sessions={[{label:"1PA-", items:range(49,64)}]}
+                    on:search />
+                <PosterTable title={"2203"}
+                    sessions={[{label:"1PA-", items:range(65,80)}]}
+                    on:search />
+                <PosterTable title={"2204"}
+                    sessions={[
+                        {label:"1PA-", items:range(81,89)},
+                        {label:"1PB-", items:range(1,7)},
+                    ]}
+                    on:search />
+                <PosterTable title={"2207"}
+                    sessions={[
+                        {label:"1PB-", items:range(8,16)},
+                        {label:"1PC-", items:range(1,7)},
+                    ]}
+                    on:search />
+                <PosterTable title={"2208"}
+                    sessions={[
+                        {label:"1PC-", items:range(8,13)},
+                        {label:"1PD-", items:range(1,10)},
+                    ]}
+                    on:search />
+                <PosterTable title={"2209"}
+                    sessions={[
+                        {label:"1PD-", items:range(11,17)},
+                        {label:"1PE-", items:range(1,9)},
+                    ]}
+                    on:search />
+                <PosterTable title={"2210"}
+                    sessions={[
+                        {label:"1PE-", items:range(10,11)},
+                        {label:"1PF-", items:range(1,14)},
+                    ]}
+                    on:search />
+                <PosterTable title={"2211"}
+                    sessions={[
+                        {label:"1PF-", items:range(15,30)},
+                    ]}
+                    on:search />
+                <PosterTable title={"2212"}
+                    sessions={[
+                        {label:"1PF-", items:range(31,47)},
+                    ]}
+                    on:search />
+            </div>
+        </div>
+    </TabPanel>
+
+    <TabPanel>
+        <div class="container">
+            <div class="panel">
+                <SessionTable title={"Oral session"}
+                    sessions={project.sessions2}
+                    timebins={project.bins_am}
+                    slots={project.slots_am}
+                    on:search />
+                <SessionTable title={"Oral session"}
+                    sessions={project.sessions2}
+                    timebins={project.bins_pm}
+                    slots={project.slots_pm}
+                    on:search />
+            </div>
+            <div class="panel">
+                <PosterTable title={"2215"}
+                    sessions={[{label:"1PA-", items:range(1,16)}]}
+                    on:search />
+                <PosterTable title={"2216"}
+                    sessions={[{label:"1PA-", items:range(17,32)}]}
+                    on:search />
+                <PosterTable title={"2201"}
+                    sessions={[{label:"1PA-", items:range(33,48)}]}
+                    on:search />
+                <PosterTable title={"2202"}
+                    sessions={[{label:"1PA-", items:range(49,64)}]}
+                    on:search />
+                <PosterTable title={"2203"}
+                    sessions={[{label:"1PA-", items:range(65,80)}]}
+                    on:search />
+                <PosterTable title={"2204"}
+                    sessions={[
+                        {label:"1PA-", items:range(81,89)},
+                        {label:"1PB-", items:range(1,7)},
+                    ]}
+                    on:search />
+                <PosterTable title={"2207"}
+                    sessions={[
+                        {label:"1PB-", items:range(8,16)},
+                        {label:"1PC-", items:range(1,7)},
+                    ]}
+                    on:search />
+                <PosterTable title={"2208"}
+                    sessions={[
+                        {label:"1PC-", items:range(8,13)},
+                        {label:"1PD-", items:range(1,10)},
+                    ]}
+                    on:search />
+                <PosterTable title={"2209"}
+                    sessions={[
+                        {label:"1PD-", items:range(11,17)},
+                        {label:"1PE-", items:range(1,9)},
+                    ]}
+                    on:search />
+                <PosterTable title={"2210"}
+                    sessions={[
+                        {label:"1PE-", items:range(10,11)},
+                        {label:"1PF-", items:range(1,14)},
+                    ]}
+                    on:search />
+                <PosterTable title={"2211"}
+                    sessions={[
+                        {label:"1PF-", items:range(15,30)},
+                    ]}
+                    on:search />
+                <PosterTable title={"2212"}
+                    sessions={[
+                        {label:"1PF-", items:range(31,47)},
+                    ]}
+                    on:search />
+            </div>
+        </div>
+    </TabPanel>
+
+    <TabPanel>
+        <div class="container">
+        </div>
+    </TabPanel>
+
+    <TabPanel>
+        <div class="container">
+        </div>
+    </TabPanel>
+</Tabs>
 
 <style>
-    /* tabs using CSS https://bagelee.com/design/css/create_tabs_using_only_css/ */
-
-    /* using */
-    /*タブ切り替え全体のスタイル*/
-    div.tabs {
-    margin-top: 50px;
-    padding-bottom: 40px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    max-width: 700px;
-    margin: 0 auto;
-    }
-
-    /* using */
-    label.tab_item:hover {
-    opacity: 0.75;
-    }
-
-    /*ラジオボタンを全て消す*/
-    /* using */
-    input[name="tab_item"] {
-    display: none;
-    }
-
-    /* using */
-    /*タブ切り替えの中身のスタイル*/
-    div.tab_content {
-    display: none;
-    padding: 10px 10px 0;
-    clear: both;
-    overflow: hidden;
-    }
-
-
-
-    /*選択されているタブのスタイルを変える*/
-    div.tabs input:checked + .tab_item {
-    background-color: #5ab4bd;
-    color: #fff;
-    }
-
-    /* using */
-    div.ttpanel {
+    .container {
+        width: 100%;
         display: flex;
+        flex-flow: row;
         flex-wrap: wrap;
     }
+    .panel {
+        background-color: #fff;
+        border: 1px solid #888;
+        border-radius: 15px;
 
-    div.credit {
-        font-size: 80%;
-        color: #888;
-        text-align: center;
+        /* for children */
+        display: flex;
+        flex-flow: row;
+        flex-wrap: wrap;
     }
-
-
-    /* https://allabout.co.jp/gm/gc/459917/3/ */
-/*タブのスタイル*/
-.tab_item {
-  width: calc(100%/5); /* 5 tabs 2021 */
-  height: 50px;
-  border-bottom: 3px solid #5ab4bd;
-  background-color: #d9d9d9;
-  line-height: 50px;
-  font-size: 16px;
-  text-align: center;
-  color: #565656;
-  display: block;
-  float: left;
-  text-align: center;
-  font-weight: bold;
-  transition: all 0.2s ease;
-}
-
-/*選択されているタブのコンテンツのみを表示*/
-#day1_tab:checked ~ #day1_content,
-#day2_tab:checked ~ #day2_content,
-#day3_tab:checked ~ #day3_content,
-#day4_tab:checked ~ #day4_content,
-#ad_tab:checked ~ #ad_content {
-  display: block;
-}
-
 </style>

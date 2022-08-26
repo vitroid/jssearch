@@ -1,18 +1,13 @@
 <script>
     import { createEventDispatcher,onMount } from 'svelte';
     import { directory } from "./directory.js";
-    import { marks } from './stores.js';
+    import { all_talks,marks } from './stores.js';
 	const dispatch = createEventDispatcher();
 
-    export let label;
-    export let row;
-    export let order;
-    export let items;
+    export let id
 
-
-    let active = true;
-    let color = "#888";
-    let id;
+    let active = false
+    let color = "#888"
 
     onMount(() => {
         const status = $marks[id]
@@ -22,23 +17,8 @@
         else{
             color = "#f0f0f0";
         }
+        active = all_talks.has(id)
 	});
-
-    $: {
-        id=label + row + order;
-        let item = row*10+order;
-        active = items.has(item);
-        // const status = $marks[id]
-
-        // if (status){
-        //     directory[id].style.backgroundColor = "#0075ff";
-        //     directory[id].style.color = "#fff";
-        // }
-        // else{
-        //     directory[id].style.backgroundColor = "#f0f0f0";
-        //     directory[id].style.color = "#000";
-        // }
-    }
 
 	function buttonPressed() {
         // invoke signal
@@ -54,7 +34,7 @@
 </script>
 
 <button bind:this={directory[id]} disabled={!active} on:click={buttonPressed} style="background-color: {color}">
-    <!-- {id} -->
+    <!-- {@html id} -->
 </button>
 
 <style>

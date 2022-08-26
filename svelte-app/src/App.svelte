@@ -2,7 +2,7 @@
 	// import { data } from "./index.svelte";
 	// import { bin1, bin2, sc } from "./jscc71.svelte";
 	import SearchBox from "./searchbox.svelte";
-	import Information from "./information.svelte";
+	// import Information from "./information.svelte";
 	import Schedule from "./schedule.svelte";
 	import ShortCuts from "./shortcuts.svelte";
 
@@ -14,7 +14,7 @@
 
 <body>
 	<div class="wrap">
-		<Information />
+		<!-- <Information /> -->
 
 		<h2>要旨集検索</h2>
 		<div class="search">

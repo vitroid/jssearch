@@ -1,5 +1,5 @@
 <script>
-    import { project } from "./jscc71.svelte";
+    import { project } from "./jscc72";
 
 </script>
 <div class="post">

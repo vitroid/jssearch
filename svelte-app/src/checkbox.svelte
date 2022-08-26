@@ -1,40 +1,44 @@
 <script>
-    import { marks } from "./mark.js";
     import { directory } from "./directory.js";
+    import { marks } from "./stores.js";
 	// import { onMount } from 'svelte';
 
     export let id;
 
 
     let _this;
-    let status = marks[id];
+    let status
+
+    marks.subscribe(m=>{
+        status = m[id]
+        if (status){
+            // directoryにはスケジュール表の要素が設定されている。
+            directory[id].style.backgroundColor = "#0075ff";
+            directory[id].style.color = "#fff";
+            if (_this){
+                _this.style.backgroundColor = "#0075ff";
+            }
+        }
+        else{
+            directory[id].style.backgroundColor = "#f0f0f0";
+            directory[id].style.color = "#000";
+            if (_this){
+                _this.style.backgroundColor = "#f0f0f0";
+            }
+        }
+    })
 	// onMount( () => {
     //     status = $marks.has(id);
 	// });
 
     function cbclick ( event ){
         // let id = event.srcElement.id
-        status = marks[id]
-        if (status){
-            // $marks.delete(id)
-            directory[id].style.backgroundColor = "#f0f0f0";
-            directory[id].style.color = "#000";
-            _this.style.backgroundColor = "#f0f0f0";
-            marks[id] = false;
-        }
-        else{
-            // $marks.add(id)
-            // directoryにはスケジュール表の要素が設定されている。
-            directory[id].style.backgroundColor = "#0075ff";
-            directory[id].style.color = "#fff";
-            _this.style.backgroundColor = "#0075ff";
-            marks[id] = true;
-        }
+        $marks[id] = !  $marks[id]
     }
 
 </script>
 
-{#if marks[id]}
+{#if $marks[id]}
 <button class="on" id={id} on:click={cbclick} bind:this={_this}>
 {id}
 </button>

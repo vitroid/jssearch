@@ -1,4 +1,4 @@
-AuthUserFile /home/reg/.reg/jscc71.htpasswd
+AuthUserFile /home/reg/.reg/jscc72.htpasswd
 AuthGroupFile /dev/null
 AuthName "Please enter your ID and password"
 AuthType Basic

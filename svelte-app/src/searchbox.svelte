@@ -1,7 +1,7 @@
 <script>
     import ResultView from "./resultview.svelte";
     // import { move_up, move_down } from "./resultview.svelte";
-    import { data } from "./index.svelte";
+    import { data } from "./index.js";
     export let search = "";
 
     $: {
@@ -14,14 +14,13 @@
     let resultView;
 
     function do_find(v){
-        console.log(v);
         if (lastquery == v)
             return;
         lastquery = v;
-    	results = find(v);
+        results = find(v);
     }
-    function key(event){        
-	    switch(event.key){
+    function key(event){
+        switch(event.key){
 		    case "ArrowUp" : resultView.move_up();break;
     		case "ArrowDown" : resultView.move_down();break;
     	}
@@ -52,7 +51,7 @@
         var result = [];
         for(var i=0;i<data.length;i++){
             var s = data[i].con;
-        reg.lastIndex = 0; // because reg remembers the last place
+            reg.lastIndex = 0; // because reg remembers the last place
             var res = reg.exec(s);
             if(!res){continue}
             var len = res[0].length;
@@ -80,4 +79,3 @@
     {st}
     <ResultView results={results} bind:this={resultView} />
 </div>
-

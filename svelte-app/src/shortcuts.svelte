@@ -1,5 +1,5 @@
 <script>
-    import { shortcuts } from "./jscc71.svelte";
+    import { shortcuts } from "./jscc72";
     import ShortCut from "./shortcut.svelte";
 </script>
 
@@ -8,4 +8,3 @@
 <ShortCut label={shortcut[0]} query={shortcut[1]} on:search />
 {/each}
 </div>
-

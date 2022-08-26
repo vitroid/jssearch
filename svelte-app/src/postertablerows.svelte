@@ -7,14 +7,13 @@
 
     $: {
         let rowset = new Set()
-        items.forEach(function(i){ 
+        items.forEach(function(i){
             rowset.add(Math.trunc(i / 10))
         });
         rows = Array.from(rowset);
     }
 </script>
 
-{#each rows as _, row}
+{#each rows as row, _}
 <PosterTableRow label={label} row={row} {items} on:search />
 {/each}
-
