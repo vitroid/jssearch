@@ -1,60 +1,68 @@
-<script>
-    import { project } from "./jscc72";
+<script lang="ts">
+    import { _ } from 'svelte-i18n';
+    let schedule
+    _.subscribe(t=>{
+        schedule=[
+        [t("sept26"), "9:20-11:50", t("Morning sessions"), t("centerzone2")],
+        [t("sept26"), "12:50-14:50", t("Poster sessions"), t("centerzone2")],
+        [t("sept26"), "15:00-19:00", t("Afternoon sessions"), t("centerzone2")],
 
+        [t("sept27"), "9:20-11:50", t("Morning sessions"), t("centerzone2")],
+        [t("sept27"), "12:50-14:50", t("Poster sessions"), t("centerzone2")],
+        [t("sept27"), "15:00-15:30", t("Award lectures"), t("centerzone2")],
+        [t("sept27"), "15:40-18:50", t("Afternoon sessions"), t("centerzone2")],
+
+        [t("sept28"), "8:50-15:30", t("Award lectures"), t("mainhall")],
+        [t("sept28"), "15:40-16:50", t("JSCC general meeting"), t("mainhall")],
+        [t("sept28"), "17:30-19:30", t("Banquet"), t("hotelokura")],
+    ]})
 </script>
-<div class="post">
-    <h1 class="post-title">{project.title}</h1>
-    <p class="intro">
-        <a class="lk" href="http://jsccc71.com/top/" target="_blank">オンデマンド配信、発表および視聴方法に関する案内など</a>
-    </p>
-    <div class="intro">（錯体化学会の特設サイトに飛びます）</div>
-    <div class="intro">
-        <span class="zm">ZOOM</span>
-        <span class="rm">REMO</span>ボタンでZoom(口頭発表)・Remo(ポスター)会場に入れます.
-    </div>
-    <div class="intro">Remo Reference Manual <a class="lk" href="http://www.sakutai.jp/cms/wp-content/uploads/2020/07/RemoManual_JP_20200804_v1_1.pdf" target="_blank">日本語</a> <a class="lk" href="http://www.sakutai.jp/cms/wp-content/uploads/2020/07/RemoManual_EN_20200804_v1_1.pdf" target="_blank">English</a></div>
 
-    <p class="intro">懇親会・交流会</p>
-    <div class="intro"><a class="rm" href="https://live.remo.co/e/71remo-1a">REMO1</a>オンライン懇親会 ⽇時：9⽉19⽇（日）18:00-</div>
+<div class="post">
+    <h1 class="post-title">{$_("General Information")}</h1>
+    <p class="intro">{$_("Overall schedule")}</p>
+    <table>
+        <tbody>
+            {#each schedule as row}
+            <tr>
+                {#each row as col, i}
+                <td class={"col"+i}>
+                    {col}
+                </td>
+                {/each}
+            </tr>
+            {/each}
+        </tbody>
+    </table>
 </div>
 
 <style>
     div.post {
-  margin: 2px;
-}
-h1.post-title {
-  padding: 10px;
-  text-align: center;
-  background-color: #fff;
-}
-p.intro {
-  padding: 5px;
-  text-align: center;
-  font-size: 120%;
-  font-weight: bold;
-}
-div.intro {
-  text-align: center;
-}
-/*囲み=リンク*/
-.zm{
-  border-radius: 5px 5px 5px;
-  border: 1px solid blue;
-  color: blue;
-  font-size: 90%;
-  background-color: #cacaff;
-  padding: 2px;
-  text-decoration: none;
-}
-
-.rm{
-  border-radius: 5px 5px 5px;
-  border: 1px solid red;
-  color: red;
-  font-size: 90%;
-  background-color: #ffcaca;
-  padding: 2px;
-  text-decoration: none;
-}
-
+        margin: 2px;
+        /* justify-content: center; */
+    }
+    h1.post-title {
+        /* padding: 10px; */
+        text-align: center;
+        font-size: 120%;
+        /* background-color: #fff; */
+    }
+    p.intro {
+        padding: 5px;
+        text-align: center;
+        font-size: 120%;
+        font-weight: bold;
+    }
+    table {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    tr {
+        /* border: 1px solid #888; */
+        background-color: #fff;
+        margin: 0;
+    }
+    .col1 {
+        text-align: center;
+    }
 </style>

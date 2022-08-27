@@ -13,15 +13,20 @@
         status = m[id]
         if (status){
             // directoryにはスケジュール表の要素が設定されている。
-            directory[id].style.backgroundColor = "#0075ff";
-            directory[id].style.color = "#fff";
+            //checkboxの操作が、対象要素の表示よりも前である場合もあるので、
+            if ( id in directory ){
+                directory[id].style.backgroundColor = "#0075ff";
+                directory[id].style.color = "#fff";
+            }
             if (_this){
                 _this.style.backgroundColor = "#0075ff";
             }
         }
         else{
-            directory[id].style.backgroundColor = "#f0f0f0";
-            directory[id].style.color = "#000";
+            if ( id in directory ){
+                directory[id].style.backgroundColor = "#f0f0f0";
+                directory[id].style.color = "#000";
+            }
             if (_this){
                 _this.style.backgroundColor = "#f0f0f0";
             }

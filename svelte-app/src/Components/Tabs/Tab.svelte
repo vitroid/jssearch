@@ -13,7 +13,7 @@
 		border-bottom: 3px solid #5ab4bd;
 		font-size: 16px;
 		height: 40px;
-		width: 100px;
+		width: 130px;
 		color: #565656;
 		background-color: #d9d9d9;
 		transition: all 0.2s ease;
@@ -25,7 +25,7 @@
 		margin: 0;
 		/* color: #ccc; */
 	}
-	
+
 	.selected {
 		/* border-bottom: 2px solid teal;
 		color: #333; */

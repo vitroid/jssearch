@@ -36,7 +36,8 @@
         border-radius: 10px; */
     }
     table {
-        margin: 10px;
+        margin: 0px;
+        /* background-color: #ddd; */
     }
     th.col {
         text-align: center;
@@ -48,7 +49,7 @@
     }
     th.corner {
         width: 64px;
-        font-size: 150%;
-        padding: 10px 10px 0;
+        font-size: 120%;
+        /* padding: 10px 10px 0; */
     }
 </style>

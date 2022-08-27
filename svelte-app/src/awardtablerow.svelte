@@ -4,22 +4,20 @@
     export let button_titles=[]
     // export let timebin
     export let starttime
-    export let slot
+    export let ids
 
 </script>
 
 <tr class='row'>
     <th class='row'>
-        {slot}
+        {starttime}
     </th>
     {#each sessions as session, i}
     <td class="row">
-    <SessionButton title={button_titles[i]} id={session+"-"+("00"+slot).slice(-2)} on:search />
+    <SessionButton id={ids[i]} title={button_titles[i]} on:search />
+    <!-- <SessionButton on:search /> -->
     </td>
     {/each}
-    <th class='row'>
-        {starttime}
-    </th>
 </tr>
 
 <style>

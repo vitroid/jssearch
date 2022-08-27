@@ -22,6 +22,11 @@
         else{
             color = "#f0f0f0";
         }
+        let item = row*10+order;
+        active = items.has(item);
+        if ( ! active ){
+            color = "#f8f8f8"
+        }
 	});
 
     $: {

@@ -1,99 +1,37 @@
 <script>
+    import { _ } from 'svelte-i18n';
+    import AwardTable from "./awardtable.svelte";
     import { Tab,TabList,TabPanel,Tabs } from './Components/Tabs/tabs.js';
     import { project } from './jscc72.js';
-    import PosterTable from "./postertable.svelte";
+    import PosterTables from "./PosterTables.svelte";
     import SessionTable from "./sessiontable.svelte";
-
-    function range(a,b){
-        let c = new Set();
-        for(let i=a; i<=b; i++){
-            c.add(i);
-        }
-        return c;
-    }
-
-    // const poster1 = [ { label:"PA1-", items:range(1,74) },
-    //                   { label:"PB1-", items:range(1,15) },
-    //                   { label:"PC1-", items:range(1,16) },
-    //                   { label:"PD1-", items:range(1,14) },
-    //                   { label:"PE1-", items:range(1,10) },
-    //                   { label:"PF1-", items:range(1,42) } ];
-
 </script>
 
 <Tabs>
     <TabList>
-        <Tab>Sep. 26</Tab>
-        <Tab>Sep. 27</Tab>
-        <Tab>Sep. 28</Tab>
-        <Tab>協賛企業</Tab>
+        <Tab>{$_("sept26")}</Tab>
+        <Tab>{$_("sept27")}</Tab>
+        <Tab>{$_("sept28")}</Tab>
+        <Tab>{$_("Supporters")}</Tab>
     </TabList>
 
     <TabPanel>
         <div class="container">
             <div class="panel">
-                <SessionTable title={"Oral session"}
+                <h1>
+                    {$_("Oral sessions")}
+                </h1>
+                <SessionTable title={"Morning sessions"}
                     sessions={project.sessions1}
                     timebins={project.bins_am}
                     slots={project.slots_am}
                     on:search />
             </div>
             <div class="panel">
-                <PosterTable title={"2215"}
-                    sessions={[{label:"1PA-", items:range(1,16)}]}
-                    on:search />
-                <PosterTable title={"2216"}
-                    sessions={[{label:"1PA-", items:range(17,32)}]}
-                    on:search />
-                <PosterTable title={"2201"}
-                    sessions={[{label:"1PA-", items:range(33,48)}]}
-                    on:search />
-                <PosterTable title={"2202"}
-                    sessions={[{label:"1PA-", items:range(49,64)}]}
-                    on:search />
-                <PosterTable title={"2203"}
-                    sessions={[{label:"1PA-", items:range(65,80)}]}
-                    on:search />
-                <PosterTable title={"2204"}
-                    sessions={[
-                        {label:"1PA-", items:range(81,89)},
-                        {label:"1PB-", items:range(1,7)},
-                    ]}
-                    on:search />
-                <PosterTable title={"2207"}
-                    sessions={[
-                        {label:"1PB-", items:range(8,16)},
-                        {label:"1PC-", items:range(1,7)},
-                    ]}
-                    on:search />
-                <PosterTable title={"2208"}
-                    sessions={[
-                        {label:"1PC-", items:range(8,13)},
-                        {label:"1PD-", items:range(1,10)},
-                    ]}
-                    on:search />
-                <PosterTable title={"2209"}
-                    sessions={[
-                        {label:"1PD-", items:range(11,17)},
-                        {label:"1PE-", items:range(1,9)},
-                    ]}
-                    on:search />
-                <PosterTable title={"2210"}
-                    sessions={[
-                        {label:"1PE-", items:range(10,11)},
-                        {label:"1PF-", items:range(1,14)},
-                    ]}
-                    on:search />
-                <PosterTable title={"2211"}
-                    sessions={[
-                        {label:"1PF-", items:range(15,30)},
-                    ]}
-                    on:search />
-                <PosterTable title={"2212"}
-                    sessions={[
-                        {label:"1PF-", items:range(31,47)},
-                    ]}
-                    on:search />
+                <h1>
+                    {$_("Poster sessions")}
+                </h1>
+                <PosterTables on:search/>
             </div>
         </div>
     </TabPanel>
@@ -101,79 +39,42 @@
     <TabPanel>
         <div class="container">
             <div class="panel">
-                <SessionTable title={"Oral session"}
+                <h1>
+                    {$_("Oral sessions")}
+                </h1>
+                <SessionTable title={$_("Morning sessions")}
                     sessions={project.sessions2}
                     timebins={project.bins_am}
                     slots={project.slots_am}
                     on:search />
-                <SessionTable title={"Oral session"}
+                <SessionTable title={$_("Afternoon sessions")}
                     sessions={project.sessions2}
                     timebins={project.bins_pm}
                     slots={project.slots_pm}
                     on:search />
             </div>
             <div class="panel">
-                <PosterTable title={"2215"}
-                    sessions={[{label:"1PA-", items:range(1,16)}]}
-                    on:search />
-                <PosterTable title={"2216"}
-                    sessions={[{label:"1PA-", items:range(17,32)}]}
-                    on:search />
-                <PosterTable title={"2201"}
-                    sessions={[{label:"1PA-", items:range(33,48)}]}
-                    on:search />
-                <PosterTable title={"2202"}
-                    sessions={[{label:"1PA-", items:range(49,64)}]}
-                    on:search />
-                <PosterTable title={"2203"}
-                    sessions={[{label:"1PA-", items:range(65,80)}]}
-                    on:search />
-                <PosterTable title={"2204"}
-                    sessions={[
-                        {label:"1PA-", items:range(81,89)},
-                        {label:"1PB-", items:range(1,7)},
-                    ]}
-                    on:search />
-                <PosterTable title={"2207"}
-                    sessions={[
-                        {label:"1PB-", items:range(8,16)},
-                        {label:"1PC-", items:range(1,7)},
-                    ]}
-                    on:search />
-                <PosterTable title={"2208"}
-                    sessions={[
-                        {label:"1PC-", items:range(8,13)},
-                        {label:"1PD-", items:range(1,10)},
-                    ]}
-                    on:search />
-                <PosterTable title={"2209"}
-                    sessions={[
-                        {label:"1PD-", items:range(11,17)},
-                        {label:"1PE-", items:range(1,9)},
-                    ]}
-                    on:search />
-                <PosterTable title={"2210"}
-                    sessions={[
-                        {label:"1PE-", items:range(10,11)},
-                        {label:"1PF-", items:range(1,14)},
-                    ]}
-                    on:search />
-                <PosterTable title={"2211"}
-                    sessions={[
-                        {label:"1PF-", items:range(15,30)},
-                    ]}
-                    on:search />
-                <PosterTable title={"2212"}
-                    sessions={[
-                        {label:"1PF-", items:range(31,47)},
-                    ]}
-                    on:search />
+                <h1>
+                    {$_("Poster sessions")}
+                </h1>
+                <PosterTables on:search/>
             </div>
         </div>
     </TabPanel>
 
     <TabPanel>
         <div class="container">
+            <div class="panel">
+                <h1>
+                    {$_("Award lectures")}
+                </h1>
+                <AwardTable title={$_("Fukuoka International Congress Center")}
+                    rooms={project.rooms_aw}
+                    timebins={project.bins_aw}
+                    button_titles={project.titles_aw}
+                    ids={project.ids_aw}
+                    on:search/>
+            </div>
         </div>
     </TabPanel>
 
@@ -189,6 +90,7 @@
         display: flex;
         flex-flow: row;
         flex-wrap: wrap;
+        margin: 5px 0px 5px 0px;
     }
     .panel {
         background-color: #fff;
@@ -199,5 +101,14 @@
         display: flex;
         flex-flow: row;
         flex-wrap: wrap;
+    }
+    h1 {
+        background-color: #5ab4bd;
+        width: 100%;
+        padding: 10px;
+        margin: 0px;
+        font-size: 120%;
+        border-radius: 15px 15px 0px 0px;
+        color: white;
     }
 </style>

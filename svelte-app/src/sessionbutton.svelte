@@ -5,9 +5,11 @@
 	const dispatch = createEventDispatcher();
 
     export let id
+    export let title=""
 
     let active = false
     let color = "#888"
+    let width = "20px"
 
     onMount(() => {
         const status = $marks[id]
@@ -18,6 +20,12 @@
             color = "#f0f0f0";
         }
         active = all_talks.has(id)
+        if ( ! active ){
+            color = "#f8f8f8"
+        }
+        if ( title ){
+            width = "240px"
+        }
 	});
 
 	function buttonPressed() {
@@ -33,13 +41,13 @@
 
 </script>
 
-<button bind:this={directory[id]} disabled={!active} on:click={buttonPressed} style="background-color: {color}">
-    <!-- {@html id} -->
+<button bind:this={directory[id]} disabled={!active} on:click={buttonPressed} style="background-color: {color}; width: {width}">
+    {@html title}
 </button>
 
 <style>
     button {
-        width: 20px;
+        /* width: 20px; */
         height: 20px;
     }
     button:disabled{

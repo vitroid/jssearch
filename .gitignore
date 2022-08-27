@@ -1,4 +1,5 @@
 .vscode/
+build/
 
 *.jpg
 *.pdf
@@ -11,8 +12,6 @@ Sympo/*/*
 parsed/
 
 history/
-
-chem/
 
 riis/
 
@@ -50,3 +49,15 @@ remo.json
 ads.js
 ads.json
 @*
+71371.html
+1658197596.tab
+1661415966.json
+72131.json
+1658156266.json
+master.2022-08-25.json
+master.json
+oral.json
+PE1-06_同志社院_田中皐晴.tif
+tmp.html
+1/test.py
+master2021.json

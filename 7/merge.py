@@ -51,7 +51,7 @@ for file in sys.argv[1:]:
     data = json.load(open(file))
     for rec in data:
         # session name
-        day, ses = session(rec["ses"])
+        # day, ses = session(rec["ses"])
         # if ses[0] == "P":
             # poster sessions on Remo
             # rec["typ"] = "remo"
