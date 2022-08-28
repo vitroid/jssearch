@@ -75,8 +75,13 @@ setting = json.load(open("setting.json"))
 salt = setting["salt"]
 logger.error(salt)
 
-records = json.load(sys.stdin)
-
+# records = json.load(sys.stdin)
+records = dict()
+for j in sys.argv[1:]:
+    with open(j) as f:
+        d = json.load(f)
+        id = d["id"]
+        records[id] = d
 
 
 data = []

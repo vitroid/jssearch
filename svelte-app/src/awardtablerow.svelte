@@ -1,6 +1,6 @@
 <script>
-    import SessionButton from "./sessionbutton.svelte";
-    export let sessions
+    import { _ } from 'svelte-i18n';
+    import AwardButton from "./awardbutton.svelte";
     export let button_titles=[]
     // export let timebin
     export let starttime
@@ -12,10 +12,9 @@
     <th class='row'>
         {starttime}
     </th>
-    {#each sessions as session, i}
+    {#each ids as id, i}
     <td class="row">
-    <SessionButton id={ids[i]} title={button_titles[i]} on:search />
-    <!-- <SessionButton on:search /> -->
+    <AwardButton {id} title={$_(button_titles[i])} on:search />
     </td>
     {/each}
 </tr>
@@ -24,6 +23,5 @@
     td.row {
         text-align: center;
         padding: 0;
-        width: 22px;
     }
 </style>

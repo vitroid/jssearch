@@ -56,6 +56,7 @@
     table {
         margin-left: auto;
         margin-right: auto;
+        background-color: #ddd;
     }
     tr {
         /* border: 1px solid #888; */

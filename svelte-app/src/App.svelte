@@ -20,8 +20,8 @@
 
 <body>
 	<div class="wrap">
-		<Information />
         <LocaleSelector />
+		<Information />
 		<h2>{$_("SEARCH")}</h2>
 		<div class="search">
 			<ShortCuts on:search={searchHandler} />

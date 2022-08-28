@@ -23,5 +23,13 @@ export const ja={
     "Supporters": "協賛企業",
     "General Information": "ご案内",
     "Overall schedule": "日程",
-    "SEARCH": "検索"
+    "SEARCH": "検索",
+    "JSCC Research Encouragement Award": "錯体化学会　研究奨励賞",
+    "JSCC International Award for Creative Work": "錯体化学会　国際奨励賞",
+    "JSCC Award": "錯体化学会　学会賞",
+    "JSCC International Award": "錯体化学会　国際賞",
+    "JSCC Award for Creative Work": "錯体化学会　学術賞",
+    "JSCC International Award": "錯体化学会　国際賞",
+    "JSCC Contribution Award": "錯体化学会　貢献賞",
+    "Symposia": "シンポジウム"
 }

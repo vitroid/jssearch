@@ -1,15 +1,20 @@
 #!/usr/bin/env python3
 # coding: utf-8
-from logging import getLogger
-import sys
 import json
-from subprocess import STDOUT, check_output, TimeoutExpired
-
+import sys
+from logging import getLogger
+from subprocess import STDOUT, TimeoutExpired, check_output
 
 logger = getLogger()
 # setting = yaml.load(open("setting.yaml"), Loader=yaml.SafeLoader)
 
-records = json.load(sys.stdin)
+# records = json.load(sys.stdin)
+records = dict()
+for j in sys.argv[1:]:
+    with open(j) as f:
+        d = json.load(f)
+        id = d["id"]
+        records[id] = d
 
 for id, rec in records.items():
     code = rec["code"]

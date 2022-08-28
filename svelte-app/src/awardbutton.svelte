@@ -8,21 +8,22 @@
     export let title=""
 
     let active = false
-    let color = "#888"
-    let width = "20px"
-    let height = "20px";
+    let bgcolor = "#888"
+    let color = "#000"
 
     onMount(() => {
         const status = $marks[id]
         if (status){
-            color = "#0075ff";
+            bgcolor = "#0075ff";
+            color="#fff"
         }
         else{
-            color = "#f0f0f0";
+            bgcolor = "#f0f0f0";
+            color="#000"
         }
         active = all_talks.has(id)
         if ( ! active ){
-            color = "#f8f8f8"
+            bgcolor = "#f8f8f8"
         }
 	});
 
@@ -39,14 +40,14 @@
 
 </script>
 
-<button bind:this={directory[id]} disabled={!active} on:click={buttonPressed} style="background-color: {color}">
+<button bind:this={directory[id]} disabled={!active} on:click={buttonPressed} style="background-color: {bgcolor}; color: {color}; ">
     {@html title}
 </button>
 
 <style>
     button {
-        width: 20px;
-        height: 20px;
+        min-width: 120px;
+        width: 100%;
     }
     button:disabled{
         border: 0;

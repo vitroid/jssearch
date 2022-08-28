@@ -14,7 +14,7 @@
         if (status){
             // directoryにはスケジュール表の要素が設定されている。
             //checkboxの操作が、対象要素の表示よりも前である場合もあるので、
-            if ( id in directory ){
+            if ( (id in directory) && ( directory[id] ) ){
                 directory[id].style.backgroundColor = "#0075ff";
                 directory[id].style.color = "#fff";
             }
@@ -23,7 +23,7 @@
             }
         }
         else{
-            if ( id in directory ){
+            if ( (id in directory) && ( directory[id] ) ){
                 directory[id].style.backgroundColor = "#f0f0f0";
                 directory[id].style.color = "#000";
             }

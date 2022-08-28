@@ -16,9 +16,10 @@ for id, pid in zip(program["id"], program["ポスター発表\n講演番号"]):
 pids["72490"] = "2Ab-16"
 pids["72633"] = "???"
 
-
-master = json.load(sys.stdin)
-for id in master:
-    master[id]["code"] = pids[id]
-
-print(json.dumps(master, indent=4, ensure_ascii=False))
+for j in sys.argv[1:]:
+    with open(j) as f:
+        d = json.load(f)
+        id = d["id"]
+        d["code"] = pids[id]
+    with open(j, "w") as f:
+        json.dump(d, f, indent=4, ensure_ascii=False)

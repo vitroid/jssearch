@@ -1,9 +1,11 @@
 <script>
     import { _ } from 'svelte-i18n';
+    import AsyncTable from "./asynctable.svelte";
     import AwardTable from "./awardtable.svelte";
     import { Tab,TabList,TabPanel,Tabs } from './Components/Tabs/tabs.js';
     import { project } from './jscc72.js';
     import PosterTables from "./PosterTables.svelte";
+    import PosterTables2 from "./PosterTables2.svelte";
     import SessionTable from "./sessiontable.svelte";
 </script>
 
@@ -21,11 +23,12 @@
                 <h1>
                     {$_("Oral sessions")}
                 </h1>
-                <SessionTable title={"Morning sessions"}
+                <SessionTable title={$_("Morning sessions")}
                     sessions={project.sessions1}
                     timebins={project.bins_am}
                     slots={project.slots_am}
                     on:search />
+                <AsyncTable table={project.symposia} colnames={project.rooms_sy} title={$_("Symposia")} on:search/>
             </div>
             <div class="panel">
                 <h1>
@@ -47,17 +50,24 @@
                     timebins={project.bins_am}
                     slots={project.slots_am}
                     on:search />
+                <AwardTable title={$_("Award lectures")}
+                    rooms={project.rooms_aw2}
+                    timebins={project.bins_aw2}
+                    button_titles={project.titles_aw2}
+                    ids={project.ids_aw2}
+                    on:search/>
                 <SessionTable title={$_("Afternoon sessions")}
                     sessions={project.sessions2}
                     timebins={project.bins_pm}
                     slots={project.slots_pm}
                     on:search />
             </div>
+
             <div class="panel">
                 <h1>
                     {$_("Poster sessions")}
                 </h1>
-                <PosterTables on:search/>
+                <PosterTables2 on:search/>
             </div>
         </div>
     </TabPanel>
@@ -101,6 +111,7 @@
         display: flex;
         flex-flow: row;
         flex-wrap: wrap;
+        justify-content: center;
     }
     h1 {
         background-color: #5ab4bd;
