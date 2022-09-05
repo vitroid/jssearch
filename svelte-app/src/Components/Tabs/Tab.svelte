@@ -25,7 +25,6 @@
 		margin: 0;
 		/* color: #ccc; */
 	}
-
 	.selected {
 		/* border-bottom: 2px solid teal;
 		color: #333; */
