@@ -9,6 +9,9 @@ xlsxwriter = "*"
 pandas = "*"
 xlrd = "*"
 openpyxl = "*"
+jupyter = "*"
+jupyterlab = "*"
+pypdf2 = "*"
 
 [dev-packages]
 

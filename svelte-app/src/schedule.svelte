@@ -3,19 +3,35 @@
     import AsyncTable from "./asynctable.svelte";
     import AwardTable from "./awardtable.svelte";
     import { Tab,TabList,TabPanel,Tabs } from './Components/Tabs/tabs.js';
+    import Information from "./information.svelte";
     import { project } from './jscc72.js';
     import PosterTables from "./PosterTables.svelte";
     import PosterTables2 from "./PosterTables2.svelte";
     import SessionTable from "./sessiontable.svelte";
+    import SponsorTable from "./sponsortable.svelte";
 </script>
 
 <Tabs>
     <TabList>
+        <Tab>{$_("General Information")}</Tab>
         <Tab>{$_("sept26")}</Tab>
         <Tab>{$_("sept27")}</Tab>
         <Tab>{$_("sept28")}</Tab>
         <Tab>{$_("Supporters")}</Tab>
     </TabList>
+
+
+    <TabPanel>
+        <div class="container">
+            <!-- <div class="panel">
+            <h1 class="post-title">{$_("Announcements")}</h1>
+            </div> -->
+            <div class="panel">
+                <h1 class="post-title">{$_("Overall schedule")}</h1>
+                <Information />
+            </div>
+        </div>
+    </TabPanel>
 
     <TabPanel>
         <div class="container">
@@ -90,6 +106,7 @@
 
     <TabPanel>
         <div class="container">
+            <SponsorTable />
         </div>
     </TabPanel>
 </Tabs>

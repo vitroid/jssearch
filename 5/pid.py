@@ -3,7 +3,10 @@ import sys
 
 import pandas as pd
 
-program = pd.read_excel("プログラム編成用_72_7f_松本先生送付用.xlsx", sheet_name="(参考)発表一覧")
+book = sys.argv.pop(1)
+sheet = sys.argv.pop(1)
+
+program = pd.read_excel(book, sheet_name=sheet)
 
 
 pids = dict()

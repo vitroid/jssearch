@@ -31,5 +31,10 @@ export const ja={
     "JSCC Award for Creative Work": "錯体化学会　学術賞",
     "JSCC International Award": "錯体化学会　国際賞",
     "JSCC Contribution Award": "錯体化学会　貢献賞",
-    "Symposia": "シンポジウム"
+    "Symposia": "シンポジウム",
+    "msg1": "予稿集は以下のリンクより入手できます。PDFファイルのパスワードは abst72jscc です。",
+    "msg2": "懇親会にご参加される方は、以下のリンクより座席をご予約ねがいます。ユーザ名・パスワードはこのサイトと同じです。ひさびさに顔をあわせるご友人とお連れあわせいただき、心ゆくまでご歓談いただければと思います。",
+    "Announcements": "お知らせ",
+    "Seat reservation for the banquet": "懇親会の座席予約",
+    "Abstract book": "予稿集"
 }

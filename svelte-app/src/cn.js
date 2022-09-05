@@ -31,5 +31,7 @@ export const cn={
     "JSCC Award for Creative Work":"JSCC学术奖",
     "JSCC International Award":"JSCC国际奖",
     "JSCC Contribution Award":"JSCC贡献奖",
-    "Symposia": "专题讨论会"
+    "Symposia": "专题讨论会",
+    "msg1": "论文集可从以下链接获得；PDF文件的密码是abst72jscc。",
+    "msg2": "如果您想参加招待会，请用下面的链接预订座位。(用户名和密码与本网站相同。)"
 }
