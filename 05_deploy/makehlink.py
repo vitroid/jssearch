@@ -8,6 +8,9 @@ from subprocess import STDOUT, TimeoutExpired, check_output
 logger = getLogger()
 # setting = yaml.load(open("setting.yaml"), Loader=yaml.SafeLoader)
 
+
+srcpath="../02_abstpdf"
+
 # records = json.load(sys.stdin)
 records = dict()
 for j in sys.argv[1:]:
@@ -19,7 +22,7 @@ for j in sys.argv[1:]:
 for id, rec in records.items():
     code = rec["code"]
 
-    a = f"tn/{id}.jpg" # rec["tn"]
+    a = f"{srcpath}/{id}/tocg.jpg" # rec["tn"]
     b = f"tn/{code}.jpg" # rec["tn"]
     cmd = ["ln", a, b]
     try:
@@ -28,7 +31,7 @@ for id, rec in records.items():
         pass
 
 
-    a = f"pdf/{id}.pdf"
+    a = f"{srcpath}/{id}/index.pdf"
     b = f"pdf/{code}.pdf"
     cmd = ["ln", a, b]
     try:

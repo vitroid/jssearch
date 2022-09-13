@@ -71,13 +71,13 @@ def authorlists(record):
 
 logger = getLogger()
 # setting = yaml.load(open("setting.yaml"), Loader=yaml.SafeLoader)
-setting = json.load(open("setting.json"))
+setting = json.load(open(sys.argv[1]))
 salt = setting["salt"]
 logger.error(salt)
 
 # records = json.load(sys.stdin)
 records = dict()
-for j in sys.argv[1:]:
+for j in sys.argv[2:]:
     with open(j) as f:
         d = json.load(f)
         id = d["id"]

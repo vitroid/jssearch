@@ -87,21 +87,20 @@ function build(record){
     var abstj = cleanse(record["abstract"])
     var caption = record["caption"]
     var label = record["id"]  // should be the presentation ID
-    //var figure = record["figure"]
+    var figure = record["figure"]
     if ( record["code"] )
     label = record["code"];
-    var figure = record["resized"]
+    // var figure = record["resized"]
 
     var english = record["style"] === "2" || record["style"] === "4";
 
     var aus = authorlists(record);
 
-
-    if (figure){
+    if ( figure ){
 	var frame = document.createElement("div");
 	var img = document.createElement("img");
 	//img.src = "attach/" + figure + ".body"; //seems OK
-	img.src = figure
+	img.src = "figure.jpg"
 	img.className = "preview";
 	frame.appendChild(img);
 

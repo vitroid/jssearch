@@ -1,11 +1,14 @@
-# symposiumのデータをjs用に変換する。
+
+
+# awardのデータをjs用に変換する。
 
 import json
 import shutil
 import sys
+# import pandas as pd
 from subprocess import STDOUT, TimeoutExpired, check_output
 
-with open("sympo72.json") as f:
+with open(sys.argv[1]) as f:
     js = json.load(f)
 
 for rec in js:
@@ -27,18 +30,18 @@ for rec in js:
     rec["sea"] = ""
     rec["pdf"] = f"pdf/{lab}.pdf"
     rec["pre"] = f"tn/{rec['lab']}.jpg"
-    srcpdf = "Sympo/"+rec['lab']+".pdf"
+    srcpdf = "Award/"+rec['lab']+".pdf"
     dstpdf = "pdf/"+rec['lab']+".pdf"
     shutil.copyfile("../"+srcpdf,"../"+dstpdf)
 
-    rec["con"] = " ".join([rec[x] for x in ("tit", "spe", "loc")])
+    rec["con"] = " ".join([rec[x] for x in ("awn", "tit", "spe", "loc")])
 
     # prepare thumbs
     cmd = ["sips",
-            "-s", "format", "jpeg",
-            "-z", "200", "200",
-            f"../{rec['pdf']}",
-            "--out", f"../{rec['pre']}"]
+           "-s", "format", "jpeg",
+           "-z", "200", "200",
+           f"../{rec['pdf']}",
+           "--out", f"../{rec['pre']}"]
     print(cmd, file=sys.stderr)
     output = check_output(cmd)
 

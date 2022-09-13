@@ -2,15 +2,15 @@
 # applyの管理画面で生成した、タブ区切りプレーンテキストを読みこみ、錯討方式でフォーマットしてExcel出力
 
 import csv
-import sys
-from xlsxwriter.workbook import Workbook
-import re
-import json
 import glob
+import json
+import re
+import sys
 
+from xlsxwriter.workbook import Workbook
 
 xlsx_file = 'contents.xlsx'
-  
+
 workbook = Workbook(xlsx_file)
 worksheet = workbook.add_worksheet()
 # worksheet.write_rich_string(0, 0, 'hello', workbook.add_format({'font_script': 1}), 'world')
@@ -25,7 +25,7 @@ patterns = {"sup": workbook.add_format({'font_script': 1}),
 field_order = "/Users/matto/Downloads/1658208630.tab"
 with open(field_order) as f:
     read_tsv = csv.reader(f, delimiter ='\t')
-    
+
     labels, fields = list(read_tsv)[:2]
     for c, label in enumerate(labels):
         if fields[c].find("array") == 0:
@@ -36,7 +36,7 @@ with open(field_order) as f:
     print(fields)
 
 if len(sys.argv) == 1:
-    files = glob.glob("master/*.json")
+    files = glob.glob("../master/*.json")
 else:
     files = [f"master/{i}.json" for i in sys.argv[1:]]
 
@@ -86,7 +86,7 @@ for row, filename in enumerate(files):
                 elif col != "":
                     worksheet.write(row+1, c, col)
     # worksheet.write_row(row, 0, data)
-  
+
 # Closing the xlsx file.
 worksheet.write_rich_string(0, 0, 'test')
 workbook.close()
