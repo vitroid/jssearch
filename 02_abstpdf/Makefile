@@ -9,8 +9,8 @@ RENDERER="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 all: $(patsubst %.json, %.js, $(wildcard ../master/*.json)) \
 $(patsubst ../master/%.json, %/index.html, $(wildcard ../master/*.json)) \
 $(patsubst ../master/%.json, %/figure.jpg, $(wildcard ../master/*.json)) \
+$(patsubst ../master/%.json, %/index.pdf, $(wildcard ../master/*.json)) \
 $(patsubst ../master/%.json, %/tocg.jpg, $(wildcard ../master/*.json)) \
-$(patsubst ../master/%.json, %/index.pdf, $(wildcard ../master/*.json))
 	echo Done.
 
 %/index.html: makehtml.py
@@ -22,7 +22,7 @@ $(patsubst ../master/%.json, %/index.pdf, $(wildcard ../master/*.json))
 %/preview.js:
 	cd $*; ln -s ../preview.js .
 
-%/tocg.jpg: ../master/%.json maketocg.py %/index.html
+%/tocg.jpg: ../master/%.json maketocg.py %/index.pdf
 	-mkdir $*
 	python3 maketocg.py $<
 %/figure.jpg: ../master/%.json makefigure.py

@@ -4,15 +4,21 @@
 # 一般講演は、masterとpdfを束ねる。
 
 
-all: index.js
+BUILD=~/Unison/github/search/build
+SVELTE=~/Unison/github/search/svelte-app
+SHELL=/bin/bash
+
+# prepare for local test site
+all: index.js AD/ads.js
+	cp index.js AD/ads.js $(SVELTE)/src
 
 # pdfとサムネイルをこっちにひっぱってくる。
 hardlinks:
+	-mkdir pdf tn
 	python makehlink.py ../master/*.json
 
 # 個人情報などを、別の場所にまとめることにした。
 PRIVATE=~/Unison/00Priority/2022錯討
-SHELL=/bin/bash
 
 # combine master/ and make a single big file for searching
 general.json:
@@ -22,7 +28,22 @@ general.json:
 index.json: merge.py general.json Sympo/sympo.json Award/award.json
 	python merge.py general.json Sympo/sympo.json Award/award.json > $@
 
+
+prepare-chem:
+# 認証ファイルの準備
+	-mkdir $(BUILD)
+	-mkdir $(BUILD)/chem
+	-mkdir $(BUILD)/chem-access
+	cp $(PRIVATE)/auth/jscc72.htpasswd $(BUILD)/chem-access/jscc72.htpasswd
+	cp chem.htaccess $(BUILD)/chem/.htaccess
+	chmod +r tn/* pdf/*
+	rsync -av tn pdf --include="*/" --exclude="7[0-9][0-9][0-9][0-9].*" $(SVELTE)/public/
+
+
+
+
+#### RULES
 %.js: %.json
-	echo -n "const data = " > $@ ; \
+	echo -n "export const data = " > $@ ; \
 	cat $< >> $@
 	echo ";" >> $@

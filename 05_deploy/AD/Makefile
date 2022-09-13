@@ -1,3 +1,5 @@
+SHELL=/bin/bash
+
 all: ads.js
 ads.json: preparead.py
 	-mkdir ../pdf
@@ -5,6 +7,6 @@ ads.json: preparead.py
 	python preparead.py > $@
 
 ads.js: ads.json
-	echo -n "const ads = " > $@ ; \
+	echo -n "export const ads = " > $@ ; \
 	cat $< >> $@
 	echo ";" >> $@

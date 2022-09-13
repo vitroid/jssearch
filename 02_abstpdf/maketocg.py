@@ -49,3 +49,11 @@ if os.path.exists(src):
             f"{tmp}",
             "--out", f"{dst}"]
     output = check_output(cmd)
+else:
+    # prepare thumbs
+    cmd = ["sips",
+            "-s", "format", "jpeg",
+            "-z", "200", "200",
+            f"{id}/index.pdf",
+            "--out", f"{dst}"]
+    output = check_output(cmd)
