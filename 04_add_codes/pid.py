@@ -15,12 +15,13 @@ program = pd.read_excel(book, sheet_name=sheet)
 
 pids = dict()
 
-for id, pid in zip(program["id"], program["ポスター発表\n講演番号"]):
+# for id, pid in zip(program["id"], program["ポスター発表\n講演番号"]): 2022
+for id, pid in zip(program["id"], program["delete"]):
     if str(id) != "nan":
         pids[f"{int(id)}"] = pid
 
-pids["72490"] = "2Ab-16"
-pids["72633"] = "???"
+# pids["72490"] = "2Ab-16"
+# pids["72633"] = "???"
 
 for id, code in pids.items():
     print(code, int(id))

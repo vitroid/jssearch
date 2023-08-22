@@ -12,6 +12,7 @@ openpyxl = "*"
 jupyter = "*"
 jupyterlab = "*"
 pypdf2 = "*"
+pypdf = "*"
 
 [dev-packages]
 

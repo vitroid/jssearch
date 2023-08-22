@@ -3,9 +3,10 @@
 import json
 import sys
 from hashlib import md5
-from logging import getLogger
+from logging import DEBUG, INFO, basicConfig, getLogger
 
 # jssearchのためのインデックスを生成する。
+
 
 # converted from preview.js
 def authorlists(record):
@@ -26,13 +27,13 @@ def authorlists(record):
         namee = speakermark + namee
 
     affil = record["happyo.affil"]
-    namej += "<sup>"+affil+"</sup>"
-    namee += "<sup>"+affil+"</sup>"
+    namej += "<sup>" + affil + "</sup>"
+    namee += "<sup>" + affil + "</sup>"
 
     namesj.append(namej)
     namese.append(namee)
 
-    for i in range(1, int(record["array.count"])+1):
+    for i in range(1, int(record["array.count"]) + 1):
         namej = record[f"array.{i}happyo.name"]
         namee = record[f"array.{i}happyo.namee"]
         if namee == "":
@@ -43,8 +44,8 @@ def authorlists(record):
             namee = speakermark + namee
 
         affil = record[f"array.{i}happyo.affil"]
-        namej += "<sup>"+affil+"</sup>"
-        namee += "<sup>"+affil+"</sup>"
+        namej += "<sup>" + affil + "</sup>"
+        namee += "<sup>" + affil + "</sup>"
 
         namesj.append(namej)
         namese.append(namee)
@@ -55,7 +56,7 @@ def authorlists(record):
     affilsj = []
     affilse = []
 
-    for i in range(1,10):
+    for i in range(1, 10):
         affilj = record[f"affil{i}"]
         affile = record[f"affil{i}e"]
         if not affile:
@@ -69,6 +70,7 @@ def authorlists(record):
     return auj, aue
 
 
+basicConfig(level=INFO)
 logger = getLogger()
 # setting = yaml.load(open("setting.yaml"), Loader=yaml.SafeLoader)
 setting = json.load(open(sys.argv[1]))
@@ -88,9 +90,10 @@ data = []
 for id, rec in records.items():
     index = dict()
     code = rec["code"]
+    logger.info((id, code))
     index["lab"] = code
     # Session
-    index["ses"] = code[:code.find('-')]
+    index["ses"] = code[: code.find("-")]
     # reg id
     index["reg"] = id
     # 講演者情報
@@ -101,7 +104,7 @@ for id, rec in records.items():
     else:
         index["inf"] = [rec["titlee"], aue]
     # プレビュー画像
-    index["pre"] = f"tn/{code}.jpg" # rec["tn"]
+    index["pre"] = f"tn/{code}.jpg"  # rec["tn"]
     # pdfファイル
     index["pdf"] = f"pdf/{code}.pdf"
 
@@ -109,9 +112,8 @@ for id, rec in records.items():
     index["sea"] = rec["keyword3"]
 
     key = index["lab"]
-    salty = salt+key
+    salty = salt + key
     # index["md5"] = md5(salty.encode()).hexdigest()
-
 
     data.append(index)
     # copy PDF files
