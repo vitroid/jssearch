@@ -2,4 +2,10 @@
 # masterを参照しよう。
 
 all:
+	make *.pdf
+
+
+first:
 	python3 bind.py
+
+include makefile.*

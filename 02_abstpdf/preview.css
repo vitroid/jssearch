@@ -11,9 +11,6 @@
     }
     /* ... the rest of the rules ... */
 }
-body{
-    /*border: 2px dashed #8ff;*/
-}
 p, ul, ol, dl { margin: 0;}
 ol {
     margin:0px 0;
@@ -83,6 +80,7 @@ img.preview {
     object-fit: cover;
     width: 500px;
     height: 250px;
+    z-index: -3;
 }
 sup {
     line-height: 0;
@@ -95,8 +93,9 @@ div.label {
     top: 12px;
     right: 0px;
     font-size: 64pt;
-    color: #ccc;
+    color: #000;
+    opacity: 0.2;
     font-weight: bold;
     font-family: Arial, Helvetica, 'IPAexGothic', sans-serif;
-    z-index: -1;
+    z-index: 1;
 }

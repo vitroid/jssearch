@@ -17,7 +17,7 @@ $(patsubst ../master/%.json, %/tocg.jpg, $(wildcard ../master/*.json)) \
 	-mkdir $*
 	python3 makehtml.py $* > $@
 
-%/preview.css:
+%/preview.css: preview.css
 	cd $*; ln -s ../preview.css .
 %/preview.js:
 	cd $*; ln -s ../preview.js .
@@ -38,6 +38,7 @@ $(patsubst ../master/%.json, %/tocg.jpg, $(wildcard ../master/*.json)) \
 # 	-mkdir pdf
 # 	-cd html; rm *.css *.js; ln -s ../2/* ../img ../attach ../master .
 # 	ls html/*.html | sed -e 's/html/pdf/g' | xargs make -k -j 8 -f 2.makefile
+
 %/index.pdf: %/index.html ../master/%.js %/preview.css %/preview.js
 	-mkdir $*
 	$(RENDERER) --headless $< --print-to-pdf=$@ --print-to-pdf-no-header

@@ -1,2 +1,5 @@
 master/
 attach/
+*.lock
+private/
+makefile.*
