@@ -24,7 +24,7 @@ hardlinks:
 PRIVATE=../private
 
 # combine master/ and make a single big file for searching
-general.json:
+general.json: $(wildcard ../master/*.json)
 	python makeindex.py $(PRIVATE)/settings/setting.json ../master/*.json > $@
 
 

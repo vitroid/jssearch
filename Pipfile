@@ -13,6 +13,7 @@ jupyter = "*"
 jupyterlab = "*"
 pypdf2 = "*"
 pypdf = "*"
+reportlab = "*"
 
 [dev-packages]
 

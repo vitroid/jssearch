@@ -10,7 +10,7 @@ all: $(patsubst %.json, %.js, $(wildcard ../master/*.json)) \
 $(patsubst ../master/%.json, %/index.html, $(wildcard ../master/*.json)) \
 $(patsubst ../master/%.json, %/figure.jpg, $(wildcard ../master/*.json)) \
 $(patsubst ../master/%.json, %/index.pdf, $(wildcard ../master/*.json)) \
-$(patsubst ../master/%.json, %/tocg.jpg, $(wildcard ../master/*.json)) \
+$(patsubst ../master/%.json, %/tocg.jpg, $(wildcard ../master/*.json))
 	echo Done.
 
 %/index.html: makehtml.py

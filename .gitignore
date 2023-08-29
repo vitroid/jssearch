@@ -3,3 +3,6 @@ attach/
 *.lock
 private/
 makefile.*
+*.xlsx
+@
+.vscode/

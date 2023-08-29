@@ -1,10 +1,10 @@
 import json
 import sys
-from logging import INFO, basicConfig, getLogger
-
+from logging import INFO, basicConfig, getLogger, INFO
+import re
 import pandas as pd
 
-# basicConfig()
+basicConfig(level=INFO)
 logger = getLogger()
 
 book = sys.argv.pop(1)
@@ -24,7 +24,13 @@ for id, pid in zip(program["id"], program["delete"]):
 # pids["72633"] = "???"
 
 for id, code in pids.items():
+    if str(code) == "nan":
+        logger.warning(f"{code} {id}")
+        continue
     print(code, int(id))
+    m = re.search("^[0-9]+[A-Za-z]+-[0-9]+$", code)
+    if m is None:
+        logger.warning(f"{code} {id}")
     try:
         masterfile = f"{master}/{id}.json"
         with open(masterfile) as f:
