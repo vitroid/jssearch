@@ -1,13 +1,8 @@
-# tab2excel
-# applyの管理画面で生成した、タブ区切りプレーンテキストを読みこみ、錯討方式でフォーマットしてExcel出力
-
-import csv
 import glob
-import json
 import re
 import sys
 from logging import INFO, basicConfig, getLogger
-
+import os
 import pypdf
 
 # from pypdf.pdf import PageObject
@@ -50,31 +45,22 @@ def twoup(pages):
 basicConfig(level=INFO)
 logger = getLogger()
 
-files = glob.glob("../master/*.json")
-db = dict()
+# files = glob.glob("../master/*.json")
+files = glob.glob("../05_deploy/pdf/*.pdf")
 
 rooms = dict()
-for row, filename in enumerate(files):
-    with open(filename) as f:
-        data = json.load(f)
-        code = data["code"]
-        id = data["id"]
-        # 部屋ごとに章分けする
-        m = re.search(r"[A-Za-z]+", code)
-        # 日付と部屋で章分けする
-        m = re.search(r"[0-9]+[A-Za-z]+", code)
-        if m is None:
-            logger.warning((code, id))
-        else:
-            room = m.group()
-            # logger.info((room, code, id))
-            if code in db:
-                logger.warning(f"same id: {id}, {db[code]}. Ignored.")
-            else:
-                db[code] = id
-                if room not in rooms:
-                    rooms[room] = []
-                rooms[room].append(code)
+for filename in files:
+    code = os.path.splitext(os.path.basename(filename))[0]
+    # 日付と部屋で章分けする
+    m = re.search(r"^[A-Za-z0-9]+", code)
+    if m is None:
+        logger.warning(code)
+    else:
+        room = m.group()
+        # logger.info((room, code, id))
+        if room not in rooms:
+            rooms[room] = []
+        rooms[room].append(code)
 
 # 引数で部屋が指定されたら、それらだけを再生成する
 if len(sys.argv) > 1:
@@ -89,13 +75,16 @@ for room in roomlist:
     logger.info(f"{room}: {sorted(rooms[room])}")
     pages = []
     for code in sorted(rooms[room]):
-        id = db[code]
-        pdffile = f"../02_abstpdf/{id}/index.pdf"
+        pdffile = f"../05_deploy/pdf/{code}.pdf"
         reader = pypdf.PdfReader(open(pdffile, "rb"))
         page = reader.pages[0]
         pages.append(page)
-    for bound in twoup(pages):
-        writer.add_page(bound)
+    if room.find("Aw") >= 0 or room.find("S") == 0:
+        for bound in pages:
+            writer.add_page(bound)
+    else:
+        for bound in twoup(pages):
+            writer.add_page(bound)
 
     with open(f"{room}.pdf", "wb") as f:
         writer.write(f)
@@ -103,7 +92,6 @@ for room in roomlist:
     with open(f"makefile.{room}", "w") as f:
         f.write(f"{room}.pdf: ")
         for code in sorted(rooms[room]):
-            id = db[code]
-            pdffile = f"../02_abstpdf/{id}/index.pdf"
+            pdffile = f"../05_deploy/pdf/{code}.pdf"
             f.write(pdffile + " ")
         f.write(f"\n\tpython3 bind.py {room}\n")

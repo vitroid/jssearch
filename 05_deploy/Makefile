@@ -35,7 +35,7 @@ index.json: merge.py general.json Sympo/sympo.json Award/award.json
 
 
 # こちらはsearchの動作確認後でいい。
-prepare-chem:
+deploy:
 # 認証ファイルの準備
 	-mkdir $(BUILD)
 	-mkdir $(BUILD)/chem
