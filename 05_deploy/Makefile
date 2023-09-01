@@ -40,8 +40,8 @@ deploy:
 	-mkdir $(BUILD)
 	-mkdir $(BUILD)/chem
 	-mkdir $(BUILD)/chem-access
-	# cp $(PRIVATE)/auth/jscc72.htpasswd $(BUILD)/chem-access/jscc72.htpasswd
-	# cp chem.htaccess $(BUILD)/chem/.htaccess
+	cp $(PRIVATE)/auth/jscc73.htpasswd $(BUILD)/chem-access/jscc73.htpasswd
+	cp chem.htaccess $(BUILD)/chem/.htaccess
 	chmod +r tn/* pdf/*
 	rsync -av tn pdf --include="*/" --exclude="7[0-9][0-9][0-9][0-9].*" $(SVELTE)/public/
 

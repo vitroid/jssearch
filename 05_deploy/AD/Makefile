@@ -1,7 +1,7 @@
 SHELL=/bin/bash
 
 all: ads.js
-ads.json: preparead.py
+ads.json: preparead.py *.pdf
 	-mkdir ../pdf
 	-mkdir ../tn
 	python preparead.py > $@
