@@ -14,15 +14,22 @@ data["resized"] = ""
 
 if figure:
     # print("Figure", file=sys.stderr)
-    src = f'../attach/{figure}.body'
-    dst = f"{id}/figure.jpg"
+    src = f"../attach/{figure}.body"
+    dst = f"genpdf/{id}/figure.jpg"
     if os.path.exists(src):
-        cmd = ["sips",
-                "-s", "format", "jpeg",
-                "-z", "750", "1500",
-                f"{src}",
-                "--out", f"{dst}"]
-        output = check_output(cmd) # , stderr=STDOUT, timeout=3)
+        cmd = [
+            "sips",
+            "-s",
+            "format",
+            "jpeg",
+            "-z",
+            "750",
+            "1500",
+            f"{src}",
+            "--out",
+            f"{dst}",
+        ]
+        output = check_output(cmd)  # , stderr=STDOUT, timeout=3)
         data["resized"] = dst
         # try:
         #     im = Image.open(f'attach/{figure}.body')
@@ -35,4 +42,4 @@ if figure:
         #     resized.save(filename)
         #     data["resized"] = filename
     else:
-        print(f'missing {src}', file=sys.stderr)
+        print(f"missing {src}", file=sys.stderr)

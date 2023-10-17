@@ -1,5 +1,5 @@
-AuthUserFile /home/reg/.reg/jscc73.htpasswd
+AuthUserFile /home/reg/.reg/jscc73.htdigest
 AuthGroupFile /dev/null
-AuthName "Please enter your ID and password"
-AuthType Basic
+AuthName jscc73
+AuthType Digest
 require valid-user

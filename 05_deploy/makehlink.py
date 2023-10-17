@@ -9,7 +9,7 @@ logger = getLogger()
 # setting = yaml.load(open("setting.yaml"), Loader=yaml.SafeLoader)
 
 
-srcpath="../02_abstpdf"
+srcpath = "../02_abstpdf"
 
 # records = json.load(sys.stdin)
 records = dict()
@@ -22,16 +22,15 @@ for j in sys.argv[1:]:
 for id, rec in records.items():
     code = rec["code"]
 
-    a = f"{srcpath}/{id}/tocg.jpg" # rec["tn"]
-    b = f"tn/{code}.jpg" # rec["tn"]
+    a = f"{srcpath}/genpdf/{id}/tocg.jpg"  # rec["tn"]
+    b = f"tn/{code}.jpg"  # rec["tn"]
     cmd = ["ln", a, b]
     try:
         check_output(cmd)
     except:
         pass
 
-
-    a = f"{srcpath}/{id}/index.pdf"
+    a = f"{srcpath}/genpdf/{id}/index.pdf"
     b = f"pdf/{code}.pdf"
     cmd = ["ln", a, b]
     try:
