@@ -1,5 +1,7 @@
+# はじめに、Paperpileで論文リストをcsv形式で出力する→papers.csv
 all: papers.js thumbs prepare deploy
 
+PREP=~/Dropbox/
 # revised PDFをunlabelled/に練りこむ。
 thumbs:
 	ls pdf/*.pdf | sed -e 's/\.pdf/.jpg/' -e 's/pdf/tn/' | xargs make -k
