@@ -1,7 +1,7 @@
 # はじめに、Paperpileで論文リストをcsv形式で出力する→papers.csv
 all: papers.js thumbs prepare deploy
 
-PREP=~/Dropbox/
+# PREP=~/Dropbox/
 # revised PDFをunlabelled/に練りこむ。
 thumbs:
 	ls pdf/*.pdf | sed -e 's/\.pdf/.jpg/' -e 's/pdf/tn/' | xargs make -k
@@ -27,7 +27,7 @@ prepare: index.html noimage-ls.png papers.css papers.js readme.txt
 #.htpasswd: make_htpasswd.py
 #	python3 make_htpasswd.py
 papers.js: paperpile_csv2js.py papers.csv
-	pipenv install python-slugify pandas
+	# pipenv install python-slugify pandas
 	-rm -rf pdf tn
 	mkdir pdf tn
 	python paperpile_csv2js.py
