@@ -6,13 +6,15 @@ SHELL=/bin/bash
 RENDERER="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 
 
-all: $(patsubst %.json, %.js, $(wildcard ../master/*.json)) \
+all: genpdf $(patsubst %.json, %.js, $(wildcard ../master/*.json)) \
 $(patsubst ../master/%.json, genpdf/%/index.html, $(wildcard ../master/*.json)) \
 $(patsubst ../master/%.json, genpdf/%/figure.jpg, $(wildcard ../master/*.json)) \
 $(patsubst ../master/%.json, genpdf/%/index.pdf, $(wildcard ../master/*.json)) \
 $(patsubst ../master/%.json, genpdf/%/tocg.jpg, $(wildcard ../master/*.json))
 	echo Done.
 
+genpdf:
+	mkdir genpdf
 genpdf/%/index.html: makehtml.py
 	-mkdir genpdf/$*
 	python3 makehtml.py $* > $@
