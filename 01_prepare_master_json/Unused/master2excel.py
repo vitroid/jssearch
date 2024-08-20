@@ -1,5 +1,7 @@
 # tab2excel
 # applyの管理画面で生成した、タブ区切りプレーンテキストを読みこみ、錯討方式でフォーマットしてExcel出力
+# 2024 使おうかと思ったが、これを渡すと、Excel上で修正を加えたものが戻ってくる可能性が高い。
+
 
 import csv
 import glob
@@ -9,7 +11,7 @@ import sys
 
 from xlsxwriter.workbook import Workbook
 
-xlsx_file = 'contents.xlsx'
+xlsx_file = "contents.xlsx"
 
 workbook = Workbook(xlsx_file)
 worksheet = workbook.add_worksheet()
@@ -18,13 +20,15 @@ worksheet = workbook.add_worksheet()
 # workbook.close()
 # sys.exit(0)
 
-patterns = {"sup": workbook.add_format({'font_script': 1}),
-            "sub": workbook.add_format({'font_script': 2}),}
+patterns = {
+    "sup": workbook.add_format({"font_script": 1}),
+    "sub": workbook.add_format({"font_script": 2}),
+}
 
 # tab区切り形式で生成した管理画面データ。最初の2行にレコード順序が書かれている。
-field_order = "/Users/matto/Downloads/1658208630.tab"
+field_order = "../private//1720320865.tab"
 with open(field_order) as f:
-    read_tsv = csv.reader(f, delimiter ='\t')
+    read_tsv = csv.reader(f, delimiter="\t")
 
     labels, fields = list(read_tsv)[:2]
     for c, label in enumerate(labels):
@@ -49,8 +53,12 @@ for row, filename in enumerate(files):
                 break
             if field in data:
                 col = data[field]
-                if labels[c] in ("講演題目", "Title of the talk", "発表者リスト / List of authors"):
-                    col = re.sub(r'<br />', '\n', col)
+                if labels[c] in (
+                    "講演題目",
+                    "Title of the talk",
+                    "発表者リスト / List of authors",
+                ):
+                    col = re.sub(r"<br />", "\n", col)
                     cols = [col]
                     # rich text化する??
                     # https://xlsxwriter.readthedocs.io/example_rich_strings.html
@@ -59,7 +67,7 @@ for row, filename in enumerate(files):
                         newcols = []
                         for col in cols:
                             if type(col) is str:
-                                regexp = f'<{htmltag}.*?>(.*?)</{htmltag}>'
+                                regexp = f"<{htmltag}.*?>(.*?)</{htmltag}>"
                                 m = re.split(regexp, col)
                                 ## 奇数番目の前にfuncを挿入する。
                                 m2 = []
@@ -80,13 +88,13 @@ for row, filename in enumerate(files):
                     print(cols)
                     if len(cols) > 0:
                         if len(cols) == 1:
-                            worksheet.write(row+1, c, cols[0])
+                            worksheet.write(row + 1, c, cols[0])
                         else:
-                            worksheet.write_rich_string(row+1, c, *cols)
+                            worksheet.write_rich_string(row + 1, c, *cols)
                 elif col != "":
-                    worksheet.write(row+1, c, col)
+                    worksheet.write(row + 1, c, col)
     # worksheet.write_row(row, 0, data)
 
 # Closing the xlsx file.
-worksheet.write_rich_string(0, 0, 'test')
+worksheet.write_rich_string(0, 0, "test")
 workbook.close()

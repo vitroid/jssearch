@@ -6,18 +6,19 @@ SHELL=/bin/bash
 RENDERER="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 
 
-all: genpdf $(patsubst %.json, %.js, $(wildcard ../master/*.json)) \
+all: genpdf \
 $(patsubst ../master/%.json, genpdf/%/index.html, $(wildcard ../master/*.json)) \
-$(patsubst ../master/%.json, genpdf/%/figure.jpg, $(wildcard ../master/*.json)) \
-$(patsubst ../master/%.json, genpdf/%/index.pdf, $(wildcard ../master/*.json)) \
-$(patsubst ../master/%.json, genpdf/%/tocg.jpg, $(wildcard ../master/*.json))
+$(patsubst ../master/%.json, genpdf/%/index.pdf, $(wildcard ../master/*.json))
 	echo Done.
+# $(patsubst ../master/%.json, genpdf/%/figure.jpg, $(wildcard ../master/*.json)) \
+# $(patsubst ../master/%.json, genpdf/%/tocg.jpg, $(wildcard ../master/*.json))
+
 
 genpdf:
 	mkdir genpdf
-genpdf/%/index.html: makehtml.py
+genpdf/%/index.html: makehtml.py ../master/%.js ../master/%.json
 	-mkdir genpdf/$*
-	python3 makehtml.py $* > $@
+	python3 makehtml.py $* $@
 
 # % is subst by genpdf/7xxxx
 %/preview.css: preview.css
@@ -25,28 +26,22 @@ genpdf/%/index.html: makehtml.py
 %/preview.js:
 	cd $*; ln -s ../../preview.js .
 
-genpdf/%/tocg.jpg: ../master/%.json maketocg.py genpdf/%/index.pdf
-	-mkdir genpdf/$*
-	python3 maketocg.py $<
-genpdf/%/figure.jpg: ../master/%.json makefigure.py
-	-mkdir genpdf/$*
-	python3 makefigure.py $<
+# genpdf/%/tocg.jpg: ../master/%.json maketocg.py genpdf/%/index.pdf
+# 	-mkdir genpdf/$*
+# 	python3 maketocg.py $<
+# genpdf/%/figure.jpg: ../master/%.json makefigure.py
+# 	-mkdir genpdf/$*
+# 	python3 makefigure.py $<
 
 %.js: %.json
 	echo -n "const data = " > $@ ; \
 	cat $< >> $@
 	echo ";" >> $@
 
-# all:
-# 	-mkdir pdf
-# 	-cd html; rm *.css *.js; ln -s ../2/* ../img ../attach ../master .
-# 	ls html/*.html | sed -e 's/html/pdf/g' | xargs make -k -j 8 -f 2.makefile
-
 genpdf/%/index.pdf: genpdf/%/index.html ../master/%.js genpdf/%/preview.css genpdf/%/preview.js
 	-mkdir genpdf/$*
-	$(RENDERER) --headless $< --print-to-pdf=$@ --print-to-pdf-no-header
+	-[ -e $< ] && $(RENDERER) --headless $< --print-to-pdf=$@ --print-to-pdf-no-header
 
-# %.js: %.json
-# 	echo -n "var data = " > $@
-# 	cat $< >> $@
-# 	echo ";" >> $@
+
+sheet.pdf: $(wildcard ../03_sheetpdf/genpdf/*/index.pdf)
+	python3 ./bind.py $^
