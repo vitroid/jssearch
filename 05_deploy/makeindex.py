@@ -89,6 +89,9 @@ for j in sys.argv[2:]:
 data = []
 for id, rec in records.items():
     index = dict()
+    if "code" not in rec or rec["code"] == "":
+        logger.info(f"The code is missing in {id}.")
+        continue
     code = rec["code"]
     logger.info((id, code))
     index["lab"] = code

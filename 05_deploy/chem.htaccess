@@ -1,5 +1,5 @@
-AuthUserFile /home/reg/.reg/jscc73.htdigest
+AuthUserFile /home/reg/.reg/jscc74.htdigest
 AuthGroupFile /dev/null
-AuthName jscc73
+AuthName jscc74
 AuthType Digest
 require valid-user

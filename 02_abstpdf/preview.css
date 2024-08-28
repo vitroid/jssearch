@@ -1,13 +1,15 @@
 @media print {
     html, body {
-	width: 297mm;
-	height: 209mm;
+        /*page shape*/
+	width: 277mm;
+	height: 199mm;
     }
     @page {
+    /*Paper size*/
 	margin: 10mm;
 	margin-bottom: 0;
-	padding: 0in;
-	size: 317mm 220mm;
+	/* padding: 0in; */
+	size: 297mm 209mm;
     }
     /* ... the rest of the rules ... */
 }

@@ -4,7 +4,9 @@ MASTER=../master
 # 個人情報などを、別の場所にまとめることにした。
 # PRIVATE=/Users/matto/Library/CloudStorage/GoogleDrive-vitroid@gmail.com/My\ Drive/00Priority/2023錯討73
 PRIVATE=../private
-JSON=$(PRIVATE)/1720419755.json
+
+# 改行符入りのJSONが壊れている。これはPerlの問題か。
+JSON=$(PRIVATE)/1724828732.json
 sync:
 	rsync -av reg@www.chem.okayama-u.ac.jp:reg2/var/projects/apply/attach ..
 

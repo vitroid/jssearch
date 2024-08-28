@@ -5,9 +5,10 @@ all:
 	make *.pdf
 
 first:
+	# 最後の行をコメントアウトしてから
 	python3 bind.py
 
 deploy:
-	rsync -av *.pdf ~/'Dropbox/jscc73/abstract book/'
+	rsync -av *.pdf ~/'Dropbox/jscc74/abstract book/'
 
 include makefile.*

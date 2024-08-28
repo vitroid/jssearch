@@ -24,7 +24,7 @@ hardlinks:
 PRIVATE=../private
 
 # combine master/ and make a single big file for searching
-general.json: $(wildcard ../master/*.json)
+general.json: $(wildcard ../master/*.json) makeindex.py
 	python makeindex.py $(PRIVATE)/settings/setting.json ../master/*.json > $@
 
 
@@ -40,8 +40,7 @@ deploy:
 	-mkdir $(BUILD)
 	-mkdir $(BUILD)/chem
 	-mkdir $(BUILD)/chem-access
-	# cp $(PRIVATE)/auth/jscc73.htpasswd $(BUILD)/chem-access/jscc73.htpasswd
-	cp $(PRIVATE)/auth/jscc73.htdigest $(BUILD)/chem-access/jscc73.htdigest
+	cp $(PRIVATE)/auth/jscc74.htdigest $(BUILD)/chem-access/jscc74.htdigest
 	cp chem.htaccess $(BUILD)/chem/.htaccess
 	chmod +r tn/* pdf/*
 	rsync -av tn pdf --include="*/" --exclude="7[0-9][0-9][0-9][0-9].*" $(SVELTE)/public/

@@ -7,11 +7,12 @@ RENDERER="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 
 
 all: genpdf \
+$(patsubst ../master/%.json, ../master/%.js, $(wildcard ../master/*.json)) \
 $(patsubst ../master/%.json, genpdf/%/index.html, $(wildcard ../master/*.json)) \
+$(patsubst ../master/%.json, genpdf/%/figure.jpg, $(wildcard ../master/*.json)) \
+$(patsubst ../master/%.json, genpdf/%/tocg.jpg, $(wildcard ../master/*.json)) \
 $(patsubst ../master/%.json, genpdf/%/index.pdf, $(wildcard ../master/*.json))
 	echo Done.
-# $(patsubst ../master/%.json, genpdf/%/figure.jpg, $(wildcard ../master/*.json)) \
-# $(patsubst ../master/%.json, genpdf/%/tocg.jpg, $(wildcard ../master/*.json))
 
 
 genpdf:
@@ -26,12 +27,12 @@ genpdf/%/index.html: makehtml.py ../master/%.js ../master/%.json
 %/preview.js:
 	cd $*; ln -s ../../preview.js .
 
-# genpdf/%/tocg.jpg: ../master/%.json maketocg.py genpdf/%/index.pdf
-# 	-mkdir genpdf/$*
-# 	python3 maketocg.py $<
-# genpdf/%/figure.jpg: ../master/%.json makefigure.py
-# 	-mkdir genpdf/$*
-# 	python3 makefigure.py $<
+genpdf/%/tocg.jpg: ../master/%.json maketocg.py genpdf/%/index.pdf
+	-mkdir genpdf/$*
+	python3 maketocg.py $<
+genpdf/%/figure.jpg: ../master/%.json makefigure.py
+	-mkdir genpdf/$*
+	python3 makefigure.py $<
 
 %.js: %.json
 	echo -n "const data = " > $@ ; \

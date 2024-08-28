@@ -16,9 +16,12 @@ logger = getLogger()
 
 with open(sys.argv[1]) as f:
     original = json.load(f)
+with open(sys.argv[1] + ".formatted", "w") as f:
+    json.dump(original, f, indent=2)
 
 ids = set()
 for fname in glob.glob(f"{sys.argv[2]}/*.json"):
+    print(fname)
     with open(fname) as f:
         modified = json.load(f)
         id = modified["id"]
@@ -30,7 +33,7 @@ for fname in glob.glob(f"{sys.argv[2]}/*.json"):
         m = re.search(r"^[0-9]+[A-Za-z]+-[0-9]+$", modified["code"])
         if m is None:
             msg += f"  Unassigned for presentation: {modified['code']}\n"
-        
+
         else:
             # keys only in original
             keys = set(original[id]) - set(modified)
@@ -46,14 +49,12 @@ for fname in glob.glob(f"{sys.argv[2]}/*.json"):
             # 共通のkeyで、値が違うものを表示する。
             for key in sorted(list(set(modified) & set(original[id]))):
                 if original[id][key] != modified[key]:
-                     msg += f"  Modified: {key}\n"
-                     msg += f"  {key}={original[id][key]}\n"
-                     msg += f"  {key}={modified[key]}\n"
+                    msg += f"  Modified: {key}\n"
+                    msg += f"  {key}={original[id][key]}\n"
+                    msg += f"  {key}={modified[key]}\n"
 
         if msg != "":
-            logger.info(f"{id}##############################\n"+msg)
-
-
+            logger.info(f"{id}##############################\n" + msg)
 
 
 # originalにしかないrecord

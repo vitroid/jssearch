@@ -20,6 +20,10 @@ for j in sys.argv[1:]:
         records[id] = d
 
 for id, rec in records.items():
+    if "code" not in rec or rec["code"] == "":
+        logger.info(f"The code is missing in {id}.")
+        continue
+
     code = rec["code"]
 
     a = f"{srcpath}/genpdf/{id}/tocg.jpg"  # rec["tn"]
