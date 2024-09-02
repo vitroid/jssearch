@@ -2,8 +2,12 @@ import json
 import os
 import sys
 from subprocess import STDOUT, TimeoutExpired, check_output
-
+from logging import getLogger, basicConfig, INFO, DEBUG
 import yaml
+
+
+basicConfig(level=DEBUG)
+logger = getLogger()
 
 with open(sys.argv[1]) as f:
     data = json.load(f)
@@ -14,10 +18,11 @@ figure = data["figure"]
 src = f"../attach/{figure}.body"
 if "tocg" in data:
     toc = data["tocg"]
-    if toc:
+    if toc != "":
         src = f"../attach/{toc}.body"
 dst = f"genpdf/{id}/tocg.jpg"
 tmp = f"/tmp/{id}.jpg"
+logger.debug(f"Source {src} to dest {dst}.")
 # print(src, file=sys.stderr)
 if os.path.exists(src):
     # print("TOC", file=sys.stderr)
@@ -29,6 +34,7 @@ if os.path.exists(src):
         "pixelHeight",
         f"{src}",
     ]
+    logger.debug(cmd)
     lines = "\n".join(check_output(cmd).decode("utf-8").splitlines()[1:])
     output = yaml.safe_load(lines)
 
@@ -52,6 +58,7 @@ if os.path.exists(src):
         "--out",
         f"{tmp}",
     ]
+    logger.debug(cmd)
     output = check_output(cmd)
     cmd = [
         "sips",
@@ -64,6 +71,7 @@ if os.path.exists(src):
         "--out",
         f"{dst}",
     ]
+    logger.debug(cmd)
     output = check_output(cmd)
 else:
     # prepare thumbs
@@ -75,8 +83,10 @@ else:
         "-z",
         "200",
         "200",
-        f"{id}/index.pdf",
+        "logo-e1482214841506-300x271.jpg",
+        # f"{id}/index.pdf",
         "--out",
         f"{dst}",
     ]
+    logger.debug(cmd)
     output = check_output(cmd)

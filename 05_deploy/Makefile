@@ -4,10 +4,10 @@
 # 一般講演は、masterとpdfを束ねる。
 
 # deploy用のワークディレクトリ
-BUILD=~/Unison/github/search/build
+BUILD=~/Dropbox/gitbox/search/build
 
 # 検索システムの所在 2023もここでいい。
-SVELTE=~/Unison/github/search/svelte-app
+SVELTE=~/Dropbox/gitbox/search/svelte-app
 SHELL=/bin/bash
 
 # prepare for local test site
@@ -28,8 +28,8 @@ general.json: $(wildcard ../master/*.json) makeindex.py
 	python makeindex.py $(PRIVATE)/settings/setting.json ../master/*.json > $@
 
 
-index.json: merge.py general.json Sympo/sympo.json Award/award.json
-	python merge.py general.json Sympo/sympo.json Award/award.json > $@
+index.json: merge.py general.json Sympo/sympo.json Award/award.json Special/special.json
+	python merge.py general.json Sympo/sympo.json Award/award.json Special/special.json > $@
 
 
 

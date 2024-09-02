@@ -1,4 +1,4 @@
-# symposiumのxlsxデータをjs用に変換する。
+# specialのxlsxデータをjs用に変換する。
 
 import json
 
@@ -14,29 +14,20 @@ from reportlab.pdfgen import canvas
 js = pd.read_excel(sys.argv[1]).to_dict(orient="records")
 
 for rec in js:
-    tit = rec["tit"].split("\n")
-    loc = rec["loc"].split("\n")
-    spe = rec["spe"].split("\n")
-    lab = rec["lab"]
-    if len(tit) == 2:
-        rec["inf"] = [
-            tit[1],
-            f"({loc[1]}) {spe[1]}",
-            tit[0],
-            f"({loc[0]}) {spe[0]}",
-        ]
-    else:
-        rec["inf"] = [
-            tit[0],
-            f"({loc[0]}) {spe[0]}",
-        ]
-    rec["sea"] = ""
+    lab = rec["lab"]  # label
+    tit = rec["tit"]  # title
+    rec["inf"] = [
+        tit,
+    ]
     rec["pdf"] = f"pdf/{lab}.pdf"
     rec["pre"] = f"tn/{rec['lab']}.jpg"
-    srcpdf = "../Sympo/" + rec["lab"] + ".pdf"
+    srcpdf = "../Special/" + rec["lab"] + ".pdf"
     dstpdf = "../pdf/" + rec["lab"] + ".pdf"
+    rec["sea"] = ""
+    rec["spe"] = ""  # speakers
+    rec["loc"] = ""  # location of research
 
-    # # ラベルをつける
+    # # ラベルをつける場合
     # can = canvas.Canvas(dstpdf)
     # can.setFillColorRGB(0.5, 0.5, 0.5)
     # can.setFont("Helvetica", 36)

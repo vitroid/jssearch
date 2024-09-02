@@ -34,18 +34,26 @@ for rec in js:
     srcpdf = "../Award/" + rec["lab"] + ".pdf"
     dstpdf = "../pdf/" + rec["lab"] + ".pdf"
 
-    # ラベルを付ける。
-    can = canvas.Canvas(dstpdf)
-    can.setFillColorRGB(0.5, 0.5, 0.5)
-    can.setFont("Helvetica", 36)
-    can.drawString(50, 750, lab)
-    can.save()
+    # # ラベルを付ける。
+    # can = canvas.Canvas(dstpdf)
+    # can.setFillColorRGB(0.5, 0.5, 0.5)
+    # can.setFont("Helvetica", 36)
+    # can.drawString(50, 750, lab)
+    # can.save()
+    # reader = pypdf.PdfReader(srcpdf)
+    # overlay = pypdf.PdfReader(dstpdf)
+    # writer = pypdf.PdfWriter()
+    # # reader = pypdf.PdfReader(open(f"../{srcpdf}", "rb"))
+    # page = reader.pages[0]
+    # page.merge_page(overlay.pages[0])
+    # writer.add_page(page)
+    # with open(dstpdf, "wb") as f:
+    #     writer.write(f)
+
+    # ラベルをつけない場合
     reader = pypdf.PdfReader(srcpdf)
-    overlay = pypdf.PdfReader(dstpdf)
     writer = pypdf.PdfWriter()
-    # reader = pypdf.PdfReader(open(f"../{srcpdf}", "rb"))
     page = reader.pages[0]
-    page.merge_page(overlay.pages[0])
     writer.add_page(page)
     with open(dstpdf, "wb") as f:
         writer.write(f)
