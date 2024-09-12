@@ -42,6 +42,7 @@ genpdf/%/figure.jpg: ../master/%.json makefigure.py
 genpdf/%/index.pdf: genpdf/%/index.html ../master/%.js genpdf/%/preview.css genpdf/%/preview.js
 	-mkdir genpdf/$*
 	-[ -e $< ] && $(RENDERER) --headless $< --print-to-pdf=$@ --print-to-pdf-no-header
+	-[ -e $< ] && python3 single_page.py $@
 
 
 sheet.pdf: $(wildcard ../03_sheetpdf/genpdf/*/index.pdf)
